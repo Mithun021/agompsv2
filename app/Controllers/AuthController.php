@@ -21,6 +21,7 @@ class AuthController extends BaseController
         if ($this->request->is('get')) {
             return view('auth/user-register',$data);
         }else if ($this->request->is('post')) {
+            session()->destroy();
             session()->remove(['otp', 'participant_email']);
             // session()->start();
             $emailAddress = $this->request->getPost('email_address'); // Store the user's email correctly
