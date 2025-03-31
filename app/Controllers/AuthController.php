@@ -52,6 +52,7 @@ class AuthController extends BaseController
             return view('auth/verify',$data);
         }else if ($this->request->is('post')) {
             session()->destroy();
+            session();
             $otpInput = $this->request->getPost('verify_otp');
             echo $otpSession = session()->get('otp');
             echo $email = session()->get('participant_email');
