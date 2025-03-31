@@ -52,52 +52,59 @@ class AuthController extends BaseController
             }
         }
     }
-    public function verify()
-    {
+    public function verify(){
         $data = ['title' => 'Verify'];
+        
+        // Check if it is a GET request
         if ($this->request->is('get')) {
-            return view('auth/verify',$data);
-        }else if ($this->request->is('post')) {
+            return view('auth/verify', $data);
+        }
+
+        // Handle POST request for OTP verification
+        if ($this->request->is('post')) {
             $otpInput = $this->request->getPost('verify_otp');
             $otpSession = session()->get('otp');
             $email = session()->get('participant_email');
-        
+            
+            // Validate OTP
             if ($otpInput == $otpSession) {
-                $customer_detail_model = new Customer_detail_model();
-                $user = $customer_detail_model->where('email', $email)->first();
-        
+                // Check if the user already exists in the database
+                $customerDetailModel = new Customer_detail_model();
+                $user = $customerDetailModel->where('email', $email)->first();
+
                 if (!$user) {
-                    $newUserId = $customer_detail_model->generateUserId();
-                    $customer_detail_model->save(['user_id' => $newUserId, 'email' => $email]);
-        
-                    // Set Session & Cookies
+                    // Generate new User ID and save user
+                    $newUserId = $customerDetailModel->generateUserId();
+                    $customerDetailModel->save(['user_id' => $newUserId, 'email' => $email]);
+
+                    // Set session data
                     session()->set([
                         'isLoggedIn' => true,
                         'customer_email' => $email,
                         'customer_ac_id' => $newUserId
                     ]);
-        
+
+                    // Set cookies for 7 days (604800 seconds)
                     $response = service('response');
-                    $response->setCookie('isLoggedIn', '1', 604800); // Set as string '1' for true (7 days)
+                    $response->setCookie('isLoggedIn', '1', 604800);
                     $response->setCookie('user_email', $email, 604800);
-                    $response->setCookie('customer_ac_id', (string) $newUserId, 604800); // Ensure ID is a string
-        
+                    $response->setCookie('customer_ac_id', (string) $newUserId, 604800);
+
                     return redirect()->to('/')->with('loginsuccess', 'Login Successful');
                 } else {
-                    // Reset session and cookies
+                    // If user already exists, reset session and cookies
                     session()->remove(['isLoggedIn', 'otp', 'participant_email']);
-        
+
                     $response = service('response');
                     $response->setCookie('isLoggedIn', '', time() - 3600); // Expire cookies
                     $response->setCookie('user_email', '', time() - 3600);
                     $response->setCookie('customer_ac_id', '', time() - 3600);
-        
-                    return redirect()->to('user-register')->with('status', '<div class="alert alert-danger" role="alert">Account Already Exist...!</div>');
+
+                    return redirect()->to('user-register')->with('status', '<div class="alert alert-danger" role="alert">Account Already Exists...!</div>');
                 }
             } else {
                 return redirect()->to('verify')->with('status', '<div class="alert alert-danger" role="alert">Invalid OTP</div>');
             }
         }
-        
     }
 }

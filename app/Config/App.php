@@ -12,11 +12,16 @@ class App extends BaseConfig
      * --------------------------------------------------------------------------
      *
      * URL to your CodeIgniter root. Typically, this will be your base URL,
-     * WITH a trailing slash:
+     * WITH a trailing slash
      *
      * E.g., http://example.com/
      */
     public string $baseURL = 'https://dummy.agomps.com/';
+
+    public $sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler';  // Default session handler
+    public $sessionCookieName = 'ci_session';  // The name of your session cookie
+    public $sessionExpiration = 0;  // Session expiry in seconds (2 hours here)
+    public $sessionMatchIP = false;
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
