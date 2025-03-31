@@ -93,7 +93,7 @@
                                                     <span class="custom-control-label" for="customCheck5"> I agree to <a href="#" target="_blank">Privacy Policy</a> and <a href="#" target="_blank">T & C </a></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control form-control-user" name="email_address" placeholder="Enter Email ID">
+                                                    <input type="text" class="form-control form-control-user" name="email_address" placeholder="Enter Email ID" required>
                                                 </div>
                                                 <!-- <div class="form-group">
                                                     <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
