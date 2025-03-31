@@ -125,7 +125,7 @@
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-login">
-                                        Login
+                                        Login <?= session()->get('participant_email') ?>
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-register">
                                         <span>Register</span>
