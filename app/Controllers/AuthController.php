@@ -15,4 +15,9 @@ class AuthController extends BaseController
         $data = ['title' => 'User Register'];
         return view('auth/user-register',$data);
     }
+    public function verify()
+    {
+        $data = ['title' => 'Verify'];
+        return view('auth/verify',$data);
+    }
 }
