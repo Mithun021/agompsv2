@@ -7,13 +7,18 @@ class AuthController extends BaseController
     public function userlogin()
     {
         $data = ['title' => 'User Login'];
-        return view('auth/user-login',$data);
+        if ($this->request->is('get')) {
+            return view('auth/user-login',$data);
+        }
+        
     }
 
     public function userRegister()
     {
         $data = ['title' => 'User Register'];
-        return view('auth/user-register',$data);
+        if ($this->request->is('get')) {
+            return view('auth/user-register',$data);
+        }
     }
     public function verify()
     {

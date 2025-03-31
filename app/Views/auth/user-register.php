@@ -87,7 +87,7 @@
                                     <div class="col-lg-9">
                                         <div class="p-5">
                                             <h1 class="h3 mb-1 text-center">Sign Up</h1>
-                                            <form class="user">
+                                            <form class="user" method="post" action="<?= base_url() ?>user-register">
                                                 <div class="custom-control custom-checkbox custom-control-inline d-flex justify-content-center mb-3">
                                                     <input type="checkbox" class="custom-control-input" name="accept_terms" id="customCheck5" checked disabled>
                                                     <span class="custom-control-label" for="customCheck5"> I agree to <a href="#" target="_blank">Privacy Policy</a> and <a href="#" target="_blank">T & C </a></span>
