@@ -60,7 +60,8 @@ class AuthController extends BaseController
                     $customer_detail_model->save(['email' => $email]);
                     // Set Session & Cookies
                     session()->set(['isLoggedIn' => true, 'customer_email' => $email]);
-                    set_cookie('user_email', $email, time() + 86400); // 1-day cookie
+                    $response = service('response');
+                    $response->setCookie('user_email', $email, 86400); // 1-day cookie
                     return redirect()->to('/')->with('loginsuccess', 'Login Successful');
                 }else{
                     return redirect()->to('user-register')->with('status', '<div class="alert alert-danger" role="alert">Account Already Exist...!</div>');
