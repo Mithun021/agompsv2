@@ -1,3 +1,7 @@
+<?php
+    $customer_ac_id = isset($_COOKIE['customer_ac_id']) ? $_COOKIE['customer_ac_id'] : null;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,18 +124,38 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="rounded-circle header-profile-user" src="<?= base_url() ?>public/assets/images/users/user.png"
                                         alt="Header Avatar">
-                                        <?php if (isset($_COOKIE['isLoggedIn']) && $_COOKIE['isLoggedIn'] == '1'): ?>
-                                            <span class="d-none d-sm-inline-block ml-1"><?= htmlspecialchars($_COOKIE['customer_ac_id'] ?? '') ?></span>
-                                        <?php endif; ?>
+                                    <span class="d-none d-sm-inline-block ml-1">Donald M.</span>
                                     <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                                 </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-login">
-                                        Login <?= session()->get('participant_email') ?>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-register">
-                                        <span>Register</span>
-                                    </a>
+                                <div class="dropdown d-inline-block ml-2">
+                                    <button type="button" class="btn header-item waves-effect waves-light"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img class="rounded-circle header-profile-user" src="<?= base_url() ?>public/assets/images/users/user.png"
+                                            alt="Header Avatar">
+                                        <?php if ($customer_ac_id): ?>
+                                            <span class="d-none d-sm-inline-block ml-1">Customer ID: <?= htmlspecialchars($customer_ac_id) ?></span>
+                                        <?php else: ?>
+                                            <span class="d-none d-sm-inline-block ml-1">Guest</span>
+                                        <?php endif; ?>
+                                        <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <?php if ($customer_ac_id): ?>
+                                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-dashboard">
+                                                Dashboard
+                                            </a>
+                                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>logout">
+                                                Logout
+                                            </a>
+                                        <?php else: ?>
+                                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-login">
+                                                Login
+                                            </a>
+                                            <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-register">
+                                                Register
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                             </div>
                             
