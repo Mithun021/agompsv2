@@ -10,6 +10,9 @@ class AuthController extends BaseController
     {
         $data = ['title' => 'User Login'];
         if ($this->request->is('get')) {
+            if (isset($_COOKIE['customer_ac_id'])) {
+                return redirect()->to('/');
+            }
             return view('auth/user-login',$data);
         }
         
@@ -21,7 +24,7 @@ class AuthController extends BaseController
         if ($this->request->is('get')) {
             return view('auth/user-register',$data);
         }else if ($this->request->is('post')) {
-            session()->destroy();
+            // session()->destroy();
             session()->remove(['otp', 'participant_email']);
             // session()->start();
             $emailAddress = $this->request->getPost('email_address'); // Store the user's email correctly
@@ -63,9 +66,11 @@ class AuthController extends BaseController
                     $newUserId = $customer_detail_model->generateUserId();
                     $customer_detail_model->save(['user_id' => $newUserId,'email' => $email]);
                     // Set Session & Cookies
-                    session()->set(['isLoggedIn' => true, 'customer_email' => $email]);
+                    session()->set(['isLoggedIn' => true, 'customer_email' => $email,'customer_ac_id' => $newUserId]);
                     $response = service('response');
-                    $response->setCookie('user_email', $email, 86400); // 1-day cookie
+                    $response->setCookie('isLoggedIn', true, 604800); // 7 दिन (1 सप्ताह)
+                    $response->setCookie('user_email', $email, 604800); // 7 दिन (1 सप्ताह)
+                    $response->setCookie('customer_ac_id', $newUserId, 604800); // 7 दिन (1 सप्ताह)
                     return redirect()->to('/')->with('loginsuccess', 'Login Successful');
                 }else{
                     return redirect()->to('user-register')->with('status', '<div class="alert alert-danger" role="alert">Account Already Exist...!</div>');
