@@ -30,6 +30,8 @@ use App\Models\Enroll_tournament_model;
                         $enroll_participant_model->insert($participant);
                     }
                 }
+
+
                 
                 return redirect()->to('tournament-details/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Thank you for registering! Your team registration has been successfully completed. You can now proceed with the payment to enroll your team in AGOMPS UPPL. </div>');
                 
