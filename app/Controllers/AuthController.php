@@ -19,24 +19,23 @@ class AuthController extends BaseController
         if ($this->request->is('get')) {
             return view('auth/user-register',$data);
         }else if ($this->request->is('post')) {
-            $email = $this->request->getPost('email_address');
+            $emailAddress = $this->request->getPost('email_address'); // Store the user's email correctly
             // Generate OTP
-            $otp = rand(0,999999);
+            $otp = rand(100000, 999999); // Ensure OTP is 6 digits
             session()->set('otp', $otp);
-            session()->set('participant_email', $email);
+            session()->set('participant_email', $emailAddress);
 
-            $email = \Config\Services::email();
+            $emailService = \Config\Services::email(); // Change variable name to avoid conflict
 
             // Set SMTP configuration (if not configured globally)
-            $email->setFrom('contact@agomps.com', 'Agomps');
-            $email->setTo($email);
-            $email->setSubject('Your OTP Code');
-            $emailTemplate = view('email_template/otp', [
-                'otp' => $otp
-            ]);
-            $email->setMessage($emailTemplate);
-            $email->setMailType('html');
-            if ($email->send()) {
+            $emailService->setFrom('contact@agomps.com', 'Agomps');
+            $emailService->setTo($emailAddress);
+            $emailService->setSubject('Your OTP Code');
+            $emailTemplate = view('email_template/otp', ['otp' => $otp]);
+            $emailService->setMessage($emailTemplate);
+            $emailService->setMailType('html');
+
+            if ($emailService->send()) {
                 return redirect()->to('verify')->with('message', 'OTP sent to your email.');
             } else {
                 return redirect()->to('signup')->with('error', 'Failed to send OTP.');
