@@ -86,34 +86,19 @@
                                     <!-- <div class="col-lg-5 d-none d-lg-block bg-login rounded-left"></div> -->
                                     <div class="col-lg-9">
                                         <div class="p-5">
-                                            <h1 class="h3 mb-1 text-center">Sign Up</h1>
-                                            <form class="user">
+                                            <h1 class="h3 mb-1 text-center">Verify</h1>
+                                            <form class="user" method="post" action="<?= base_url() ?>verify">
                                                 <div class="custom-control custom-checkbox custom-control-inline d-flex justify-content-center mb-3">
                                                     <input type="checkbox" class="custom-control-input" name="accept_terms" id="customCheck5" checked disabled>
                                                     <span class="custom-control-label" for="customCheck5"> I agree to <a href="#" target="_blank">Privacy Policy</a> and <a href="#" target="_blank">T & C </a></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control form-control-user" name="email_address" placeholder="Enter Email ID">
+                                                    <input type="number" class="form-control form-control-user" name="verify_otp" placeholder="Enter 6 Digit OTP">
                                                 </div>
                                                 <!-- <div class="form-group">
                                                     <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
                                                 </div> -->
-                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"> Continue </button>
-    
-                                                <div class="text-center mt-4 google-login">
-                                                    <div id="divideroption">
-                                                        <div class="divider">
-                                                            <span class="line"></span>
-                                                            <span class="text">Or</span>
-                                                            <span class="line"></span>
-                                                        </div>
-                                                    </div>
-                                                    <a href="">
-                                                        <img src="<?= base_url() ?>public/assets/images/google.png" alt="">
-                                                        Continue with Google
-                                                    </a>
-                                                </div>
-                                                
+                                                <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"> Verify and Create Account </button>
                                             </form>
     
                                             <div class="row mt-4">
