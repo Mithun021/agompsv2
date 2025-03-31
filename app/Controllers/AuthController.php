@@ -50,7 +50,7 @@ class AuthController extends BaseController
         }else if ($this->request->is('post')) {
             $otpInput = $this->request->getPost('verify_otp');
             echo $otpSession = session()->get('otp');
-            echo $email = session()->get('email');
+            echo $email = session()->get('participant_email');
         }
     }
 }
