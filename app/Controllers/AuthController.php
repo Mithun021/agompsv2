@@ -19,7 +19,28 @@ class AuthController extends BaseController
         if ($this->request->is('get')) {
             return view('auth/user-register',$data);
         }else if ($this->request->is('post')) {
-            echo $email = $this->request->getPost('email_address');
+            $email = $this->request->getPost('email_address');
+            // Generate OTP
+            $otp = rand(0,999999);
+            session()->set('otp', $otp);
+            session()->set('participant_email', $email);
+
+            $email = \Config\Services::email();
+
+            // Set SMTP configuration (if not configured globally)
+            $email->setFrom('contact@agomps.com', 'Agomps');
+            $email->setTo($email);
+            $email->setSubject('Your OTP Code');
+            $emailTemplate = view('emails/optin_email', [
+                'otp' => $otp
+            ]);
+            $email->setMessage($emailTemplate);
+            $email->setMailType('html');
+            if ($email->send()) {
+                return redirect()->to('verify')->with('message', 'OTP sent to your email.');
+            } else {
+                return redirect()->to('signup')->with('error', 'Failed to send OTP.');
+            }
         }
     }
     public function verify()
