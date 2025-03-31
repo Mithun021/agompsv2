@@ -93,7 +93,7 @@
                                                     <span class="custom-control-label" for="customCheck5"> I agree to <a href="#" target="_blank">Privacy Policy</a> and <a href="#" target="_blank">T & C </a></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control form-control-user" name="verify_otp" placeholder="Enter 6 Digit OTP" required maxlength="6" minlength="6">
+                                                    <input type="text" class="form-control form-control-user" name="verify_otp" placeholder="Enter 6 Digit OTP" required maxlength="6" minlength="6">
                                                 </div>
                                                 <!-- <div class="form-group">
                                                     <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
