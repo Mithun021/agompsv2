@@ -59,30 +59,43 @@ class AuthController extends BaseController
             $otpInput = $this->request->getPost('verify_otp');
             $otpSession = session()->get('otp');
             $email = session()->get('participant_email');
+        
             if ($otpInput == $otpSession) {
                 $customer_detail_model = new Customer_detail_model();
                 $user = $customer_detail_model->where('email', $email)->first();
+        
                 if (!$user) {
                     $newUserId = $customer_detail_model->generateUserId();
-                    $customer_detail_model->save(['user_id' => $newUserId,'email' => $email]);
+                    $customer_detail_model->save(['user_id' => $newUserId, 'email' => $email]);
+        
                     // Set Session & Cookies
-                    session()->set(['isLoggedIn' => true, 'customer_email' => $email,'customer_ac_id' => $newUserId]);
+                    session()->set([
+                        'isLoggedIn' => true,
+                        'customer_email' => $email,
+                        'customer_ac_id' => $newUserId
+                    ]);
+        
                     $response = service('response');
-                    $response->setCookie('isLoggedIn', true, 604800); // 7 दिन (1 सप्ताह)
-                    $response->setCookie('customer_email', $email, 604800); // 7 दिन (1 सप्ताह)
-                    $response->setCookie('customer_ac_id', $newUserId, 604800); // 7 दिन (1 सप्ताह)
+                    $response->setCookie('isLoggedIn', '1', 604800); // Set as string '1' for true (7 days)
+                    $response->setCookie('user_email', $email, 604800);
+                    $response->setCookie('customer_ac_id', (string) $newUserId, 604800); // Ensure ID is a string
+        
                     return redirect()->to('/')->with('loginsuccess', 'Login Successful');
-                }else{
-                    session()->remove(['isLoggedIn','otp', 'participant_email']);
+                } else {
+                    // Reset session and cookies
+                    session()->remove(['isLoggedIn', 'otp', 'participant_email']);
+        
                     $response = service('response');
-                    $response->setCookie('isLoggedIn', '', time() - 3600);
-                    $response->setCookie('customer_email', '', time() - 3600);
+                    $response->setCookie('isLoggedIn', '', time() - 3600); // Expire cookies
+                    $response->setCookie('user_email', '', time() - 3600);
                     $response->setCookie('customer_ac_id', '', time() - 3600);
+        
                     return redirect()->to('user-register')->with('status', '<div class="alert alert-danger" role="alert">Account Already Exist...!</div>');
                 }
-            }else{
+            } else {
                 return redirect()->to('verify')->with('status', '<div class="alert alert-danger" role="alert">Invalid OTP</div>');
             }
         }
+        
     }
 }
