@@ -18,6 +18,8 @@ class AuthController extends BaseController
         $data = ['title' => 'User Register'];
         if ($this->request->is('get')) {
             return view('auth/user-register',$data);
+        }else if ($this->request->is('post')) {
+            echo $email = $this->request->getPost('email_address');
         }
     }
     public function verify()
