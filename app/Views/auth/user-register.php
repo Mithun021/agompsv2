@@ -119,6 +119,13 @@
                                             <div class="row mt-4">
                                                 <div class="col-12 text-center">
                                                     <p class="text-muted mb-0">Already have an account? <a href="<?= base_url() ?>user-login" class="text-muted font-weight-medium ml-1"><b>Sign Up</b></a></p>
+                                                
+                                                    <?php
+                                                        if (session()->getFlashdata('status')) {
+                                                            echo session()->getFlashdata('status');
+                                                        }
+                                                    ?>
+
                                                 </div> <!-- end col -->
                                             </div>
                                             <!-- end row -->
