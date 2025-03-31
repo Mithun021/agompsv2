@@ -21,6 +21,7 @@ class AuthController extends BaseController
         if ($this->request->is('get')) {
             return view('auth/user-register',$data);
         }else if ($this->request->is('post')) {
+            session()->destroy();
             $emailAddress = $this->request->getPost('email_address'); // Store the user's email correctly
             // Generate OTP
             $otp = rand(100000, 999999); // Ensure OTP is 6 digits
@@ -55,6 +56,7 @@ class AuthController extends BaseController
             $email = session()->get('participant_email');
             if ($otpInput == $otpSession) {
                 $customer_detail_model = new Customer_detail_model();
+                session()->destroy();
                 $user = $customer_detail_model->where('email', $email)->first();
                 if (!$user) {
                     $newUserId = $customer_detail_model->generateUserId();
