@@ -25,7 +25,7 @@ class UniversalController extends BaseController{
         $email = \Config\Services::email();
 
         // Set SMTP configuration (if not configured globally)
-        $email->setFrom('contact@dcodematerials.com', 'Dcode Materials');
+        $email->setFrom('contact@agomps.com', 'Agomps');
         $email->setTo('mithunkr79038@gmail.com');
         $email->setSubject('Test Emai');
 

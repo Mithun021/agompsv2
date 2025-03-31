@@ -33,12 +33,12 @@ class Email extends BaseConfig
     /**
      * SMTP Username
      */
-    public string $SMTPUser = 'contact@dcodematerials.com';
+    public string $SMTPUser = 'contact@agomps.com';
 
     /**
      * SMTP Password
      */
-    public string $SMTPPass = 'Mithun@8674';
+    public string $SMTPPass = 'Agomps@1234';
 
     /**
      * SMTP Port
