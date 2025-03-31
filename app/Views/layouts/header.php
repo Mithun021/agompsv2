@@ -120,7 +120,9 @@
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img class="rounded-circle header-profile-user" src="<?= base_url() ?>public/assets/images/users/user.png"
                                         alt="Header Avatar">
-                                     <?php if (isset($_COOKIE['isLoggedIn'])) { ?><span class="d-none d-sm-inline-block ml-1"><?= $_COOKIE['customer_ac_id'] ?></span> <?php } ?>
+                                        <?php if (isset($_COOKIE['isLoggedIn']) && $_COOKIE['isLoggedIn'] == '1'): ?>
+                                            <span class="d-none d-sm-inline-block ml-1"><?= htmlspecialchars($_COOKIE['customer_ac_id'] ?? '') ?></span>
+                                        <?php endif; ?>
                                     <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
