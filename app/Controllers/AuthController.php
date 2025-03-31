@@ -22,7 +22,7 @@ class AuthController extends BaseController
             return view('auth/user-register',$data);
         }else if ($this->request->is('post')) {
             session()->destroy();
-            session();
+            session()->start();
             $emailAddress = $this->request->getPost('email_address'); // Store the user's email correctly
             // Generate OTP
             $otp = rand(100000, 999999); // Ensure OTP is 6 digits
