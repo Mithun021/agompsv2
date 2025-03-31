@@ -73,6 +73,7 @@ class AuthController extends BaseController
                     $response->setCookie('customer_ac_id', $newUserId, 604800); // 7 दिन (1 सप्ताह)
                     return redirect()->to('/')->with('loginsuccess', 'Login Successful');
                 }else{
+                    session()->destroy();
                     return redirect()->to('user-register')->with('status', '<div class="alert alert-danger" role="alert">Account Already Exist...!</div>');
                 }
             }else{
