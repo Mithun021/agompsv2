@@ -25,7 +25,7 @@ class AuthController extends BaseController
             return view('auth/user-register',$data);
         }else if ($this->request->is('post')) {
             // session()->destroy();
-            session()->remove(['otp', 'participant_email']);
+            session()->remove(['isLoggedIn','otp', 'participant_email']);
             // session()->start();
             $emailAddress = $this->request->getPost('email_address'); // Store the user's email correctly
             // Generate OTP
@@ -69,11 +69,15 @@ class AuthController extends BaseController
                     session()->set(['isLoggedIn' => true, 'customer_email' => $email,'customer_ac_id' => $newUserId]);
                     $response = service('response');
                     $response->setCookie('isLoggedIn', true, 604800); // 7 दिन (1 सप्ताह)
-                    $response->setCookie('user_email', $email, 604800); // 7 दिन (1 सप्ताह)
+                    $response->setCookie('customer_email', $email, 604800); // 7 दिन (1 सप्ताह)
                     $response->setCookie('customer_ac_id', $newUserId, 604800); // 7 दिन (1 सप्ताह)
                     return redirect()->to('/')->with('loginsuccess', 'Login Successful');
                 }else{
-                    session()->destroy();
+                    session()->remove(['isLoggedIn','otp', 'participant_email']);
+                    $response = service('response');
+                    $response->setCookie('isLoggedIn', '', time() - 3600);
+                    $response->setCookie('customer_email', '', time() - 3600);
+                    $response->setCookie('customer_ac_id', '', time() - 3600);
                     return redirect()->to('user-register')->with('status', '<div class="alert alert-danger" role="alert">Account Already Exist...!</div>');
                 }
             }else{
