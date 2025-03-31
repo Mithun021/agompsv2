@@ -57,7 +57,8 @@ class AuthController extends BaseController
                 $customer_detail_model = new Customer_detail_model();
                 $user = $customer_detail_model->where('email', $email)->first();
                 if (!$user) {
-                    $customer_detail_model->save(['email' => $email]);
+                    $newUserId = $customer_detail_model->generateUserId();
+                    $customer_detail_model->save(['user_id' => $newUserId,'email' => $email]);
                     // Set Session & Cookies
                     session()->set(['isLoggedIn' => true, 'customer_email' => $email]);
                     $response = service('response');
