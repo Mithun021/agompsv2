@@ -87,6 +87,8 @@
                                     <div class="col-lg-9">
                                         <div class="p-5">
                                             <h1 class="h3 mb-1 text-center">Verify</h1>
+                                            <?= session()->get('otp'); ?>
+                                            <?= session()->get('participant_email'); ?>
                                             <form class="user" method="post" action="<?= base_url() ?>verify">
                                                 <div class="custom-control custom-checkbox custom-control-inline d-flex justify-content-center mb-3">
                                                     <input type="checkbox" class="custom-control-input" name="accept_terms" id="customCheck5" checked disabled>
