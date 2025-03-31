@@ -10,7 +10,8 @@ class AuthController extends BaseController
     {
         $data = ['title' => 'User Login'];
         if ($this->request->is('get')) {
-            $customerAcId = get_cookie('customer_ac_id'); // Retrieve the cookie safely
+            $customerAcId = $this->request->getCookie('customer_ac_id'); // Fetch cookie correctly
+
             if (!empty($customerAcId)) {
                 return redirect()->to('/');
             }
