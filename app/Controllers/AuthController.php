@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Customer_detail_model;
+
 class AuthController extends BaseController
 {
     public function userlogin()
@@ -52,9 +54,19 @@ class AuthController extends BaseController
             $otpSession = session()->get('otp');
             $email = session()->get('participant_email');
             if ($otpInput == $otpSession) {
-
+                $customer_detail_model = new Customer_detail_model();
+                $user = $customer_detail_model->where('email', $email)->first();
+                if (!$user) {
+                    $customer_detail_model->save(['email' => $email]);
+                    // Set Session & Cookies
+                    session()->set(['isLoggedIn' => true, 'customer_email' => $email]);
+                    set_cookie('user_email', $email, time() + 86400); // 1-day cookie
+                    return redirect()->to('/')->with('loginsuccess', 'Login Successful');
+                }else{
+                    return redirect()->to('user-register')->with('status', '<div class="alert alert-danger" role="alert">Account Already Exist...!</div>');
+                }
             }else{
-                return redirect()->to('verify')->with('status', '<div class="alert alert-success" role="alert">Invalid OTP</div>');
+                return redirect()->to('verify')->with('status', '<div class="alert alert-danger" role="alert">Invalid OTP</div>');
             }
         }
     }
