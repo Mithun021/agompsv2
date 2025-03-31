@@ -3,7 +3,6 @@
 <?= view('layouts/banner-slider') ?>
 
 <div class="container-fluid">
-    <h1>Hello Babu</h1>
     <?= view('layouts/tournament-category') ?>
     <?= view('layouts/tournaments') ?>
 </div>
