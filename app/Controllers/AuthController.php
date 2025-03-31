@@ -51,12 +51,12 @@ class AuthController extends BaseController
         if ($this->request->is('get')) {
             return view('auth/verify',$data);
         }else if ($this->request->is('post')) {
+            session()->destroy();
             $otpInput = $this->request->getPost('verify_otp');
             $otpSession = session()->get('otp');
             $email = session()->get('participant_email');
             if ($otpInput == $otpSession) {
                 $customer_detail_model = new Customer_detail_model();
-                session()->destroy();
                 $user = $customer_detail_model->where('email', $email)->first();
                 if (!$user) {
                     $newUserId = $customer_detail_model->generateUserId();
