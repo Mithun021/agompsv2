@@ -31,7 +31,7 @@ class AuthController extends BaseController
             $email->setFrom('contact@agomps.com', 'Agomps');
             $email->setTo($email);
             $email->setSubject('Your OTP Code');
-            $emailTemplate = view('emails/optin_email', [
+            $emailTemplate = view('email_template/otp', [
                 'otp' => $otp
             ]);
             $email->setMessage($emailTemplate);
