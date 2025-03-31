@@ -36,9 +36,9 @@ class AuthController extends BaseController
             $emailService->setMailType('html');
 
             if ($emailService->send()) {
-                return redirect()->to('verify')->with('message', 'OTP sent to your email.');
+                return redirect()->to('verify')->with('status', '<div class="alert alert-success" role="alert">OTP sent to your email.</div>');
             } else {
-                return redirect()->to('signup')->with('error', 'Failed to send OTP.');
+                return redirect()->to('signup')->with('status', '<div class="alert alert-warning" role="alert">Failed to send OTP.</div>');
             }
         }
     }
@@ -49,8 +49,13 @@ class AuthController extends BaseController
             return view('auth/verify',$data);
         }else if ($this->request->is('post')) {
             $otpInput = $this->request->getPost('verify_otp');
-            echo $otpSession = session()->get('otp');
-            echo $email = session()->get('participant_email');
+            $otpSession = session()->get('otp');
+            $email = session()->get('participant_email');
+            if ($otpInput == $otpSession) {
+
+            }else{
+                return redirect()->to('verify')->with('status', '<div class="alert alert-success" role="alert">Invalid OTP</div>');
+            }
         }
     }
 }
