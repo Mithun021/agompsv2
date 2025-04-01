@@ -131,6 +131,9 @@
                                     <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-register">
                                         <span>Register</span>
                                     </a>
+                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>logout">
+                                        <span>Logout</span>
+                                    </a>
                                 </div>
                             </div>
                             

@@ -9,9 +9,11 @@ $routes->get('/', 'Home::index');
 $routes->match(['get','post'],'user-login', 'AuthController::userlogin');
 $routes->match(['get','post'],'user-register', 'AuthController::userRegister');
 $routes->match(['get','post'],'verify', 'AuthController::verify');
+$routes->get('logout', 'AuthController::logout');
 $routes->get('tournaments', 'FrontController::tournaments');
 $routes->match(['get','post'],'tournament-details/(:num)', 'FrontController::tournament_details/$1');
 $routes->post('enroll_tournament/(:num)', 'Enroll_tournamentController::enroll_tournament/$1');
+
 
 $routes->match(['get','post'],'admin/login', 'AdminControllers::adminLogin');
 $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
