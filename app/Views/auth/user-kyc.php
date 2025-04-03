@@ -104,6 +104,16 @@
                                                 </div>
                                                 <button type="submit" class="btn btn-primary btn-block waves-effect waves-light"> Continue </button>
                                             </form>
+                                            <div class="row mt-4">
+                                                <div class="col-12 text-center">
+                                                    <?php
+                                                        if (session()->getFlashdata('status')) {
+                                                            echo session()->getFlashdata('status');
+                                                        }
+                                                    ?>
+
+                                                </div> <!-- end col -->
+                                            </div>
                                         </div> <!-- end .padding-5 -->
                                     </div> <!-- end col -->
                                 </div> <!-- end row -->
