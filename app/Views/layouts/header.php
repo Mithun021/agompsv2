@@ -129,15 +129,19 @@
                                     <i class="mdi mdi-chevron-down d-none d-sm-inline-block"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-login">
+                                    <?php if(isset($customer_ac_id)){ ?>
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>logout">
+                                            <span>Logout</span>
+                                        </a>
+                                    <?php }else{ ?>
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-login">
                                         Login
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-register">
-                                        <span>Register</span>
-                                    </a>
-                                    <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>logout">
-                                        <span>Logout</span>
-                                    </a>
+                                        </a>
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between" href="<?= base_url() ?>user-register">
+                                            <span>Register</span>
+                                        </a>
+                                    <?php } ?>
+                                    
                                 </div>
                             </div>
                             
