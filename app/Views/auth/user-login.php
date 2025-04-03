@@ -86,7 +86,7 @@
                                     <!-- <div class="col-lg-5 d-none d-lg-block bg-login rounded-left"></div> -->
                                     <div class="col-lg-9">
                                         <div class="p-5">
-                                            <h1 class="h5 mb-1">Welcome Back! <?= session()->get('customer_ac_id'); ?></h1>
+                                            <h1 class="h5 mb-1">Welcome Back!</h1>
                                             <p class="text-muted mb-4">Enter your registered email address or phone number to log in to your account.</p>
                                             <form class="user">
                                                 <div class="custom-control custom-checkbox custom-control-inline d-flex justify-content-center mb-3">
