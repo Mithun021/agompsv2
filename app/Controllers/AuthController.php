@@ -111,7 +111,7 @@ class AuthController extends BaseController
     public function user_kyc(){
         if ($this->request->is('get')) {
             return view('auth/user-kyc');
-        }else if ($this->request->is('get')) {
+        }else if ($this->request->is('post')) {
             echo "ok";
         }
     }
