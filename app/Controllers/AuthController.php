@@ -109,10 +109,21 @@ class AuthController extends BaseController
     }
 
     public function user_kyc(){
+        $customer_detail_model = new Customer_detail_model();
         if ($this->request->is('get')) {
             return view('auth/user-kyc');
         }else if ($this->request->is('post')) {
-            echo "ok";
+            $user_id = $this->request->getPost('user_id');
+            $data = [
+                'name' => $this->request->getPost('username'),
+                'phone_number' => $this->request->getPost('phone_number'),
+            ];
+            $save = $customer_detail_model->where('user_id', $user_id)->update($data);
+            if ($save) {
+                return redirect()->to('/')->with('status', '<div class="alert alert-success" role="alert"Thank you. You have successfully complete your profile.</div>');
+            } else {
+                return redirect()->to('user-kyc')->with('status', '<div class="alert alert-warning" role="alert">Failed toupdate your profile.</div>');
+            }
         }
     }
 

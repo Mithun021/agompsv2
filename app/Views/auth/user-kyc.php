@@ -88,9 +88,13 @@
                                         <div class="p-5">
                                             <h1 class="h3 mb-1 text-center">Complete Your Profile</h1>
                                             <form class="user" method="post" action="<?= base_url() ?>user-kyc">
+                                                
                                                 <div class="custom-control custom-checkbox custom-control-inline d-flex justify-content-center mb-3">
                                                     <input type="checkbox" class="custom-control-input" name="accept_terms" id="customCheck5" checked disabled>
                                                     <span class="custom-control-label" for="customCheck5"> I agree to <a href="#" target="_blank">Privacy Policy</a> and <a href="#" target="_blank">T & C </a></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control form-control-user" name="userid" value="<?= $user_id ?>" readonly required>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-user" name="username" placeholder="Enter your name" required>
