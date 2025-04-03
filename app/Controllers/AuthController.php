@@ -114,6 +114,10 @@ class AuthController extends BaseController
             return view('auth/user-kyc');
         }else if ($this->request->is('post')) {
             $user_id = $this->request->getPost('userid');
+            if($user_id == ""){
+                return redirect()->to('user-kyc')
+                ->with('status', '<div class="alert alert-warning" role="alert">Can not find your user id... please try again.</div>');
+            }
             $data = [
                 'name' => $this->request->getPost('username'),
                 'phone_number' => $this->request->getPost('phone_number'),
