@@ -113,7 +113,7 @@ class AuthController extends BaseController
         if ($this->request->is('get')) {
             return view('auth/user-kyc');
         }else if ($this->request->is('post')) {
-            echo $user_id = $this->request->getPost('user_id'); die;
+            echo $user_id = $this->request->getPost('userid'); die;
             $data = [
                 'name' => $this->request->getPost('username'),
                 'phone_number' => $this->request->getPost('phone_number'),
