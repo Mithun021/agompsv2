@@ -108,6 +108,13 @@ class AuthController extends BaseController
         }
     }
 
+    public function user_kyc(){
+        if ($this->request->is('get')) {
+            return view('auth/user-kyc');
+        }
+    }
+
+
     public function logout(){
         $session = session();
         session_unset();
