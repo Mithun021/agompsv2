@@ -118,11 +118,14 @@ class AuthController extends BaseController
                 'name' => $this->request->getPost('username'),
                 'phone_number' => $this->request->getPost('phone_number'),
             ];
+
             $save = $customer_detail_model->where('user_id', $user_id)->set($data)->update();
             if ($save) {
-                return redirect()->to('/')->with('status', '<div class="alert alert-success" role="alert"Thank you. You have successfully complete your profile.</div>');
+                return redirect()->to('/')
+                    ->with('status', '<div class="alert alert-success" role="alert">Thank you. You have successfully completed your profile.</div>');
             } else {
-                return redirect()->to('user-kyc')->with('status', '<div class="alert alert-warning" role="alert">Failed toupdate your profile.</div>');
+                return redirect()->to('user-kyc')
+                    ->with('status', '<div class="alert alert-warning" role="alert">Failed to update your profile.</div>');
             }
         }
     }
