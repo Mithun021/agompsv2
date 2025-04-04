@@ -108,7 +108,7 @@
                                                             <span class="line"></span>
                                                         </div>
                                                     </div>
-                                                    <a href="">
+                                                    <a href="<?= base_url('google-login') ?>">
                                                         <img src="<?= base_url() ?>public/assets/images/google.png" alt="">
                                                         Continue with Google
                                                     </a>

@@ -13,6 +13,10 @@ $routes->match(['get','post'],'verify-login', 'AuthController::verify_login');
 $routes->match(['get','post'],'user-kyc', 'AuthController::user_kyc');
 $routes->get('logout', 'AuthController::logout');
 
+$routes->get('google-login', 'GoogleAuth::login');
+$routes->get('google-login-callback', 'GoogleAuth::callback');
+$routes->get('logout', 'GoogleAuth::logout');
+
 $routes->get('privacy-policy', 'FrontController::privacy_policy');
 $routes->get('term-condition', 'FrontController::term_condition');
 $routes->get('refund', 'FrontController::refund');
