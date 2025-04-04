@@ -3,40 +3,40 @@ namespace App\Controllers;
 
 use App\Models\Customer_detail_model;
 use Google_Client;
-use Google_Service_Oauth2;
-use CodeIgniter\Controller;
+use Google\Service\Oauth2 as Google_Service_Oauth2;
 
-class GoogleAuth extends Controller
+class GoogleAuth extends BaseController
 {
-    public function login()
+    public function google_login()
     {
-        $googleConfig = config('Google');
-
         $client = new Google_Client();
-        $client->setClientId($googleConfig->clientID);
-        $client->setClientSecret($googleConfig->clientSecret);
-        $client->setRedirectUri($googleConfig->redirectUri);
+        $client->setClientId(getenv('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(getenv('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(getenv('REDIRECT_URL'));
         $client->addScope("email");
         $client->addScope("profile");
 
-        $authUrl = $client->createAuthUrl();
-        return redirect()->to($authUrl);
+        return redirect()->to($client->createAuthUrl());
     }
 
     public function callback()
     {
-        $googleConfig = config('Google');
         $client = new Google_Client();
-        $client->setClientId($googleConfig->clientID);
-        $client->setClientSecret($googleConfig->clientSecret);
-        $client->setRedirectUri($googleConfig->redirectUri);
+        $client->setClientId(getenv('GOOGLE_CLIENT_ID'));
+        $client->setClientSecret(getenv('GOOGLE_CLIENT_SECRET'));
+        $client->setRedirectUri(getenv('REDIRECT_URL'));
         $client->addScope("email");
         $client->addScope("profile");
 
         if ($this->request->getGet('code')) {
             $token = $client->fetchAccessTokenWithAuthCode($this->request->getGet('code'));
+
+            if (isset($token['error'])) {
+                return redirect()->to('/')->with('error', 'Failed to authenticate.');
+            }
+
             $client->setAccessToken($token);
-            
+
             $googleService = new Google_Service_Oauth2($client);
             $userData = $googleService->userinfo->get();
 
@@ -45,8 +45,8 @@ class GoogleAuth extends Controller
 
             if ($existingUser) {
                 session()->set([
-                    'user_id' => $existingUser['user_id'],
-                    'email'   => $existingUser['email'],
+                    'user_id'   => $existingUser['user_id'],
+                    'email'     => $existingUser['email'],
                     'logged_in' => true
                 ]);
             } else {
@@ -57,14 +57,16 @@ class GoogleAuth extends Controller
                 ]);
 
                 session()->set([
-                    'user_id' => $newUserId,
-                    'email'   => $userData->email,
+                    'user_id'   => $newUserId,
+                    'email'     => $userData->email,
                     'logged_in' => true
                 ]);
             }
 
             return redirect()->to('/dashboard');
         }
+
+        return redirect()->to('/')->with('error', 'No authorization code provided.');
     }
 
     public function logout()
