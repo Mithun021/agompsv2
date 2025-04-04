@@ -152,6 +152,33 @@ class AuthController extends BaseController
             $otpInput = $this->request->getPost('verify_otp');
             $otpSession = session()->get('otp');
             $email = session()->get('participant_email');
+
+            if (empty($otpSession) || empty($email)) {
+                return redirect()->to('user-login')->with('status', 
+                    '<div class="alert alert-danger" role="alert">Session expired... please try again.</div>'
+                );
+            }
+
+            // Validate OTP
+            if ($otpInput == $otpSession) {
+                // Check if the user already exists in the database
+                $customerDetailModel = new Customer_detail_model();
+                $user = $customerDetailModel->where('email', $email)->first();
+                session()->set([
+                    'isLoggedIn' => true,
+                    'customer_email' => $email,
+                    'customer_ac_id' => $user['user_id']
+                ]);
+
+                // Set cookies for 7 days (604800 seconds)
+                $response = service('response');
+                $response->setCookie('isLoggedIn', '1', 604800);
+                $response->setCookie('user_email', $email, 604800);
+                $response->setCookie('customer_ac_id', (string) $user['user_id'], 604800);
+
+                return redirect()->to('/')->with('loginsuccess', 'Login Successful');
+            }
+
         }
     }
 
