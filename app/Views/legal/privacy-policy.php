@@ -1,6 +1,6 @@
 <?= $this->extend('layouts/master') ?>
 <?= $this->section('body-content') ?>
-<div class="container-fluid">
+<div class="container-fluid my-5">
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
