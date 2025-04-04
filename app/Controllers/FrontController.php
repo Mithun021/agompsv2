@@ -32,4 +32,20 @@ class FrontController extends BaseController
         return view('tournament-details',$data);
     }
 
+    public function privacy_policy()
+    {
+        $data = ['title' => 'Privacy Policy'];
+        return view('legal/privacy-policy',$data);
+    }
+    public function term_condition()
+    {
+        $data = ['title' => 'Term & Condition'];
+        return view('legal/term-condition',$data);
+    }
+    public function refund()
+    {
+        $data = ['title' => 'Refund Policy'];
+        return view('legal/refund',$data);
+    }
+
 }

@@ -12,6 +12,11 @@ $routes->match(['get','post'],'verify', 'AuthController::verify');
 $routes->match(['get','post'],'verify-login', 'AuthController::verify_login');
 $routes->match(['get','post'],'user-kyc', 'AuthController::user_kyc');
 $routes->get('logout', 'AuthController::logout');
+
+$routes->get('privacy-policy', 'FrontController::privacy_policy');
+$routes->get('term-condition', 'FrontController::term_condition');
+$routes->get('refund', 'FrontController::refund');
+
 $routes->get('tournaments', 'FrontController::tournaments');
 $routes->match(['get','post'],'tournament-details/(:num)', 'FrontController::tournament_details/$1');
 $routes->post('enroll_tournament/(:num)', 'Enroll_tournamentController::enroll_tournament/$1');

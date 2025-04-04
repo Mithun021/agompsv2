@@ -6,14 +6,22 @@
                 <footer class="footer">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="text-center text-lg-left">
                                     2024 © Agomps India.
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="text-right d-none d-lg-block">
                                     Design & Develop by Sarvin
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="text-right d-none d-lg-block">
+                                   <a href="<?= base_url() ?>privacy-policy">Privacy Policy</a>
+                                   <a href="<?= base_url() ?>term-condition">Terms</a>
+                                   <a href="<?= base_url() ?>refund">Refund</a>
                                 </div>
                             </div>
                         </div>
