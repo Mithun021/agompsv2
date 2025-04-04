@@ -8,6 +8,7 @@ class AuthController extends BaseController
 {
     public function userlogin()
     {
+        $customer_detail_model = new Customer_detail_model();
         $data = ['title' => 'User Login'];
         if ($this->request->is('get')) {
             $customerAcId = $this->request->getCookie('customer_ac_id'); // Fetch cookie correctly
@@ -16,6 +17,36 @@ class AuthController extends BaseController
                 return redirect()->to('/');
             }
             return view('auth/user-login',$data);
+        }else if ($this->request->is('post')) {
+            // session()->destroy();
+            session()->remove(['isLoggedIn','otp', 'participant_email']);
+            // session()->start();
+            $user_name = $this->request->getPost('user_name');
+            $user_detail = $customer_detail_model->where('email', $user_name)->orWhere('phone_number', $user_name)->first();
+            if (!$user_detail) {
+                return redirect()->to('user-login')->with('status', '<div class="alert alert-danger" role="alert">Invalid Email or Phone Number</div>');
+            }
+
+            // Generate OTP
+            $otp = rand(100000, 999999); // Ensure OTP is 6 digits
+            session()->set('otp', $otp);
+            session()->set('participant_email', $user_detail['email']);
+
+            $emailService = \Config\Services::email(); // Change variable name to avoid conflict
+
+            // Set SMTP configuration (if not configured globally)
+            $emailService->setFrom('contact@agomps.com', 'Agomps');
+            $emailService->setTo($user_detail['email']);
+            $emailService->setSubject('Your OTP Code');
+            $emailTemplate = view('email_template/otp', ['otp' => $otp]);
+            $emailService->setMessage($emailTemplate);
+            $emailService->setMailType('html');
+
+            if ($emailService->send()) {
+                return redirect()->to('verify-login')->with('status', '<div class="alert alert-success" role="alert">OTP sent to your email.</div>');
+            } else {
+                return redirect()->to('user-login')->with('status', '<div class="alert alert-warning" role="alert">Failed to send OTP.</div>');
+            }
         }
         
     }
@@ -48,7 +79,7 @@ class AuthController extends BaseController
             if ($emailService->send()) {
                 return redirect()->to('verify')->with('status', '<div class="alert alert-success" role="alert">OTP sent to your email.</div>');
             } else {
-                return redirect()->to('signup')->with('status', '<div class="alert alert-warning" role="alert">Failed to send OTP.</div>');
+                return redirect()->to('user-register')->with('status', '<div class="alert alert-warning" role="alert">Failed to send OTP.</div>');
             }
         }
     }
@@ -107,6 +138,24 @@ class AuthController extends BaseController
             }
         }
     }
+
+    public function verify_login(){
+        $data = ['title' => 'Verify'];
+        
+        // Check if it is a GET request
+        if ($this->request->is('get')) {
+            return view('auth/verify-login', $data);
+        }
+
+        // Handle POST request for OTP verification
+        if ($this->request->is('post')) {
+            $otpInput = $this->request->getPost('verify_otp');
+            $otpSession = session()->get('otp');
+            $email = session()->get('participant_email');
+        }
+    }
+
+
 
     public function user_kyc(){
         $customer_detail_model = new Customer_detail_model();

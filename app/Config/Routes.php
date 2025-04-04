@@ -9,6 +9,7 @@ $routes->get('/', 'Home::index');
 $routes->match(['get','post'],'user-login', 'AuthController::userlogin');
 $routes->match(['get','post'],'user-register', 'AuthController::userRegister');
 $routes->match(['get','post'],'verify', 'AuthController::verify');
+$routes->match(['get','post'],'verify-login', 'AuthController::verify_login');
 $routes->match(['get','post'],'user-kyc', 'AuthController::user_kyc');
 $routes->get('logout', 'AuthController::logout');
 $routes->get('tournaments', 'FrontController::tournaments');
