@@ -1,9 +1,9 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\Customer_detail_model;
 use Google_Client;
 use Google_Service_Oauth2;
-use App\Models\CustomerModel;
 use CodeIgniter\Controller;
 
 class GoogleAuth extends Controller
@@ -36,11 +36,11 @@ class GoogleAuth extends Controller
         if ($this->request->getGet('code')) {
             $token = $client->fetchAccessTokenWithAuthCode($this->request->getGet('code'));
             $client->setAccessToken($token);
-
+            
             $googleService = new Google_Service_Oauth2($client);
             $userData = $googleService->userinfo->get();
 
-            $customerModel = new CustomerModel();
+            $customerModel = new Customer_detail_model();
             $existingUser = $customerModel->where('email', $userData->email)->first();
 
             if ($existingUser) {
