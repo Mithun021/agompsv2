@@ -19,8 +19,8 @@
 
                             <div class="col-md-4">
                                 <div class="text-right d-none d-lg-block">
-                                   <a href="<?= base_url() ?>privacy-policy">Privacy Policy</a>
-                                   <a href="<?= base_url() ?>term-condition">Terms</a>
+                                   <a href="<?= base_url() ?>privacy-policy">Privacy Policy</a> | 
+                                   <a href="<?= base_url() ?>term-condition">Terms</a> | 
                                    <a href="<?= base_url() ?>refund">Refund</a>
                                 </div>
                             </div>
