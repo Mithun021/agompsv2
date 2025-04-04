@@ -16,6 +16,7 @@ $routes->get('logout', 'AuthController::logout');
 $routes->get('google-login', 'GoogleAuth::google_login');
 $routes->get('google-login-callback', 'GoogleAuth::callback');
 $routes->get('logout', 'GoogleAuth::logout');
+
 $routes->get('privacy-policy', 'FrontController::privacy_policy');
 $routes->get('term-condition', 'FrontController::term_condition');
 $routes->get('refund', 'FrontController::refund');
