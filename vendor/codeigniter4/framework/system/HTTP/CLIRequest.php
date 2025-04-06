@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace CodeIgniter\HTTP;
 
-use CodeIgniter\Exceptions\RuntimeException;
 use Config\App;
 use Locale;
+use RuntimeException;
 
 /**
  * Represents a request from the command-line. Provides additional
@@ -95,7 +95,9 @@ class CLIRequest extends Request
      */
     public function getPath(): string
     {
-        return implode('/', $this->segments);
+        $path = implode('/', $this->segments);
+
+        return ($path === '') ? '' : $path;
     }
 
     /**

@@ -15,7 +15,6 @@ namespace CodeIgniter\Database\SQLSRV;
 
 use CodeIgniter\Database\BaseConnection;
 use CodeIgniter\Database\Exceptions\DatabaseException;
-use CodeIgniter\Database\TableName;
 use stdClass;
 
 /**
@@ -216,7 +215,7 @@ class Connection extends BaseConnection
             return $sql .= ' AND [TABLE_NAME] LIKE ' . $this->escape($tableName);
         }
 
-        if ($prefixLimit && $this->DBPrefix !== '') {
+        if ($prefixLimit === true && $this->DBPrefix !== '') {
             $sql .= " AND [TABLE_NAME] LIKE '" . $this->escapeLikeString($this->DBPrefix) . "%' "
                 . sprintf($this->likeEscapeStr, $this->likeEscapeChar);
         }
@@ -226,20 +225,12 @@ class Connection extends BaseConnection
 
     /**
      * Generates a platform-specific query string so that the column names can be fetched.
-     *
-     * @param string|TableName $table
      */
-    protected function _listColumns($table = ''): string
+    protected function _listColumns(string $table = ''): string
     {
-        if ($table instanceof TableName) {
-            $tableName = $this->escape(strtolower($table->getActualTableName()));
-        } else {
-            $tableName = $this->escape($this->DBPrefix . strtolower($table));
-        }
-
         return 'SELECT [COLUMN_NAME] '
             . ' FROM [INFORMATION_SCHEMA].[COLUMNS]'
-            . ' WHERE  [TABLE_NAME] = ' . $tableName
+            . ' WHERE  [TABLE_NAME] = ' . $this->escape($this->DBPrefix . $table)
             . ' AND [TABLE_SCHEMA] = ' . $this->escape($this->schema);
     }
 
@@ -266,7 +257,7 @@ class Connection extends BaseConnection
             $obj->name = $row->index_name;
 
             $_fields     = explode(',', trim($row->index_keys));
-            $obj->fields = array_map(static fn ($v): string => trim($v), $_fields);
+            $obj->fields = array_map(static fn ($v) => trim($v), $_fields);
 
             if (str_contains($row->index_description, 'primary key located on')) {
                 $obj->type = 'PRIMARY';
@@ -377,11 +368,7 @@ class Connection extends BaseConnection
 
             $retVal[$i]->max_length = $query[$i]->CHARACTER_MAXIMUM_LENGTH > 0
                 ? $query[$i]->CHARACTER_MAXIMUM_LENGTH
-                : (
-                    $query[$i]->CHARACTER_MAXIMUM_LENGTH === -1
-                    ? 'max'
-                    : $query[$i]->NUMERIC_PRECISION
-                );
+                : $query[$i]->NUMERIC_PRECISION;
 
             $retVal[$i]->nullable = $query[$i]->IS_NULLABLE !== 'NO';
             $retVal[$i]->default  = $query[$i]->COLUMN_DEFAULT;
@@ -453,10 +440,6 @@ class Connection extends BaseConnection
      */
     public function affectedRows(): int
     {
-        if ($this->resultID === false) {
-            return 0;
-        }
-
         return sqlsrv_rows_affected($this->resultID);
     }
 

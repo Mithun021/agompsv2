@@ -302,9 +302,7 @@ class UploadedFile extends File implements UploadedFileInterface
      */
     public function getExtension(): string
     {
-        $guessExtension = $this->guessExtension();
-
-        return $guessExtension !== '' ? $guessExtension : $this->getClientExtension();
+        return $this->guessExtension() ?: $this->getClientExtension();
     }
 
     /**
@@ -325,7 +323,7 @@ class UploadedFile extends File implements UploadedFileInterface
      */
     public function getClientExtension(): string
     {
-        return pathinfo($this->originalName, PATHINFO_EXTENSION);
+        return pathinfo($this->originalName, PATHINFO_EXTENSION) ?? '';
     }
 
     /**

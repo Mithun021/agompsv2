@@ -14,16 +14,17 @@ declare(strict_types=1);
 namespace CodeIgniter\Autoloader;
 
 use CodeIgniter\Exceptions\ConfigException;
-use CodeIgniter\Exceptions\InvalidArgumentException;
-use CodeIgniter\Exceptions\RuntimeException;
 use Composer\Autoload\ClassLoader;
 use Composer\InstalledVersions;
 use Config\Autoload;
 use Config\Kint as KintConfig;
 use Config\Modules;
+use Config\Services;
+use InvalidArgumentException;
 use Kint;
 use Kint\Renderer\CliRenderer;
 use Kint\Renderer\RichRenderer;
+use RuntimeException;
 
 /**
  * An autoloader that uses both PSR4 autoloading, and traditional classmaps.
@@ -347,7 +348,7 @@ class Autoloader
 
             throw new InvalidArgumentException(
                 'The file path contains special characters "' . $chars
-                . '" that are not allowed: "' . $filename . '"',
+                . '" that are not allowed: "' . $filename . '"'
             );
         }
         if ($result === false) {
@@ -366,9 +367,6 @@ class Autoloader
         return $cleanFilename;
     }
 
-    /**
-     * @param array{only?: list<string>, exclude?: list<string>} $composerPackages
-     */
     private function loadComposerNamespaces(ClassLoader $composer, array $composerPackages): void
     {
         $namespacePaths = $composer->getPrefixesPsr4();
@@ -382,11 +380,11 @@ class Autoloader
             }
         }
 
-        if (! method_exists(InstalledVersions::class, 'getAllRawData')) { // @phpstan-ignore function.alreadyNarrowedType
+        if (! method_exists(InstalledVersions::class, 'getAllRawData')) {
             throw new RuntimeException(
                 'Your Composer version is too old.'
                 . ' Please update Composer (run `composer self-update`) to v2.0.14 or later'
-                . ' and remove your vendor/ directory, and run `composer update`.',
+                . ' and remove your vendor/ directory, and run `composer update`.'
             );
         }
         // This method requires Composer 2.0.14 or later.
@@ -539,7 +537,7 @@ class Autoloader
             Kint::$plugins = $config->plugins;
         }
 
-        $csp = service('csp');
+        $csp = Services::csp();
         if ($csp->enabled()) {
             RichRenderer::$js_nonce  = $csp->getScriptNonce();
             RichRenderer::$css_nonce = $csp->getStyleNonce();
@@ -547,7 +545,7 @@ class Autoloader
 
         RichRenderer::$theme  = $config->richTheme;
         RichRenderer::$folder = $config->richFolder;
-
+        RichRenderer::$sort   = $config->richSort;
         if (isset($config->richObjectPlugins) && is_array($config->richObjectPlugins)) {
             RichRenderer::$value_plugins = $config->richObjectPlugins;
         }

@@ -485,7 +485,7 @@ class Email
         if ($this->validate) {
             $this->validateEmail($this->stringToArray($from));
 
-            if ($returnPath !== null) {
+            if ($returnPath) {
                 $this->validateEmail($this->stringToArray($returnPath));
             }
         }
@@ -495,7 +495,7 @@ class Email
 
         if ($name !== '') {
             // only use Q encoding if there are characters that would require it
-            if (preg_match('/[\200-\377]/', $name) !== 1) {
+            if (! preg_match('/[\200-\377]/', $name)) {
                 $name = '"' . addcslashes($name, "\0..\37\177'\"\\") . '"';
             } else {
                 $name = $this->prepQEncoding($name);
@@ -532,7 +532,7 @@ class Email
             $this->tmpArchive['replyName'] = $name;
 
             // only use Q encoding if there are characters that would require it
-            if (preg_match('/[\200-\377]/', $name) !== 1) {
+            if (! preg_match('/[\200-\377]/', $name)) {
                 $name = '"' . addcslashes($name, "\0..\37\177'\"\\") . '"';
             } else {
                 $name = $this->prepQEncoding($name);
@@ -1031,7 +1031,7 @@ class Email
 
         $unwrap = [];
 
-        if (preg_match_all('|\{unwrap\}(.+?)\{/unwrap\}|s', $str, $matches) >= 1) {
+        if (preg_match_all('|\{unwrap\}(.+?)\{/unwrap\}|s', $str, $matches)) {
             for ($i = 0, $c = count($matches[0]); $i < $c; $i++) {
                 $unwrap[] = $matches[1][$i];
                 $str      = str_replace($matches[0][$i], '{{unwrapped' . $i . '}}', $str);
@@ -1233,9 +1233,7 @@ class Email
                     $this->headerStr .= $hdr;
                 }
 
-                if (static::strlen($body) > 0) {
-                    $body .= $this->newline . $this->newline;
-                }
+                static::strlen($body) && $body .= $this->newline . $this->newline;
 
                 $body .= $this->getMimeMessage() . $this->newline . $this->newline
                     . '--' . $lastBoundary . $this->newline
@@ -1659,7 +1657,7 @@ class Email
         $this->finalBody = preg_replace_callback(
             '/\{unwrap\}(.*?)\{\/unwrap\}/si',
             $this->removeNLCallback(...),
-            $this->finalBody,
+            $this->finalBody
         );
     }
 
@@ -1900,7 +1898,7 @@ class Email
             $this->SMTPPort,
             $errno,
             $errstr,
-            $this->SMTPTimeout,
+            $this->SMTPTimeout
         );
 
         if (! is_resource($this->SMTPConnect)) {
@@ -1921,7 +1919,7 @@ class Email
                 STREAM_CRYPTO_METHOD_TLSv1_0_CLIENT
                 | STREAM_CRYPTO_METHOD_TLSv1_1_CLIENT
                 | STREAM_CRYPTO_METHOD_TLSv1_2_CLIENT
-                | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT,
+                | STREAM_CRYPTO_METHOD_TLSv1_3_CLIENT
             );
 
             if ($crypto !== true) {

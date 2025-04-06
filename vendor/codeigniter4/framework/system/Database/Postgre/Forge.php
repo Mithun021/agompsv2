@@ -118,7 +118,7 @@ class Forge extends BaseForge
                 $nullable = false;
             }
             $sqls[] = $sql . ' ALTER COLUMN ' . $this->db->escapeIdentifiers($field['name'])
-                . ($nullable ? ' DROP' : ' SET') . ' NOT NULL';
+                . ($nullable === true ? ' DROP' : ' SET') . ' NOT NULL';
 
             if (! empty($field['new_name'])) {
                 $sqls[] = $sql . ' RENAME COLUMN ' . $this->db->escapeIdentifiers($field['name'])
@@ -154,7 +154,7 @@ class Forge extends BaseForge
     protected function _attributeType(array &$attributes)
     {
         // Reset field lengths for data types that don't support it
-        if (isset($attributes['CONSTRAINT']) && str_contains(strtolower($attributes['TYPE']), 'int')) {
+        if (isset($attributes['CONSTRAINT']) && stripos($attributes['TYPE'], 'int') !== false) {
             $attributes['CONSTRAINT'] = null;
         }
 
@@ -171,10 +171,6 @@ class Forge extends BaseForge
 
             case 'DATETIME':
                 $attributes['TYPE'] = 'TIMESTAMP';
-                break;
-
-            case 'BLOB':
-                $attributes['TYPE'] = 'BYTEA';
                 break;
 
             default:
@@ -199,7 +195,7 @@ class Forge extends BaseForge
     {
         $sql = parent::_dropTable($table, $ifExists, $cascade);
 
-        if ($cascade) {
+        if ($cascade === true) {
             $sql .= ' CASCADE';
         }
 

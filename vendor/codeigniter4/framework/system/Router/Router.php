@@ -144,7 +144,6 @@ class Router implements RouterInterface
     public function __construct(RouteCollectionInterface $routes, ?Request $request = null)
     {
         $config = config(App::class);
-
         if (isset($config->permittedURIChars)) {
             $this->permittedURIChars = $config->permittedURIChars;
         }
@@ -155,29 +154,27 @@ class Router implements RouterInterface
         $this->controller = $this->collection->getDefaultController();
         $this->method     = $this->collection->getDefaultMethod();
 
-        $this->collection->setHTTPVerb($request->getMethod() === '' ? $_SERVER['REQUEST_METHOD'] : $request->getMethod());
+        $this->collection->setHTTPVerb($request->getMethod() ?? $_SERVER['REQUEST_METHOD']);
 
         $this->translateURIDashes = $this->collection->shouldTranslateURIDashes();
 
         if ($this->collection->shouldAutoRoute()) {
             $autoRoutesImproved = config(Feature::class)->autoRoutesImproved ?? false;
             if ($autoRoutesImproved) {
-                assert($this->collection instanceof RouteCollection);
-
                 $this->autoRouter = new AutoRouterImproved(
                     $this->collection->getRegisteredControllers('*'),
                     $this->collection->getDefaultNamespace(),
                     $this->collection->getDefaultController(),
                     $this->collection->getDefaultMethod(),
-                    $this->translateURIDashes,
+                    $this->translateURIDashes
                 );
             } else {
                 $this->autoRouter = new AutoRouter(
-                    $this->collection->getRoutes('CLI', false),
+                    $this->collection->getRoutes('CLI', false), // @phpstan-ignore-line
                     $this->collection->getDefaultNamespace(),
                     $this->collection->getDefaultController(),
                     $this->collection->getDefaultMethod(),
-                    $this->translateURIDashes,
+                    $this->translateURIDashes
                 );
             }
         }
@@ -223,7 +220,7 @@ class Router implements RouterInterface
         // want this, like in the case of API's.
         if (! $this->collection->shouldAutoRoute()) {
             throw new PageNotFoundException(
-                "Can't find a route for '{$this->collection->getHTTPVerb()}: {$uri}'.",
+                "Can't find a route for '{$this->collection->getHTTPVerb()}: {$uri}'."
             );
         }
 
@@ -250,7 +247,7 @@ class Router implements RouterInterface
      */
     public function controllerName()
     {
-        return $this->translateURIDashes && ! $this->controller instanceof Closure
+        return $this->translateURIDashes
             ? str_replace('-', '_', $this->controller)
             : $this->controller;
     }
@@ -404,6 +401,7 @@ class Router implements RouterInterface
      */
     protected function checkRoutes(string $uri): bool
     {
+        // @phpstan-ignore-next-line
         $routes = $this->collection->getRoutes($this->collection->getHTTPVerb());
 
         // Don't waste any time
@@ -435,7 +433,7 @@ class Router implements RouterInterface
                 // Is this route supposed to redirect to another?
                 if ($this->collection->isRedirect($routeKey)) {
                     // replacing matched route groups with references: post/([0-9]+) -> post/$1
-                    $redirectTo = preg_replace_callback('/(\([^\(]+\))/', static function (): string {
+                    $redirectTo = preg_replace_callback('/(\([^\(]+\))/', static function () {
                         static $i = 1;
 
                         return '$' . $i++;
@@ -443,7 +441,7 @@ class Router implements RouterInterface
 
                     throw new RedirectException(
                         preg_replace('#\A' . $routeKey . '\z#u', $redirectTo, $uri),
-                        $this->collection->getRedirectCode($routeKey),
+                        $this->collection->getRedirectCode($routeKey)
                     );
                 }
                 // Store our locale so CodeIgniter object can
@@ -452,7 +450,7 @@ class Router implements RouterInterface
                     preg_match(
                         '#^' . str_replace('{locale}', '(?<locale>[^/]+)', $matchedKey) . '$#u',
                         $uri,
-                        $matched,
+                        $matched
                     );
 
                     if ($this->collection->shouldUseSupportedLocalesOnly()
@@ -547,7 +545,7 @@ class Router implements RouterInterface
 
                 return $matches[$index] ?? '';
             },
-            $input,
+            $input
         );
     }
 
@@ -592,7 +590,7 @@ class Router implements RouterInterface
      */
     protected function scanControllers(array $segments): array
     {
-        $segments = array_filter($segments, static fn ($segment): bool => $segment !== '');
+        $segments = array_filter($segments, static fn ($segment) => $segment !== '');
         // numerically reindex the array, removing gaps
         $segments = array_values($segments);
 
@@ -737,7 +735,7 @@ class Router implements RouterInterface
                 && preg_match('/\A[' . $this->permittedURIChars . ']+\z/iu', $segment) !== 1
             ) {
                 throw new BadRequestException(
-                    'The URI you submitted has disallowed characters: "' . $segment . '"',
+                    'The URI you submitted has disallowed characters: "' . $segment . '"'
                 );
             }
         }
