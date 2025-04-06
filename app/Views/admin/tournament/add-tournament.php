@@ -282,7 +282,7 @@
             }else{
                 $('#sport_subcategory').empty();
             }
-         })
+         });
     });
 </script>
 

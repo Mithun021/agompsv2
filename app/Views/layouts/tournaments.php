@@ -111,6 +111,7 @@ $sports_model= new Sports_model();
 $sports_subcategory_model = new Sports_subcategory_model();
 $tournament_model = new Tournament_model();
 $tournaments = $tournament_model->getActiveData();
+$sports = $sports_model->getActiveData();
 ?>
 
 <div class="row">
@@ -121,17 +122,23 @@ $tournaments = $tournament_model->getActiveData();
             </div>
             <div class="card-body p-2">
                 <div class="form-group">
-                    <select name="" id="" class="form-control form-control-sm">
+                    <select name="tournament_for" id="tournament_for" class="form-control form-control-sm">
                         <option value="">All Categories</option>
+                        <option value="Men">Men</option>
+                        <option value="Women">Women</option>
+                        <option value="Junior">Junior</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="" id="" class="form-control form-control-sm">
+                    <select name="sports_category" id="sports_category" class="form-control form-control-sm">
                         <option value="">All Tournament</option>
+                    <?php foreach ($sports as $key => $value) { ?>
+                        <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                    <?php } ?>
                     </select>
                 </div>
                 <div class="form-group">
-                    <select name="" id="" class="form-control form-control-sm">
+                    <select name="sport_subcategory" id="sport_subcategory" class="form-control form-control-sm">
                         <option value="">All Formats</option>
                     </select>
                 </div>
@@ -208,3 +215,33 @@ $tournaments = $tournament_model->getActiveData();
         </div>
     </div>
 </div>
+
+<!-- jQuery  -->
+<script src="<?= base_url() ?>public/assets/js/jquery.min.js"></script>
+<script>
+    $('#sports_category').on('change', function () { 
+        var sports_id = $(this).val();
+        if(sports_id!==""){
+            $.ajax({
+                type: "post",
+                url: "<?= base_url() ?>fetch_sports_subcategory",
+                data: {sports_id:sports_id},
+                dataType: "json",
+                success: function (response) {
+                    // console.log(response);
+                    $('#sport_subcategory').empty();
+                    $('#sport_subcategory').html('<option value="">Select Subcategory</option>');
+                    if (response.length > 0) {
+                        $.each(response, function(index, subcat) {
+                            $('#sport_subcategory').append('<option value="' + subcat.id + '">' + subcat.sub_category_name + '</option>');
+                        });
+                    } else {
+                        $('#sport_subcategory').html('<option value="">No cities available</option>');
+                    }
+                }
+            });
+        }else{
+            $('#sport_subcategory').empty();
+        }
+        });
+</script>
