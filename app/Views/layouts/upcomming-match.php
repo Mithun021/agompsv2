@@ -16,9 +16,9 @@
     <div class="col-12 p-1">
         <div class="card card-body mb-0 p-2"><h4 class="card-title text-center m-0">UPCOMMING MATCHES</h4></div>
     </div>
-    <div class="col-md-4 p-1">
+    <div class="col-md-12 p-1">
         <div class="card card-body p-2 mb-0">
-            <h1 class="text-center py-5">ANNOUNCED COMMING SOON</h1>
+            <h1 class="text-center py-5">To Be Announced</h1>
         </div>
     </div>
     <!-- <div class="col-md-4 p-1">
