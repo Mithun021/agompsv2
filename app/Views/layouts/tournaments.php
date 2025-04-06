@@ -230,7 +230,7 @@ $sports = $sports_model->getActiveData();
                 success: function (response) {
                     // console.log(response);
                     $('#sport_subcategory').empty();
-                    $('#sport_subcategory').html('<option value="">Select Subcategory</option>');
+                    $('#sport_subcategory').html('<option value="">Select Format</option>');
                     if (response.length > 0) {
                         $.each(response, function(index, subcat) {
                             $('#sport_subcategory').append('<option value="' + subcat.id + '">' + subcat.sub_category_name + '</option>');
