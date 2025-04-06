@@ -1,3 +1,10 @@
+<?php
+
+use App\Models\Teams_model;
+$teams_model = new Teams_model();
+$teams = $teams_model->get();
+?>
+
 <style>
     table{
         border-collapse: collapse;
@@ -26,45 +33,21 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php foreach ($teams as $key => $value) { ?>
                         <tr>
-                            <td>1</td>
-                            <td><img src="<?= base_url() ?>public/assets/images/teams/team1.png" alt="" height="25px"> SITAPUR WARRIORS</td>
+                            <td><?= ++$key ?></td>
+                            <td>
+                                <?php if (!empty($value['logo']) && file_exists('public/assets/images/teams/' . $value['logo'])): ?>
+                                    <a href="<?= base_url() ?>public/assets/images/teams/<?= $value['logo'] ?>" target="_blank"><img src="<?= base_url() ?>public/assets/images/teams/<?= $value['logo'] ?>" alt="" height="30px"></a>
+                                <?php else: ?>
+                                    <img src="<?= base_url() ?>public/assets/images/teams/invalid_image.png" alt="" height="40px">
+                                <?php endif; ?>
+                                <?= strtoupper($value['name']) ?></td>
                             <td>0</td>
                             <td>0</td>
                             <td>0</td>
                         </tr>
-
-                        <tr>
-                            <td>2</td>
-                            <td><img src="<?= base_url() ?>public/assets/images/teams/team1.png" alt="" height="25px"> HARDOI HEROES</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-
-                        <tr>
-                            <td>3</td>
-                            <td><img src="<?= base_url() ?>public/assets/images/teams/team1.png" alt="" height="25px"> LAKHIMPUR LEGENDS</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-
-                        <tr>
-                            <td>4</td>
-                            <td><img src="<?= base_url() ?>public/assets/images/teams/team1.png" alt="" height="25px"> BAHIRAICH TIGER</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-
-                        <tr>
-                            <td>5</td>
-                            <td><img src="<?= base_url() ?>public/assets/images/teams/team1.png" alt="" height="25px"> BARABANKI ROYALS</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>
