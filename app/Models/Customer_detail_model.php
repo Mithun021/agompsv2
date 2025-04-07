@@ -28,7 +28,7 @@
 
         public function getByuserid($id){
             if($id != null){
-                return $this->where('id',$id)->first();
+                return $this->where('user_id',$id)->first();
             }
         }
 
