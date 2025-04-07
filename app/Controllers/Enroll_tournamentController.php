@@ -3,6 +3,7 @@
 
 use App\Models\Enroll_participant_model;
 use App\Models\Enroll_tournament_model;
+use App\Models\Enroll_tournament_payment_model;
 
     class Enroll_tournamentController extends BaseController{
         public function enroll_tournament($id){
@@ -39,5 +40,18 @@ use App\Models\Enroll_tournament_model;
                 return redirect()->to('tournament-details/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
         }
+
+        public function enroll_payment($tournament_id,$user_id){
+            $enroll_tournament_payment_model = new Enroll_tournament_payment_model();
+
+            $data = [
+                'participant_id' => $user_id,
+                'tournament_id' => $tournament_id,
+                'payment_status' => 0
+            ];
+
+        }
+
+
     }
 ?>

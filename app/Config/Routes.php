@@ -21,6 +21,8 @@ $routes->get('tournaments', 'FrontController::tournaments');
 $routes->match(['get','post'],'tournament-details/(:num)', 'FrontController::tournament_details/$1', ['filter' => 'authCheck']);
 $routes->post('enroll_tournament/(:num)', 'Enroll_tournamentController::enroll_tournament/$1');
 
+$routes->post('enroll_payment/(:num)/(:num)', 'Enroll_tournamentController::enroll_payment/$1/$2');
+
 
 $routes->match(['get','post'],'admin/login', 'AdminControllers::adminLogin');
 $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
