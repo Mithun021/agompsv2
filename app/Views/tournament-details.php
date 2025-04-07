@@ -381,7 +381,7 @@ if ($tournament['game_type'] == "Single") {
 
                             <h6 class="m-0 text-primary mt-5 mb-2">Complete Your Payment & Secure Your Spot in the Tournament!</h6>
 
-                            <form action="<?= base_url() ?>enroll_payment/<?= $tournament_id ?>/<?= 1 ?>" method="post">
+                            <form action="<?= base_url() ?>enroll_payment/<?= $tournament_id ?>/<?= $customer_detail['id'] ?>" method="post">
                                 <span>Registration Amount</span>
                                 <input type="number" name="registration_amount" value="<?= $tournament_price ?>" class="form-control form-control-sm" readonly required>
                                 <button type="submit" class="btn btn-primary mt-3">Pay Now</button>
@@ -514,7 +514,7 @@ if ($tournament['game_type'] == "Single") {
 
                             <h6 class="m-0 text-primary mt-5 mb-2">Complete Your Payment & Secure Your Spot in the Tournament!</h6>
 
-                            <form action="<?= base_url() ?>enroll_payment/<?= $tournament_id ?>/<?= 1 ?>" method="post">
+                            <form action="<?= base_url() ?>enroll_payment/<?= $tournament_id ?>/<?= $customer_detail['id'] ?>" method="post">
                                 <span>Registration Amount</span>
                                 <input type="number" name="registration_amount" value="<?= $tournament_price ?>" class="form-control form-control-sm" readonly required>
                                 <button type="submit" class="btn btn-primary mt-3">Pay Now</button>
