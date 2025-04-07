@@ -42,7 +42,6 @@ use App\Models\Enroll_tournament_payment_model;
         }
 
         public function enroll_payment($tournament_id,$user_id){
-            echo "ok";
             $enroll_tournament_payment_model = new Enroll_tournament_payment_model();
 
             $data = [

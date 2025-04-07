@@ -5,8 +5,8 @@
     {
         protected $table         = 'enroll_tournament_payment';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['player_id','tournament_id','payment_status','payment_screenshot','razorpay_order_id','razorpay_payment_id','razorpay_signature'];
-        
+        protected $allowedFields = ['player_id','tournament_id','payment_status','enroll_payment','payment_screenshot','razorpay_order_id','razorpay_payment_id','razorpay_signature'];
+
         public function add($data, $id = null) {
             if ($id != null) {
                 $result = $this->update($id, $data);
