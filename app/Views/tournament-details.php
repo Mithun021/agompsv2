@@ -237,7 +237,7 @@ if ($tournament['game_type'] == "Single") {
                             <p class="m-0">📅 <?= date("d-M", strtotime($tournament['reg_date_start'])) ?> TO <?= date("d-M", strtotime($tournament['reg_date_end'])) ?> | <span class="text-primary"><?= $sports['name'] ?? '' ?></span> </p>
                             <hr class="my-1">
                             <p class="m-0"><i class="fas fa-map-marker-alt"></i> <?= $tournament['venue_address'] ?> </p>
-
+                            <?= $email = session()->get('customer_ac_id'); ?>
                         </div>
                     </div>
                 </div>
