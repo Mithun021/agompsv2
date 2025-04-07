@@ -121,30 +121,32 @@ $sports = $sports_model->getActiveData();
                 <h4 class="card-title">Search</h4>
             </div>
             <div class="card-body p-2">
-                <div class="form-group">
-                    <select name="tournament_for" id="tournament_for" class="form-control form-control-sm">
-                        <option value="">All Categories</option>
-                        <option value="Men">Men</option>
-                        <option value="Women">Women</option>
-                        <option value="Junior">Junior</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select name="sports_category" id="sports_category" class="form-control form-control-sm">
-                        <option value="">All Tournament</option>
-                    <?php foreach ($sports as $key => $value) { ?>
-                        <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
-                    <?php } ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <select name="sport_subcategory" id="sport_subcategory" class="form-control form-control-sm">
-                        <option value="">All Formats</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary form-control">Search</button>
-                </div>
+                <form id="filter_tournament">
+                    <div class="form-group">
+                        <select name="tournament_for" id="tournament_for" class="form-control form-control-sm">
+                            <option value="">All Categories</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                            <option value="Junior">Junior</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="sports_category" id="sports_category" class="form-control form-control-sm">
+                            <option value="">All Tournament</option>
+                        <?php foreach ($sports as $key => $value) { ?>
+                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="sport_subcategory" id="sport_subcategory" class="form-control form-control-sm">
+                            <option value="">All Formats</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary form-control" id="search_tournaments">Search</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -154,7 +156,7 @@ $sports = $sports_model->getActiveData();
                 <h4 class="card-title">All tournaments</h4>
             </div>
             <div class="card-body">
-                <div class="row">
+                <div class="row" id="tournament_list">
                 <?php foreach ($tournaments as $key => $value) {
 
                     $sports = $sports_model->get($value['sports_id']);
