@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Asia/Kolkata');
-echo date('Y-m-d H:i:s'); // Outputs current timestamp in Asia/Kolkata timezone
+// echo date('Y-m-d H:i:s'); 
 ?>
 
 <!DOCTYPE html>

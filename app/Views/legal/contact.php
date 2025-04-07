@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="col-lg-12">
-                            <button name="submit" type="submit" value="Submit" class="site-button "> <span>Submit</span> </button>
+                            <button name="submit" type="submit" value="Submit" class="btn btn-primary"> <span>Submit</span> </button>
                         </div>
                     </div>
                 </form>
