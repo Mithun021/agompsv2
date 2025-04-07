@@ -48,4 +48,10 @@ class FrontController extends BaseController
         return view('legal/refund',$data);
     }
 
+    public function contact()
+    {
+        $data = ['title' => 'Contact Us'];
+        return view('legal/contact',$data);
+    }
+
 }
