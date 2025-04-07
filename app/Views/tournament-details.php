@@ -441,7 +441,7 @@ if ($tournament['game_type'] == "Single") {
                                             <div class="tournament-details">
                                                 <span class="badge badge-primary badge-pill"><?= $sports['name'] ?? '' ?></span>
                                                 <span class="badge badge-secondary badge-pill"><?= $value['game_type'] ?> Entry</span>
-                                                <a href="<?= base_url() ?>enroll_tournament/<?= $value['id'] ?>">
+                                                <a href="<?= base_url() ?>tournament-details/<?= $value['id'] ?>">
                                                     <h5><?= strtoupper($value['title']) ?></h5>
                                                 </a>
                                                 <p>📍 <?= $value['venue_address'] ?></p>
