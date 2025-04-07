@@ -24,7 +24,7 @@
                 $result = $this->findAll();
             }
             return $result;
-        }
+        } 
         
         public function get_by_participant_and_tournament($participant_id,$tournament_id){
             return $this->where('participant_id',$participant_id)->where('tournament_id',$tournament_id)->where('registration_status',1)->first();

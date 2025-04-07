@@ -180,12 +180,19 @@
 </style>
 <?php
 
+use App\Models\Customer_detail_model;
 use App\Models\Enroll_participant_model;
 use App\Models\Enroll_tournament_model;
 use App\Models\Players_category_model;
 use App\Models\Sports_model;
 use App\Models\Sports_subcategory_model;
 use App\Models\Tournament_model;
+
+$customer_detail_model = new Customer_detail_model();
+$customer_ac_id = session()->get('customer_ac_id'); 
+$customer_detail = $customer_detail_model->getByuserid($customer_ac_id);
+
+
 
 $sports_model = new Sports_model();
 $sports_subcategory_model = new Sports_subcategory_model();
@@ -200,7 +207,7 @@ $enroll_participant_model = new Enroll_participant_model();
 $players_category = $players_category_model->getbysports($tournament['sports_id']);
 
 // Enroll Participant Data
-$check_enrollerment = $enroll_tournament_model->get_by_participant_and_tournament(1, $tournament_id);
+$check_enrollerment = $enroll_tournament_model->get_by_participant_and_tournament($customer_detail['id'], $tournament_id);
 if ($check_enrollerment) {
     $enroll_participant = $enroll_participant_model->get_by_enroll_tournament($check_enrollerment['id']);
 }
@@ -237,7 +244,7 @@ if ($tournament['game_type'] == "Single") {
                             <p class="m-0">📅 <?= date("d-M", strtotime($tournament['reg_date_start'])) ?> TO <?= date("d-M", strtotime($tournament['reg_date_end'])) ?> | <span class="text-primary"><?= $sports['name'] ?? '' ?></span> </p>
                             <hr class="my-1">
                             <p class="m-0"><i class="fas fa-map-marker-alt"></i> <?= $tournament['venue_address'] ?> </p>
-                            <?= $email = session()->get('customer_ac_id'); ?>
+                            
                         </div>
                     </div>
                 </div>

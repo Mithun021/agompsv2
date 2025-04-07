@@ -26,6 +26,12 @@
             return $result;
         }
 
+        public function getByuserid($id){
+            if($id != null){
+                return $this->where('id',$id)->first();
+            }
+        }
+
         public function generateUserId(){
             $lastUser = $this->select('user_id')
                             ->orderBy('id', 'DESC')
