@@ -298,6 +298,7 @@ $sports = $sports_model->getActiveData();
 
                     var html = '';
                     html += '<div class="col-lg-6 p-1">';
+                    if (tournament) {
                     // html += '<h1>' + tournament.sports_name + '</h1>';
                         html += '<div class="tournament-content">';
                                 html += '<span id="tournament_for">For ' + tournament.league_for + '</span>';
@@ -327,7 +328,9 @@ $sports = $sports_model->getActiveData();
                                 html += '<a href="<?= base_url() ?>tournament-details/' + tournament.id + '"><i class="fas fa-angle-double-right"></i> Enrolll Now</a>';
                             html += '</div>';
                         html += '</div>';
-                            
+                    } else {
+                        html += '<div class="alert alert-danger">No tournament found.</div>';
+                    }
                     html += '</div>';
 
                     $('#tournament_list').append(html); 
