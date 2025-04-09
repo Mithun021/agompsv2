@@ -60,9 +60,9 @@ use App\Models\Tournament_model;
             $sport_subcategory = $this->request->getPost('sport_subcategory');
             $result = $tournament_model->search($tournament_for,$sports_category,$sport_subcategory);
             if($result){
-                return json_encode($result);
+                return $this->response->setJSON($result);
             }else{
-                return json_encode(array('status' => 'error', 'message' => 'No tournaments found'));
+                return $this->response->setJSON(['status' => 'error', 'message' => 'No tournaments found.']);
             }
         }
 
