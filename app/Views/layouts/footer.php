@@ -69,23 +69,13 @@
                     },
                 },
             });
-            // var swiper = new Swiper(".mySwiper", {
-            //     slidesPerView: 4,
-            //     spaceBetween: 10,
-            //     navigation: {
-            //         nextEl: ".swiper-button-next",
-            //         prevEl: ".swiper-button-prev",
-            //     },
-            //     pagination: {
-            //         el: ".swiper-pagination",
-            //         clickable: true,
-            //     },
-            //     breakpoints: {
-            //         1024: { slidesPerView: 4 },
-            //         768: { slidesPerView: 3 },
-            //         480: { slidesPerView: 1 }
-            //     }
-            // });
+            
+            var swiper = new Swiper(".mySwiper.banner_slider", {
+                pagination: {
+                    el: ".swiper-pagination",
+                    dynamicBullets: true,
+                },
+            });
         </script>
     </body>
 
