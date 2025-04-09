@@ -61,7 +61,7 @@
         public function search($tournament_for = null, $sports_category = null, $sport_subcategory = null)
         {
             $builder = $this->db->table('tournament_detail');
-            $builder->select('tournament_detail.*, sports.name as sports_name');
+            $builder->select('tournament_detail.*, sports.name as sports_name,sports.sports_image');
             $builder->join('sports', 'sports.id = tournament_detail.sports_id', 'left');
 
             if (!empty($tournament_for)) {
