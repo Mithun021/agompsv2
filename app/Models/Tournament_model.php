@@ -60,9 +60,10 @@
 
         public function search($tournament_for = null, $sports_category = null, $sport_subcategory = null)
         {
-            $builder = $this->db->table('tournament_detail'); // replace 'tournaments' with your table name
+            $builder = $this->db->table('tournament_detail');
+            $builder->select('tournament_detail.*, sports.name as sports_name');
+            $builder->join('sports', 'sports.id = tournament_detail.sports_id', 'left');
 
-            // Add conditions only if parameters are provided
             if (!empty($tournament_for)) {
                 $builder->where('league_for', $tournament_for);
             }
@@ -76,7 +77,7 @@
             }
 
             $query = $builder->get();
-            return $query->getResult(); // returns an array of objects
+            return $query->getResult(); // returns array of objects
         }
 
         
