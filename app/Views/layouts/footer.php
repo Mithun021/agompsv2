@@ -73,7 +73,11 @@
             var swiper = new Swiper(".mySwiper.banner_slider", {
                 pagination: {
                     el: ".swiper-pagination",
-                    dynamicBullets: true,
+                    dynamicBullets: true,centeredSlides: true,
+                    autoplay: {
+                        delay: 2500,
+                        disableOnInteraction: false,
+                    },
                 },
             });
         </script>
