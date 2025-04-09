@@ -246,4 +246,34 @@ $sports = $sports_model->getActiveData();
             $('#sport_subcategory').empty();
         }
         });
+
+
+    $('#search_tournaments').on('click', function () {
+        var tournament_for = $('#tournament_for').val();
+        var sports_category = $('#sports_category').val();
+        var sport_subcategory = $('#sport_subcategory').val();
+
+        if (tournament_for === "" && sports_category === "" && sport_subcategory === "") {
+            alert("Please select at least one filter option to search.");
+            return;
+        }
+
+        $.ajax({
+            url: '<?= base_url() ?>search-tournament',
+            method: 'POST',
+            data: {
+                tournament_for: tournament_for,
+                sports_category: sports_category,
+                sport_subcategory: sport_subcategory
+            },
+            success: function (response) {
+                console.log(response);
+            },
+            error: function () {
+                alert("An error occurred while fetching tournaments.");
+            }
+        });
+
+    });
+
 </script>
