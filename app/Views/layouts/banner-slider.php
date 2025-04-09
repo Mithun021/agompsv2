@@ -1,7 +1,7 @@
 <style>
-    .banner-slider .carousel-item img {
+    .banner_slider .swiper-slide img {
         width: 100%;
-        height: 450px;
+        height: auto;
     }
 </style>
 <div class="row banner-slider">
