@@ -129,6 +129,7 @@
     $sports_subcategory_model = new Sports_subcategory_model();
     $tournament_model = new Tournament_model();
     $tournaments = $tournament_model->getActiveData();
+    $sports = $sports_model->getActiveData();
 ?>
 
     <div class="row">
