@@ -71,15 +71,18 @@
             });
             
             var swiper = new Swiper(".mySwiper.banner_slider", {
+                loop: true,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                },
                 pagination: {
                     el: ".swiper-pagination",
-                    dynamicBullets: true,centeredSlides: true,
-                    autoplay: {
-                        delay: 2500,
-                        disableOnInteraction: false,
-                    },
+                    dynamicBullets: true,
                 },
             });
+
         </script>
     </body>
 
