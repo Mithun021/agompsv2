@@ -343,7 +343,7 @@
                     html += '<p>📍 ' + tournament.venue_address + '</p>';
                     html += '<hr>';
                     html += '<div class="tournament-date">';
-                    html += '<span class="enroll-date"> ' + tournament.reg_date_start + ' TO ' + tournament.reg_date_end + '</span>';
+                    html += '<span class="enroll-date"> ' + formatDateToDayMonth(tournament.reg_date_start) + ' TO ' + formatDateToDayMonth(tournament.reg_date_end) + '</span>';
                     html += '<span class="winning-price">WIN GURANTEE : Rs. ' + tournament.first_rank_price + '/-</span>';
                     html += '</div>'; // tournament-date
                     html += '</div>'; // tournament-details
@@ -366,6 +366,16 @@
 
 
     });
+
+    function formatDateToDayMonth(dateString) {
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = months[date.getMonth()];
+        return `${day}-${month}`;
+    }
+
 </script>
 
 <?= $this->endSection() ?>
