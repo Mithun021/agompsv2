@@ -259,7 +259,7 @@ $sports = $sports_model->getActiveData();
                             $('#sport_subcategory').append('<option value="' + subcat.id + '">' + subcat.sub_category_name + '</option>');
                         });
                     } else {
-                        $('#sport_subcategory').html('<option value="">No cities available</option>');
+                        $('#sport_subcategory').html('<option value="">Data not available</option>');
                     }
                 }
             });
