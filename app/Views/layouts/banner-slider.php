@@ -12,9 +12,9 @@
                 <div class="swiper mySwiper banner_slider">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide"><img src="<?= base_url() ?>public/assets/images/banner/cricket.png" alt=""></div>
-                        <div class="swiper-slide"><img src="<?= base_url() ?>public/assets/images/banner/cricket.png" alt=""></div>
-                        <div class="swiper-slide"><img src="<?= base_url() ?>public/assets/images/banner/cricket.png" alt=""></div>
-                        <div class="swiper-slide"><img src="<?= base_url() ?>public/assets/images/banner/cricket.png" alt=""></div>
+                        <div class="swiper-slide"><img src="<?= base_url() ?>public/assets/images/banner/football.png" alt=""></div>
+                        <div class="swiper-slide"><img src="<?= base_url() ?>public/assets/images/banner/kabaddi.png" alt=""></div>
+                        <div class="swiper-slide"><img src="<?= base_url() ?>public/assets/images/banner/badminton.png" alt=""></div>
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
