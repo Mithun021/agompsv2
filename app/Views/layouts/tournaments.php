@@ -177,7 +177,7 @@ $sports = $sports_model->getActiveData();
                         }
                     }
                 ?>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 p-1">
                         <div class="tournament-content">
                             <span id="tournament_for">For <?= $value['league_for'] ?></span>
                             <div class="tournament">
@@ -280,11 +280,11 @@ $sports = $sports_model->getActiveData();
                                 html += '<span id="tournament_for">For ' + tournament.league_for + '</span>';
                             html += '<div class="tournament">';
                                 html += '<div class="tournament_image">';
-                                    if (tournament.sports_image) {
-                                        html += '<img src="<?= base_url() ?>public/assets/images/sports/' + tournament.sports_image + '" alt="' + tournament.sports_name + '">';
-                                    } else {
-                                        html += '<img src="<?= base_url() ?>public/assets/images/sports/invalid_image.png" alt="">';
-                                    }
+                                if (tournament.sports_image && tournament.sports_image !== '') {
+                                    html += '<img src="<?= base_url() ?>public/assets/images/sports/' + tournament.sports_image + '" alt="' + tournament.sports_name + '" onerror="this.onerror=null;this.src=\'<?= base_url() ?>public/assets/images/sports/invalid_image.png\';">';
+                                } else {
+                                    html += '<img src="<?= base_url() ?>public/assets/images/sports/invalid_image.png" alt="No Image">';
+                                }
                                 html += '</div>';
                                 html += '<div class="tournament-details">';
                                     html += '<span class="badge badge-primary badge-pill">' + tournament.sports_name + '</span>';
