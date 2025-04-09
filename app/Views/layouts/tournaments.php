@@ -273,6 +273,29 @@ $sports = $sports_model->getActiveData();
                 }
 
                 $.each(response, function (index, tournament) {
+
+
+                    let tournament_price = 0;
+
+                    if (tournament.game_type === "Single") {
+                        let registration_fee = parseFloat(tournament.registration_fee);
+                        let discount_registration_fee = parseFloat(tournament.discount_registration_fee);
+
+                        tournament_price = registration_fee;
+                        if (!isNaN(discount_registration_fee) && discount_registration_fee < registration_fee) {
+                            tournament_price = discount_registration_fee;
+                        }
+                    } else if (tournament.game_type === "Team") {
+                        let registration_fee = parseFloat(tournament.team_entry_fee);
+                        let discount_registration_fee = parseFloat(tournament.team_entry_fee_discount);
+
+                        tournament_price = registration_fee;
+                        if (!isNaN(discount_registration_fee) && discount_registration_fee < registration_fee) {
+                            tournament_price = discount_registration_fee;
+                        }
+                    }
+
+
                     var html = '';
                     html += '<div class="col-lg-6 p-1">';
                     // html += '<h1>' + tournament.sports_name + '</h1>';
@@ -299,7 +322,7 @@ $sports = $sports_model->getActiveData();
                                 html += '</div>';
                             html += '</div>';
                             html += '<div class="entree-fee">';
-                                html += '<span class="entre_amount">ENTREE FEE : Rs. ' + tournament.registration_fee + '/-</span>';
+                                html += '<span class="entre_amount">ENTREE FEE : Rs. ' + tournament_price + '/-</span>';
                                 html += '<span class="offers">' + (tournament.gift_hampers ? '(' + tournament.gift_hampers + ')' : '') + '</span>';
                                 html += '<a href="<?= base_url() ?>tournament-details/' + tournament.id + '"><i class="fas fa-angle-double-right"></i> Enrolll Now</a>';
                             html += '</div>';
