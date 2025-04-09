@@ -138,24 +138,32 @@
                     <h4 class="card-title">Search</h4>
                 </div>
                 <div class="card-body p-2">
-                    <div class="form-group">
-                        <select name="" id="" class="form-control form-control-sm">
-                            <option value="">All Categories</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select name="" id="" class="form-control form-control-sm">
-                            <option value="">All Tournament</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select name="" id="" class="form-control form-control-sm">
-                            <option value="">All Formats</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary form-control">Search</button>
-                    </div>
+                    <form id="filter_tournament">
+                        <div class="form-group">
+                            <select name="tournament_for" id="tournament_for" class="form-control form-control-sm">
+                                <option value="">All Categories</option>
+                                <option value="Men">Men</option>
+                                <option value="Women">Women</option>
+                                <option value="Junior">Junior</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="sports_category" id="sports_category" class="form-control form-control-sm">
+                                <option value="">All Tournament</option>
+                                <?php foreach ($sports as $key => $value) { ?>
+                                    <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="sport_subcategory" id="sport_subcategory" class="form-control form-control-sm">
+                                <option value="">All Formats</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary form-control" id="search_tournaments">Search</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -165,7 +173,7 @@
                     <h4 class="card-title">All tournaments</h4>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row" id="tournament_list">
                         
                     <?php foreach ($tournaments as $key => $value) {
 
@@ -228,5 +236,135 @@
         </div>
     </div>
 </div>
+
+<!-- jQuery  -->
+<script src="<?= base_url() ?>public/assets/js/jquery.min.js"></script>
+<script>
+    $('#sports_category').on('change', function() {
+        var sports_id = $(this).val();
+        if (sports_id !== "") {
+            $.ajax({
+                type: "post",
+                url: "<?= base_url() ?>fetch_sports_subcategory",
+                data: {
+                    sports_id: sports_id
+                },
+                dataType: "json",
+                success: function(response) {
+                    // console.log(response);
+                    $('#sport_subcategory').empty();
+                    $('#sport_subcategory').html('<option value="">Select Format</option>');
+                    if (response.length > 0) {
+                        $.each(response, function(index, subcat) {
+                            $('#sport_subcategory').append('<option value="' + subcat.id + '">' + subcat.sub_category_name + '</option>');
+                        });
+                    } else {
+                        $('#sport_subcategory').html('<option value="">Data not available</option>');
+                    }
+                }
+            });
+        } else {
+            $('#sport_subcategory').empty();
+        }
+    });
+
+
+    $('#search_tournaments').on('click', function() {
+        var tournament_for = $('#tournament_for').val();
+        var sports_category = $('#sports_category').val();
+        var sport_subcategory = $('#sport_subcategory').val();
+
+        if (tournament_for === "" && sports_category === "" && sport_subcategory === "") {
+            alert("Please select at least one filter option to search.");
+            return;
+        }
+
+        $.ajax({
+            url: '<?= base_url() ?>search-tournament',
+            method: 'POST',
+            data: {
+                tournament_for: tournament_for,
+                sports_category: sports_category,
+                sport_subcategory: sport_subcategory
+            },
+            beforeSend: function() {
+                $('#tournament_list').html('<div class="text-center py-4"><strong>Please wait...</strong></div>');
+            },
+            success: function(response) {
+                $('#tournament_list').html(''); // Clear the loading message
+
+                if (typeof response === 'string') {
+                    response = JSON.parse(response);
+                }
+
+                if (response.length === 0) {
+                    $('#tournament_list').html('<div class="alert alert-warning text-center">No tournament found.</div>');
+                    return;
+                }
+
+                $.each(response, function(index, tournament) {
+                    let tournament_price = 0;
+
+                    if (tournament.game_type === "Single") {
+                        let registration_fee = parseFloat(tournament.registration_fee);
+                        let discount_registration_fee = parseFloat(tournament.discount_registration_fee);
+
+                        tournament_price = registration_fee;
+                        if (!isNaN(discount_registration_fee) && discount_registration_fee < registration_fee) {
+                            tournament_price = discount_registration_fee;
+                        }
+                    } else if (tournament.game_type === "Team") {
+                        let registration_fee = parseFloat(tournament.team_entry_fee);
+                        let discount_registration_fee = parseFloat(tournament.team_entry_fee_discount);
+
+                        tournament_price = registration_fee;
+                        if (!isNaN(discount_registration_fee) && discount_registration_fee < registration_fee) {
+                            tournament_price = discount_registration_fee;
+                        }
+                    }
+
+                    let html = '';
+                    html += '<div class="col-lg-6 p-1">';
+                    html += '<div class="tournament-content">';
+                    html += '<span id="tournament_for">For ' + tournament.league_for + '</span>';
+                    html += '<div class="tournament">';
+                    html += '<div class="tournament_image">';
+                    if (tournament.sports_image && tournament.sports_image !== '') {
+                        html += '<img src="<?= base_url() ?>public/assets/images/sports/' + tournament.sports_image + '" alt="' + tournament.sports_name + '" onerror="this.onerror=null;this.src=\'<?= base_url() ?>public/assets/images/sports/invalid_image.png\';">';
+                    } else {
+                        html += '<img src="<?= base_url() ?>public/assets/images/sports/invalid_image.png" alt="No Image">';
+                    }
+                    html += '</div>'; // close image
+                    html += '<div class="tournament-details">';
+                    html += '<span class="badge badge-primary badge-pill">' + tournament.sports_name + '</span>';
+                    html += '<span class="badge badge-secondary badge-pill">' + tournament.game_type + ' Entry</span>';
+                    html += '<a href="<?= base_url() ?>tournament-details/' + tournament.id + '"><h5>' + tournament.title.toUpperCase() + '</h5></a>';
+                    html += '<p>📍 ' + tournament.venue_address + '</p>';
+                    html += '<hr>';
+                    html += '<div class="tournament-date">';
+                    html += '<span class="enroll-date"> ' + tournament.reg_date_start + ' TO ' + tournament.reg_date_end + '</span>';
+                    html += '<span class="winning-price">WIN GURANTEE : Rs. ' + tournament.first_rank_price + '/-</span>';
+                    html += '</div>'; // tournament-date
+                    html += '</div>'; // tournament-details
+                    html += '</div>'; // tournament
+                    html += '<div class="entree-fee">';
+                    html += '<span class="entre_amount">ENTREE FEE : Rs. ' + tournament_price + '/-</span>';
+                    html += '<span class="offers">' + (tournament.gift_hampers ? '(' + tournament.gift_hampers + ')' : '') + '</span>';
+                    html += '<a href="<?= base_url() ?>tournament-details/' + tournament.id + '"><i class="fas fa-angle-double-right"></i> Enroll Now</a>';
+                    html += '</div>'; // entree-fee
+                    html += '</div>'; // tournament-content
+                    html += '</div>'; // col-lg-6
+
+                    $('#tournament_list').append(html);
+                });
+            },
+            error: function() {
+                $('#tournament_list').html('<div class="alert alert-danger text-center">An error occurred while fetching tournaments.</div>');
+            }
+        });
+
+
+    });
+</script>
 
 <?= $this->endSection() ?>
