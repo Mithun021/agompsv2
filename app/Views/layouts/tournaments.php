@@ -267,7 +267,19 @@ $sports = $sports_model->getActiveData();
                 sport_subcategory: sport_subcategory
             },
             success: function (response) {
-                console.log(response);
+                $('#tournament_list').html('');
+                if (typeof response === 'string') {
+                    response = JSON.parse(response);
+                }
+
+                $.each(response, function (index, tournament) {
+                    var html = '';
+                    html += '<div class="col-lg-6">';
+                    html += '<h1>' + tournament.sports_name + '</h1>';
+                    html += '</div>';
+
+                    $('#tournament_list').append(html); 
+                });
             },
             error: function () {
                 alert("An error occurred while fetching tournaments.");
