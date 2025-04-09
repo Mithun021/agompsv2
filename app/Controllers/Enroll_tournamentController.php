@@ -4,6 +4,7 @@
 use App\Models\Enroll_participant_model;
 use App\Models\Enroll_tournament_model;
 use App\Models\Enroll_tournament_payment_model;
+use App\Models\Tournament_model;
 
     class Enroll_tournamentController extends BaseController{
         public function enroll_tournament($id){
@@ -50,6 +51,19 @@ use App\Models\Enroll_tournament_payment_model;
                 'payment_status' => 0
             ];
 
+        }
+
+        public function search_tournament(){
+            $tournament_model = new Tournament_model();
+            $tournament_for = $this->request->getPost('tournament_for');
+            $sports_category = $this->request->getPost('sports_category');
+            $sport_subcategory = $this->request->getPost('sport_subcategory');
+            $result = $tournament_model->search($tournament_for,$sports_category,$sport_subcategory);
+            if($result){
+                return json_encode($result);
+            }else{
+                return json_encode(array('status' => 'error', 'message' => 'No tournaments found'));
+            }
         }
 
 

@@ -21,6 +21,7 @@ $routes->get('contact', 'FrontController::contact');
 $routes->get('tournaments', 'FrontController::tournaments');
 $routes->match(['get','post'],'tournament-details/(:num)', 'FrontController::tournament_details/$1', ['filter' => 'authCheck']);
 $routes->post('enroll_tournament/(:num)', 'Enroll_tournamentController::enroll_tournament/$1');
+$routes->post('search-tournament', 'Enroll_tournamentController::search_tournament');
 
 $routes->post('enroll_payment/(:num)/(:num)', 'Enroll_tournamentController::enroll_payment/$1/$2');
 $routes->get('payment_success', 'Enroll_tournamentController::payment_success');

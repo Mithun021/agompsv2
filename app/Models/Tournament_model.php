@@ -56,6 +56,29 @@
             // Format the ID (e.g., UPPLCRIC001)
             return 'UPPL' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
         }
+
+
+        public function search($tournament_for = null, $sports_category = null, $sport_subcategory = null)
+        {
+            $builder = $this->db->table('tournament_detail'); // replace 'tournaments' with your table name
+
+            // Add conditions only if parameters are provided
+            if (!empty($tournament_for)) {
+                $builder->where('league_for', $tournament_for);
+            }
+
+            if (!empty($sports_category)) {
+                $builder->where('sports_id', $sports_category);
+            }
+
+            if (!empty($sport_subcategory)) {
+                $builder->where('sport_subcategory', $sport_subcategory);
+            }
+
+            $query = $builder->get();
+            return $query->getResult(); // returns an array of objects
+        }
+
         
     }
 ?>
