@@ -286,6 +286,17 @@ $sports = $sports_model->getActiveData();
                                         html += '<img src="<?= base_url() ?>public/assets/images/sports/invalid_image.png" alt="">';
                                     }
                                 html += '</div>';
+                                html += '<div class="tournament-details">';
+                                    html += '<span class="badge badge-primary badge-pill">' + tournament.sports_name + '</span>';
+                                    html += '<span class="badge badge-secondary badge-pill">' + tournament.game_type + ' Entry</span>';
+                                    html += '<a href="<?= base_url() ?>tournament-details/' + tournament.id + '"><h5>' + tournament.title.toUpperCase() + '</h5></a>';
+                                    html += '<p>📍 ' + tournament.venue_address + '</p>';
+                                    html += '<hr>';
+                                    html += '<div class="tournament-date">';
+                                        html += '<span class="enroll-date"> ' + tournament.reg_date_start + ' TO ' + tournament.reg_date_end + '</span>';
+                                        html += '<span class="winning-price">WIN GURANTEE : Rs. ' + tournament.first_rank_price + '/-</span>';
+                                    html += '</div>';
+                                html += '</div>';
                             html += '</div>';
                         html += '</div>';
                             
