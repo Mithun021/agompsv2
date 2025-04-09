@@ -298,6 +298,11 @@ $sports = $sports_model->getActiveData();
                                     html += '</div>';
                                 html += '</div>';
                             html += '</div>';
+                            html += '<div class="entree-fee">';
+                                html += '<span class="entre_amount">ENTREE FEE : Rs. ' + tournament.registration_fee + '/-</span>';
+                                html += '<span class="offers">' + (tournament.gift_hampers ? '(' + tournament.gift_hampers + ')' : '') + '</span>';
+                                html += '<a href="<?= base_url() ?>tournament-details/' + tournament.id + '"><i class="fas fa-angle-double-right"></i> Enrolll Now</a>';
+                            html += '</div>';
                         html += '</div>';
                             
                     html += '</div>';
