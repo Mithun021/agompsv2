@@ -275,7 +275,20 @@ $sports = $sports_model->getActiveData();
                 $.each(response, function (index, tournament) {
                     var html = '';
                     html += '<div class="col-lg-6">';
-                    html += '<h1>' + tournament.sports_name + '</h1>';
+                    // html += '<h1>' + tournament.sports_name + '</h1>';
+                        html += '<div class="tournament-content">';
+                                html += '<span id="tournament_for">For ' + tournament.league_for + '</span>';
+                            html += '<div class="tournament">';
+                                html += '<div class="tournament_image">';
+                                    if (tournament.sports_image) {
+                                        html += '<img src="<?= base_url() ?>public/assets/images/sports/' + tournament.sports_image + '" alt="' + tournament.sports_name + '">';
+                                    } else {
+                                        html += '<img src="<?= base_url() ?>public/assets/images/sports/invalid_image.png" alt="">';
+                                    }
+                                html += '</div>';
+                            html += '</div>';
+                        html += '</div>';
+                            
                     html += '</div>';
 
                     $('#tournament_list').append(html); 
