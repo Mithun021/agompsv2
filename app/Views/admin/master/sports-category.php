@@ -2,7 +2,7 @@
 <?= $this->section("body-content"); ?>
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-4 g-0">
+    <div class="col-lg-4 p-1">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Add Sports Category</h4>
@@ -17,6 +17,9 @@
                     <div class="form-group">
                         <span>Sports Category Name</span>
                         <input type="text" class="form-control" placeholder="Enter sports category name" name="sports_category_name" required>
+                    </div>
+                    <div class="form-group">
+                        <span><input type="checkbox" name="cometitive_tournament" value="1"> Competitive Tournament Categoy</span>
                     </div>
                     <div class="form-group">
                         <span>Sports Category Description</span>
@@ -46,7 +49,7 @@
         </div>
     </div>
 
-    <div class="col-lg-8 g-0">
+    <div class="col-lg-8 p-1">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title m-0">Sports Category List</h4>
@@ -58,6 +61,7 @@
                             <td>#</td>
                             <td>File</td>
                             <td>Name</td>
+                            <td>Competitive Tour.</td>
                             <td>Status</td>
                             <td>Action</td>
                         </tr>
@@ -80,6 +84,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td><?= $value['name'] ?></td>
+                                <td><?= ($value['cometitive_tournament'] == "0") ? "<span class='badge badge-danger badge-pill'>No</span>" : (($value['cometitive_tournament'] == "1") ? "<span class='badge badge-success badge-pill'>Yes</span>" : "") ?></td>
                                 <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/edit-sports-category" class="btn btn-sm btn-circle btn-danger"><span class="fa fa-times"></span></a>

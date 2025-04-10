@@ -39,7 +39,8 @@ class MasterController extends BaseController
                 'sports_image' => $sportsPhotoImageName,
                 'sports_image_category' => $sportsWhiteImageName,
                 'description' => $this->request->getPost('sports_category_description'),
-                'status' => $this->request->getPost('sports_category_status')
+                'status' => $this->request->getPost('sports_category_status'),
+                'cometitive_tournament' => $this->request->getPost('cometitive_tournament')
             ];
             $result = $sports_model->add($data);
             if ($result === true) {
