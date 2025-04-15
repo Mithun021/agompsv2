@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/master') ?>
 <?= $this->section('body-content') ?>
 <?= view('layouts/banner-slider') ?>
-
+<?= view('layouts/tournament-start-countdown') ?>
 <div class="container-fluid">
     <?= view('layouts/tournament-category') ?>
     <?= view('layouts/tournaments') ?>
