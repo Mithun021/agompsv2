@@ -13,7 +13,7 @@
         font-weight: bold;
     }
 </style>
-<section id="countdown-section" class="bg-primary">
+<section id="countdown-section" class="bg-primary mb-3">
     <div class="container-fluid">
         <div class="row">
             <div class="col-6 text-center">
