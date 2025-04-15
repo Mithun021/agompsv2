@@ -1,5 +1,17 @@
 <style>
-    
+    #countdown-section h1{
+        color: #FFF;
+    }
+    @media(max-width: 768px){
+        #countdown-section h1{
+            font-size: 20px;
+        }
+    }
+    #countdown-section .counter{
+        font-size: 30px;
+        color: #FFF;
+        font-weight: bold;
+    }
 </style>
 <section id="countdown-section" class="bg-primary">
     <div class="container-fluid">
