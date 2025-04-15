@@ -16,13 +16,13 @@
 <section id="countdown-section" class="bg-primary mb-3">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-6 text-center">
-                <h1 class="mt-5">Tournament Start</h1>
+            <div class="col-12 col-md-6 text-center">
+                <h1 class="mt-0">Tournament Start</h1>
                 <h1 class="mt-2">17 April 2025 3:00 PM</h1>
                 <h1 class="mt-2">आज ही जॉइन करे ओर जीते </h1>
                 <div class="counter" id="countdown">Loading...</div>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-12 col-md-6 text-center">
                 <img src="<?= base_url() ?>public/assets/images/UPPL.jpg" alt="" width="100%">
             </div>
         </div>
