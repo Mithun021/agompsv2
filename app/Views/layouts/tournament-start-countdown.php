@@ -6,6 +6,7 @@
                 <div id="countdown" class="mt-4"></div>
             </div>
             <div class="col-6 text-center">
+                <img src="<?= base_url() ?>public/assets/images/UPPL.jpg" alt="">
             </div>
         </div>
     </div>
