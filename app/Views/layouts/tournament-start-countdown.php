@@ -1,9 +1,7 @@
 <style>
-    section#countdown-section {
-        background-color: #ff6700;
-    }
+    
 </style>
-<section id="countdown-section" class="bg-white">
+<section id="countdown-section" class="bg-primary">
     <div class="container-fluid">
         <div class="row">
             <div class="col-6 text-center">
