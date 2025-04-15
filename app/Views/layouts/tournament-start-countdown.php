@@ -13,8 +13,8 @@
         font-weight: bold;
     }
 </style>
-<section id="countdown-section" class="bg-primary mb-3">
-    <div class="container-fluid">
+<section id="countdown-section" class="bg-primary container-fluid mb-3">
+    <div class="">
         <div class="row">
             <div class="col-12 col-md-6 text-center">
                 <h1 class="mt-0">Tournament Start</h1>
