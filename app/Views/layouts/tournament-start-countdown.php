@@ -1,4 +1,4 @@
-<section id="countdown-section">
+<section id="countdown-section" class="bg-white">
     <div class="container-fluid">
         <div class="row">
             <div class="col-6 text-center">
