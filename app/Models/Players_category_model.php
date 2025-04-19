@@ -27,7 +27,7 @@
         }
 
         public function getbysports($id) {
-            return $this->where('sports_id', 1)->findAll();
+            return $this->where('sports_id', $id)->findAll();
         }
         
     }
