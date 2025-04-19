@@ -226,7 +226,7 @@ $sports = $sports_model->getActiveData();
                                 </div>
                                 <div class="registration-start d-flex justify-content-between px-2 bg-primary text-white">
                                     <span class="registration_start">Registration Start : </span>
-                                    <span  class="counter">Loading...</span>
+                                    <span  class="counter"></span>
                                 </div>
                             </div>
                         </div>
