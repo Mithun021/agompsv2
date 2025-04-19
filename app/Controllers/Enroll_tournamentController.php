@@ -11,7 +11,7 @@ use App\Models\Tournament_model;
             $enroll_tournament_model = new Enroll_tournament_model();
             $enroll_participant_model = new Enroll_participant_model();
             $data = [
-                'participant_id' => 1,
+                'participant_id' => $this->request->getPost('participant_id'),
                 'tournament_id' => $id,
                 'registration_status' => 1,
                 'payment_status' => 0
