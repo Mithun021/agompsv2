@@ -198,6 +198,7 @@ use App\Models\Tournament_model;
 
 $customer_detail_model = new Customer_detail_model();
 $customer_ac_id = session()->get('customer_ac_id'); 
+
 $customer_detail = $customer_detail_model->getByuserid($customer_ac_id);
 
 
@@ -248,7 +249,7 @@ if ($tournament['game_type'] == "Single") {
                             <img src="<?= base_url() ?>public/assets/images/sports/cricket-cat.png" alt="Cricket">
                         </div>
                         <div class="breadcrumb-detail">
-                            <h3 class="m-0"><?= strtoupper($tournament['title']) ?></h3>
+                            <h3 class="m-0"><?= strtoupper($tournament['title']) ?> <?= $customer_ac_id ?></h3>
                             <p class="m-0">📅 <?= date("d-M", strtotime($tournament['reg_date_start'])) ?> TO <?= date("d-M", strtotime($tournament['reg_date_end'])) ?> | <span class="text-primary"><?= $sports['name'] ?? '' ?></span> </p>
                             <hr class="my-1">
                             <p class="m-0"><i class="fas fa-map-marker-alt"></i> <?= $tournament['venue_address'] ?> </p>
@@ -277,7 +278,7 @@ if ($tournament['game_type'] == "Single") {
 
                 <hr>
                 <div class="tournament-detail">
-                    <p>Tournament ID : <?= $customer_ac_id ?></p>
+                    <p>Tournament ID :</p>
                     <p><?= $tournament['tournament_id'] ?></p>
                 </div>
                 <div class="tournament-detail">
