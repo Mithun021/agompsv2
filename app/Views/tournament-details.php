@@ -341,6 +341,7 @@ if ($tournament['game_type'] == "Single") {
                                                                         echo "(" . $tournament['first_rank_trophy'] . ")";
                                                                     } ?></p>
                 </div>
+                <?php print_r($players_category) ?>
             </div>
             <?php if ($tournament['gift_hampers']) { ?>
                 <div class="card card-body p-2 bg-warning mb-2">
