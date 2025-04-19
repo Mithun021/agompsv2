@@ -226,7 +226,7 @@ $sports = $sports_model->getActiveData();
                                 </div>
                                 <div class="registration-start d-flex justify-content-between px-2 bg-primary text-white">
                                     <span class="registration_start">Registration Start : </span>
-                                    <span class="registration_end"></span>
+                                    <span  class="counter">Loading...</span>
                                 </div>
                             </div>
                         </div>
@@ -378,4 +378,59 @@ $sports = $sports_model->getActiveData();
         const month = months[date.getMonth()];
         return `${day}-${month}`;
     }
+</script>
+
+<script>
+    document.querySelectorAll('.counter').forEach(counter => {
+        const targetDateStr = counter.getAttribute('data-target');
+        const targetDate = new Date(targetDateStr).getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                counter.innerHTML = "🎉 Tournament Start";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            counter.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        };
+
+        // Initial call and then interval
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    });
+</script>
+
+<script>
+    const targetDate = new Date("April 21, 2025 15:00:00").getTime();
+
+    document.querySelectorAll('.counter').forEach(counter => {
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                counter.innerHTML = "🎉 Tournament Start";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            counter.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        };
+
+        // Initial run
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    });
 </script>
