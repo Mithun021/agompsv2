@@ -277,7 +277,7 @@ if ($tournament['game_type'] == "Single") {
 
                 <hr>
                 <div class="tournament-detail">
-                    <p>Tournament ID :</p>
+                    <p>Tournament ID : <?= $customer_ac_id ?></p>
                     <p><?= $tournament['tournament_id'] ?></p>
                 </div>
                 <div class="tournament-detail">
@@ -341,7 +341,6 @@ if ($tournament['game_type'] == "Single") {
                                                                         echo "(" . $tournament['first_rank_trophy'] . ")";
                                                                     } ?></p>
                 </div>
-                <?php print_r($tournament) ?>
             </div>
             <?php if ($tournament['gift_hampers']) { ?>
                 <div class="card card-body p-2 bg-warning mb-2">
