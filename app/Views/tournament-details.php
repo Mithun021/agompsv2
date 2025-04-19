@@ -488,7 +488,7 @@ if ($tournament['game_type'] == "Single") {
                                 <?php for ($i = 1; $i <= $tournament['max_players']; $i++) { ?>
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <input type="text" name="participant_id" value="<?= $$customer_detail['id'] ?>"  required readonly>
+                                            <input type="text" name="participant_id" value="<?= $customer_detail['id'] ?>"  required readonly>
                                             <span>Name</span>
                                             <input type="text" class="form-control form-control-sm" name="participant_name[]">
                                         </div>
