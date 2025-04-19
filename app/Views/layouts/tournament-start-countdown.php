@@ -30,7 +30,7 @@
 </section>
 <script>
     // Set the target date to 17 April 2025 at 3:00 PM
-    const targetDate = new Date("April 17, 2025 15:00:00").getTime();
+    const targetDate = new Date("April 21, 2025 15:00:00").getTime();
 
     const countdown = document.getElementById("countdown");
 
