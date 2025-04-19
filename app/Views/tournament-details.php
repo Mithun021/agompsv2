@@ -53,6 +53,11 @@
         display: flex;
     }
 
+    .tournament-detail2 p:first-child {
+        color: #000;
+        font-weight: 500;
+    }
+
     .tournament-detail p:last-child {
         padding-left: 20px;
     }
