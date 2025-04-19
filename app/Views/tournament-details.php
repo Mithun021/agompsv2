@@ -313,7 +313,7 @@ if ($tournament['game_type'] == "Single") {
             <div class="card card-body p-2 mb-2">
                 <h5 class="text-primary">Winner Team Rank, Prize & Trophy</h5>
 
-                <div class="tournament-detail">
+                <div class="tournament-detail2">
                     <p>1st Place – Winner Team :</p>
                     <p> Rs. <?= $tournament['first_rank_price'] ?> <?php if ($tournament['first_rank_trophy']) {
                                                                         echo "(" . $tournament['first_rank_trophy'] . ")";
