@@ -224,7 +224,7 @@ $sports = $sports_model->getActiveData();
                                                             } ?></span>
                                     <a href="<?= base_url() ?>tournament-details/<?= $value['id'] ?>"><i class="fas fa-angle-double-right"></i> Enrolll Now</a>
                                 </div>
-                                <div class="registration-start d-flex justify-content-between px-2">
+                                <div class="registration-start d-flex justify-content-between px-2 bg-primary text-white">
                                     <span class="registration_start">Registration Start : </span>
                                     <span class="registration_end"></span>
                                 </div>
