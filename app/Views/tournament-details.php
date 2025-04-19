@@ -52,6 +52,9 @@
         position: relative;
         display: flex;
     }
+    .tournament-detail2{
+        margin-bottom: 10px;
+    }
 
     .tournament-detail2 p:first-child {
         color: #000;
@@ -300,17 +303,17 @@ if ($tournament['game_type'] == "Single") {
                 <h5 class="text-primary">Venue Details</h5>
 
                 <div class="tournament-detail">
-                    <p>Venue Address :</p>
+                    <p>📌Venue Address :</p>
                     <p> <?= $tournament['venue_address'] ?></p>
                 </div>
 
                 <div class="tournament-detail">
-                    <p>Area :</p>
+                    <p>🌐Area :</p>
                     <p><?= $tournament['city'] ?></p>
                 </div>
 
                 <div class="tournament-detail">
-                    <p>State :</p>
+                    <p>🌐State :</p>
                     <p><?= $tournament['state'] ?></p>
                 </div>
             </div>
@@ -319,21 +322,21 @@ if ($tournament['game_type'] == "Single") {
                 <h5 class="text-primary">Winner Team Rank, Prize & Trophy</h5>
 
                 <div class="tournament-detail2">
-                    <p>1st Place – Winner Team :</p>
+                    <p>🏆 1st Place – Winner Team :</p>
                     <p> Rs. <?= $tournament['first_rank_price'] ?> <?php if ($tournament['first_rank_trophy']) {
                                                                         echo "(" . $tournament['first_rank_trophy'] . ")";
                                                                     } ?></p>
                 </div>
 
-                <div class="tournament-detail">
-                    <p>2nd Place – Runner-Up Team :</p>
+                <div class="tournament-detail2">
+                    <p>🏆 2nd Place – Runner-Up Team :</p>
                     <p> Rs. <?= $tournament['second_rank_price'] ?> <?php if ($tournament['second_rank_trophy']) {
                                                                         echo "(" . $tournament['first_rank_trophy'] . ")";
                                                                     } ?></p>
                 </div>
 
-                <div class="tournament-detail">
-                    <p>3rd Place – 3rd Rank Team :</p>
+                <div class="tournament-detail2">
+                    <p>🏆 3rd Place – 3rd Rank Team :</p>
                     <p> Rs. <?= $tournament['third_rank_price'] ?> <?php if ($tournament['third_rank_trophy']) {
                                                                         echo "(" . $tournament['first_rank_trophy'] . ")";
                                                                     } ?></p>
