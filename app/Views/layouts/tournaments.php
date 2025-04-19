@@ -226,7 +226,7 @@ $sports = $sports_model->getActiveData();
                                 </div>
                                 <div class="registration-start d-flex justify-content-between px-2 bg-primary text-white">
                                     <span class="registration_start">Registration Start : </span>
-                                    <span  class="counter">Loading...</span>
+                                    <span  class="matchcounter">Loading...</span>
                                 </div>
                             </div>
                         </div>
@@ -411,7 +411,7 @@ $sports = $sports_model->getActiveData();
 <script>
     const targetDate = new Date("April 21, 2025 15:00:00").getTime();
 
-    document.querySelectorAll('.counter').forEach(counter => {
+    document.querySelectorAll('.matchcounter').forEach(counter => {
         const updateCountdown = () => {
             const now = new Date().getTime();
             const distance = targetDate - now;
