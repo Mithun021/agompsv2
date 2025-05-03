@@ -87,7 +87,7 @@ $sports = $sports_model->get();
     <div class="col-lg-12">
     <div class="card p-0">
             <div class="card-header">
-                <h4 class="card-title">All Tournament Categories</h4>
+                <h4 class="card-title">All Categories</h4>
             </div>
             <div class="card-body">
                 <div class="tournament-category">
