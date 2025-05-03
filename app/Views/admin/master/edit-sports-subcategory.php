@@ -30,7 +30,7 @@ $sports_model = new Sports_model();
                     </div>
                     <div class="form-group">
                         <span>Sports Sub Category Name</span>
-                        <input type="text" class="form-control" placeholder="Enter sports category name" name="sports_sub_category_name" value="<?= $sports_detail['sub_category_name'] ?>" required>
+                        <input type="text" class="form-control" placeholder="Enter sports category name" name="sports_sub_category_name" required>
                     </div>
                     <div class="form-group">
                         <span>Status</span>

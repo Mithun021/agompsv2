@@ -152,6 +152,29 @@ class MasterController extends BaseController
         }
     }
 
+    public function edit_sports_subcategory($id){
+        $sports_subcategory_model = new Sports_subcategory_model();
+        $sports_model = new Sports_model();
+        $data = ['title' => 'Sports Sub Category','sports_id' => $id];
+        $data['sports_detail'] = $sports_subcategory_model->get($id);
+        if ($this->request->is('get')) {
+            $data['sports'] = $sports_model->get();
+            return view('admin/master/edit-sports-subcategory',$data);
+        }else if ($this->request->is('post')) {
+            $data = [
+                'sports_id' => $this->request->getPost('sports_category_name'),
+                'sub_category_name' => $this->request->getPost('sports_sub_category_name'),
+                'status' => $this->request->getPost('sports_category_status')
+            ];
+            $result = $sports_subcategory_model->add($data,$id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-sports-subcategory/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-sports-subcategory/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
     public function league_session()
     {
         $league_session_model = new League_session_model();
