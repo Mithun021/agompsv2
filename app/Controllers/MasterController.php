@@ -176,6 +176,16 @@ class MasterController extends BaseController
         }
     }
 
+    public function delete_sports_subcategory($id){
+        $sports_subcategory_model = new Sports_subcategory_model();
+        $result = $sports_subcategory_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/sports-subcategory')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/sports-subcategory')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
     public function league_session()
     {
         $league_session_model = new League_session_model();
