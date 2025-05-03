@@ -181,16 +181,16 @@
                                     <tbody id="team_list">
                                         <tr>
                                             <td>
-                                                <input type="number" class="form-control" placeholder="Enter 1st rank price" name="first_rank_price" required>
-                                                <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="first_rank_trophy" required>
+                                                <input type="number" class="form-control" placeholder="Enter 1st rank price" name="first_rank_price" value="<?= $tournament_detail['first_rank_price'] ?>" required>
+                                                <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="first_rank_trophy" value="<?= $tournament_detail['first_rank_trophy'] ?>" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" placeholder="Enter 2nd rank price" name="second_rank_price" required>
-                                                <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="second_rank_trophy" required>
+                                                <input type="number" class="form-control" placeholder="Enter 2nd rank price" name="second_rank_price" value="<?= $tournament_detail['second_rank_price'] ?>" required>
+                                                <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="second_rank_trophy" value="<?= $tournament_detail['second_rank_trophy'] ?>" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" placeholder="Enter 3rd rank price" name="third_rank_price">
-                                                <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="third_rank_trophy">
+                                                <input type="number" class="form-control" placeholder="Enter 3rd rank price" name="third_rank_price" value="<?= $tournament_detail['third_rank_price'] ?>">
+                                                <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="third_rank_trophy" value="<?= $tournament_detail['third_rank_trophy'] ?>">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -200,21 +200,21 @@
 
                         <div class="col-md-4 form-group">
                             <span>Reg. Start Date</span>
-                            <input type="date" class="form-control" name="reg_start_date" required>
+                            <input type="date" class="form-control" name="reg_start_date" value="<?= $tournament_detail['reg_date_start'] ?>" required>
                         </div>
                         <div class="col-md-4 form-group">
-                            <span>Reg. Start Date</span>
-                            <input type="date" class="form-control" name="reg_end_date" required>
+                            <span>Reg. End Date</span>
+                            <input type="date" class="form-control" name="reg_end_date" value="<?= $tournament_detail['reg_date_end'] ?>" required>
                         </div>
                         <div class="col-md-4 form-group">
                             <span>Other Benefits / Offers</span>
-                            <input type="text" class="form-control" name="git_hampers">
+                            <input type="text" class="form-control" name="git_hampers" value="<?= $tournament_detail['gift_hampers'] ?>">
                         </div>
 
                     </div>
                     <div class="form-group">
                         <span>Description</span>
-                        <textarea class="form-control" name="description" id="editor"></textarea>
+                        <textarea class="form-control" name="description" id="editor"><?= $tournament_detail['description'] ?></textarea>
                     </div>
                     <!-- <div class="form-group">
                         <span>Featured Image</span>
@@ -223,8 +223,8 @@
                     <div class="form-group">
                         <span>Status</span>
                         <select class="form-control" name="status" required>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                            <option value="1" <?php if($tournament_detail['status'] == 1){ echo "selected"; } ?>>Active</option>
+                            <option value="0"<?php if($tournament_detail['status'] == 0){ echo "selected"; } ?>>Inactive</option>
                         </select>
                     </div>
                 </div>

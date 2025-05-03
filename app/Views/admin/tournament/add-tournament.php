@@ -202,7 +202,7 @@
                             <input type="date" class="form-control" name="reg_start_date" required>
                         </div>
                         <div class="col-md-4 form-group">
-                            <span>Reg. Start Date</span>
+                            <span>Reg. End Date</span>
                             <input type="date" class="form-control" name="reg_end_date" required>
                         </div>
                         <div class="col-md-4 form-group">
