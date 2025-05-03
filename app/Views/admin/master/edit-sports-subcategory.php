@@ -17,7 +17,7 @@ $sports_model = new Sports_model();
                 echo session()->getFlashdata('status');
             }
             ?>
-            <form action="<?= base_url() ?>admin/sports-subcategory" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>admin/edit-sports-subcategory/<?= $sports_id ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="form-group">
                         <span>Sports Category Name</span>
