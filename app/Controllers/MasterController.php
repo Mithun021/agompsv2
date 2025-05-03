@@ -98,7 +98,7 @@ class MasterController extends BaseController
                 'status' => $this->request->getPost('sports_category_status'),
                 'cometitive_tournament' => $this->request->getPost('cometitive_tournament') ?? 0
             ];
-            $result = $sports_model->add($data);
+            $result = $sports_model->add($data,$id);
             if ($result === true) {
                 return redirect()->to('admin/edit-sports-category/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
