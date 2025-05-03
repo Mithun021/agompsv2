@@ -159,6 +159,7 @@ class MasterController extends BaseController
         $data['sports_detail'] = $sports_subcategory_model->get($id);
         if ($this->request->is('get')) {
             $data['sports'] = $sports_model->get();
+            $data['sports_subcat'] = $sports_subcategory_model->get();
             return view('admin/master/edit-sports-subcategory',$data);
         }else if ($this->request->is('post')) {
             $data = [
