@@ -70,5 +70,14 @@ class TournamentController extends BaseController{
 
         }
     }
+
+    public function tournament_list()
+    {
+        $tournament_model = new Tournament_model();
+        $data = ['title' => 'Tournament List'];
+        $data['tournament'] = $tournament_model->getAllData();
+        return view('admin/tournament/tournament-list',$data);
+    }
+
 }
 ?>
