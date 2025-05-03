@@ -12,7 +12,7 @@
                 echo session()->getFlashdata('status');
             }
             ?>
-            <form action="<?= base_url() ?>admin/edit-sports-category" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>admin/edit-sports-category/<?= $sports_id ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="form-group">
                         <span>Sports Category Name</span>
