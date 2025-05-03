@@ -28,7 +28,7 @@
                     </div>
                     <div class="form-group">
                         <span>Upload Logo(JPG,PNG)</span>
-                        <input type="file" class="form-control" name="sports_category_image" accept=".png,.jpg" required>
+                        <input type="file" class="form-control" name="sports_category_image" accept=".png,.jpg">
                         <?php if (!empty($sports_detail['sports_image']) && file_exists('public/assets/images/sports/' . $sports_detail['sports_image'])): ?>
                             <a href="<?= base_url() ?>public/assets/images/sports/<?= $sports_detail['sports_image'] ?>" target="_blank"><img src="<?= base_url() ?>public/assets/images/sports/<?= $sports_detail['sports_image'] ?>" alt="" height="30px"></a>
                         <?php else: ?>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <span>White Image(JPG,PNG)</span>
-                        <input type="file" class="form-control" name="sports_category_white_image" accept=".png,.jpg" required>
+                        <input type="file" class="form-control" name="sports_category_white_image" accept=".png,.jpg">
                         <?php if (!empty($sports_detail['sports_image_category']) && file_exists('public/assets/images/sports/' . $sports_detail['sports_image_category'])): ?>
                             <a href="<?= base_url() ?>public/assets/images/sports/<?= $sports_detail['sports_image_category'] ?>" target="_blank"><img src="<?= base_url() ?>public/assets/images/sports/<?= $sports_detail['sports_image_category'] ?>" alt="" height="30px"></a>
                         <?php else: ?>
