@@ -79,5 +79,20 @@ class TournamentController extends BaseController{
         return view('admin/tournament/tournament-list',$data);
     }
 
+    public function edit_tournament($id)
+    {
+        $tournament_model = new Tournament_model();
+        $sports_model = new Sports_model();
+        $league_session_model = new League_session_model();
+        $data = ['title' => 'Edit Tournament','tournament_id' => $id];
+        $data['tournament_detail'] = $tournament_model->get($id);
+        if($this->request->is('get')){
+            $data['sports'] = $sports_model->getActiveData();
+            $data['league_session'] = $league_session_model->getActiveData();
+            $data['tournament'] = $tournament_model->get($id);
+            return view('admin/tournament/edit-tournament',$data);
+        }else if($this->request->is('post')){
+        }
+    }
 }
 ?>

@@ -41,6 +41,7 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 
     $routes->match(['get','post'],'add-tournament','TournamentController::add_tournament');
     $routes->match(['get','post'],'tournament-list','TournamentController::tournament_list');
+    $routes->match(['get','post'],'edit-tournament/(:num)','TournamentController::edit_tournament/$1');
 
 
 
