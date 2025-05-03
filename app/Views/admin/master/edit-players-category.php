@@ -19,24 +19,24 @@ $sports_model = new Sports_model();
                 echo session()->getFlashdata('status');
             }
             ?>
-            <form action="<?= base_url() ?>admin/players-category" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>admin/edit-players-category/<?= $players_id ?>" method="post" enctype="multipart/form-data">
                 <div class="card-body p-2">
                     <div class="form-group">
                         <span>Sports Category </span>
                         <select class="form-control" name="sports_category" required>
                             <option value="">--Select--</option>
                         <?php foreach ($sports as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <option value="<?= $value['id'] ?>" <?php if($players_detail['sports_id'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <span>Players Category</span>
-                        <input class="form-control" placeholder="Enter Player Type" name="player_category">
+                        <input class="form-control" placeholder="Enter Player Type" name="player_category" value="<?= $players_detail['name'] ?>" required>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary" type="submit">Add Players Category</button>
+                    <button class="btn btn-primary" type="submit">Update Players Category</button>
                 </div>
             </form>
         </div>

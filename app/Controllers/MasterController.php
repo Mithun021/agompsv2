@@ -260,4 +260,28 @@ class MasterController extends BaseController
         }
     }
 
+    public function edit_players_category($id)
+    {
+        $sports_model = new Sports_model();
+        $players_category_model = new Players_category_model();
+        $data = ['title' => 'Players Category', 'players_id' => $id];
+        $data['players_detail'] = $players_category_model->get($id);
+        if ($this->request->is('get')) {
+            $data['players'] = $players_category_model->get();
+            $data['sports'] = $sports_model->get();
+            return view('admin/master/edit-players-category', $data);
+        } else if ($this->request->is('post')) {
+            $data = [
+                'sports_id' => $this->request->getPost('sports_category'),
+                'name' => $this->request->getPost('player_category'),
+            ];
+            $result = $players_category_model->add($data, $id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-players-category/' . $id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-players-category/' . $id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+            }
+        }
+    }
+
 }

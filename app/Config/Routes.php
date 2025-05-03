@@ -42,6 +42,9 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'league-session','MasterController::league_session');
     $routes->match(['get','post'],'teams','MasterController::teams');
     $routes->match(['get','post'],'players-category','MasterController::players_category');
+    $routes->match(['get','post'],'edit-players-category/(:num)','MasterController::edit_players_category/$1');
+    $routes->match(['get','post'],'delete-players-category/(:num)','MasterController::delete_players_category/$1');
+    
 
     $routes->match(['get','post'],'add-tournament','TournamentController::add_tournament');
     $routes->match(['get','post'],'tournament-list','TournamentController::tournament_list');
