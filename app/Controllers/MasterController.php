@@ -108,6 +108,23 @@ class MasterController extends BaseController
         }
     }
 
+    public function delete_sports_category($id){
+        $sports_model = new Sports_model();
+        $sports_detail = $sports_model->get($id);
+        if(file_exists("public/assets/images/sports/".$sports_detail['sports_image'])){
+            unlink("public/assets/images/sports/".$sports_detail['sports_image']);
+        }
+        if(file_exists("public/assets/images/sports/".$sports_detail['sports_image_category'])){
+            unlink("public/assets/images/sports/".$sports_detail['sports_image_category']);
+        }
+        $result = $sports_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/sports-category')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/sports-category')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
 
 
     public function sports_subcategory()
