@@ -137,5 +137,17 @@ class TournamentController extends BaseController{
             }
         }
     }
+
+    public function delete_tournament($id)
+    {
+        $tournament_model = new Tournament_model();
+        $result = $tournament_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/tournament-list')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/tournament-list')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
 }
 ?>
