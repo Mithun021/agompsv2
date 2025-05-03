@@ -284,4 +284,15 @@ class MasterController extends BaseController
         }
     }
 
+    public function delete_players_category($id)
+    {
+        $players_category_model = new Players_category_model();
+        $result = $players_category_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/players-category')->with('status', '<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/players-category')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+        }
+    }
+
 }
