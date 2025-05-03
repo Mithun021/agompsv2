@@ -188,8 +188,8 @@
                                                 <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="second_rank_trophy" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" placeholder="Enter 3rd rank price" name="third_rank_price" required>
-                                                <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="third_rank_trophy" required>
+                                                <input type="number" class="form-control" placeholder="Enter 3rd rank price" name="third_rank_price">
+                                                <input type="text" class="form-control mt-1" placeholder="Enter trophy type" name="third_rank_trophy">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -207,7 +207,7 @@
                         </div>
                         <div class="col-md-4 form-group">
                             <span>Other Benefits / Offers</span>
-                            <input type="text" class="form-control" name="git_hampers" required>
+                            <input type="text" class="form-control" name="git_hampers">
                         </div>
 
                     </div>
