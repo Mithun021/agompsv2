@@ -131,9 +131,9 @@ class TournamentController extends BaseController{
 
             $result = $tournament_model->add($data,$id);
             if ($result === true) {
-                return redirect()->to('admin/add-tournament')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                return redirect()->to('admin/edit-tournament/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Update Successful </div>');
             } else {
-                return redirect()->to('admin/add-tournament')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/edit-tournament/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }
