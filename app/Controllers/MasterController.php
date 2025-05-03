@@ -60,6 +60,51 @@ class MasterController extends BaseController
             return view('admin/master/edit-sports-category',$data);
         }else if ($this->request->is('post')) {
 
+            $sportsPhoto = $this->request->getFile('sports_category_image');
+            $sportsWhite = $this->request->getFile('sports_category_white_image');
+
+
+            $sports_detail = $sports_model->get($id);
+            $oldsportsPhoto = $sports_detail['sports_image'];
+            $oldsportsWhite = $sports_detail['sports_image_category'];
+
+            if ($sportsPhoto->isValid() && !$sportsPhoto->hasMoved()) {
+                if(file_exists("public/assets/images/sports/".$oldsportsPhoto)){
+                    unlink("public/assets/images/sports/".$oldsportsPhoto);
+                }
+                $new_sport_file = $sportsPhoto->getRandomName();
+                $sportsPhoto->move(ROOTPATH.'public/assets/images/sports/', $new_sport_file);
+            }
+            else{
+                $new_sport_file = $oldsportsPhoto;
+            }
+
+            if ($sportsWhite->isValid() && !$sportsWhite->hasMoved()) {
+                if(file_exists("public/assets/images/sports/".$oldsportsWhite)){
+                    unlink("public/assets/images/sports/".$oldsportsWhite);
+                }
+                $new_sportwhite_file = 'w'.$sportsWhite->getRandomName();
+                $sportsWhite->move(ROOTPATH.'public/assets/images/sports/', $new_sportwhite_file);
+            }
+            else{
+                $new_sportwhite_file = $oldsportsWhite;
+            }
+
+            $data = [
+                'name' => $this->request->getPost('sports_category_name'),
+                'sports_image' => $new_sport_file,
+                'sports_image_category' => $new_sportwhite_file,
+                'description' => $this->request->getPost('sports_category_description'),
+                'status' => $this->request->getPost('sports_category_status'),
+                'cometitive_tournament' => $this->request->getPost('cometitive_tournament') ?? 0
+            ];
+            $result = $sports_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/edit-sports-category/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-sports-category/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+
         }
     }
 
