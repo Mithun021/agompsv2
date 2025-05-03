@@ -43,6 +43,7 @@ $league_session_model = new League_session_model();
                                 <td><?= $value['game_type'] ?></td>
                                 <td><?= $sports_model->get($value['sports_id'])['name'] ?></td>
                                 <td><?= date('d-m-Y', strtotime($value['reg_date_start'])) ?> - <?= date('d-m-Y', strtotime($value['reg_date_end'])) ?></td>
+                                <td><?= ($value['status'] == "0") ? "<span class='badge badge-danger badge-pill'>Inactive</span>" : (($value['status'] == "1") ? "<span class='badge badge-success badge-pill'>Active</span>" : "") ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/edit-players-category" class="btn btn-sm btn-circle btn-danger"><span class="fa fa-times"></span></a>
                                     <a href="<?= base_url() ?>admin/edit-players-category" class="btn btn-sm btn-circle btn-primary"><span class="fa fa-pen"></span></a>
