@@ -51,6 +51,20 @@ class MasterController extends BaseController
         }
     }
 
+    public function edit_sports_category($id){
+        $sports_model = new Sports_model();
+        $data = ['title' => 'Sports','sports_id' => $id];
+        $data['sports_detail'] = $sports_model->get($id);
+        if ($this->request->is('get')) {
+            $data['sports'] = $sports_model->get();
+            return view('admin/master/edit-sports-category',$data);
+        }else if ($this->request->is('post')) {
+
+        }
+    }
+
+
+
     public function sports_subcategory()
     {
         $sports_subcategory_model = new Sports_subcategory_model();

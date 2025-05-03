@@ -12,19 +12,19 @@
                 echo session()->getFlashdata('status');
             }
             ?>
-            <form action="<?= base_url() ?>admin/sports-category" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url() ?>admin/edit-sports-category" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="form-group">
                         <span>Sports Category Name</span>
-                        <input type="text" class="form-control" placeholder="Enter sports category name" name="sports_category_name" required>
+                        <input type="text" class="form-control" placeholder="Enter sports category name" name="sports_category_name" value="<?= $sports_detail['name'] ?>" required>
                     </div>
                     <div class="form-group">
-                        <span><input type="checkbox" name="cometitive_tournament" value="1"> Competitive Tournament Categoy</span>
+                        <span><input type="checkbox" name="cometitive_tournament" value="1" <?php if($sports_detail['cometitive_tournament'] == 1){ echo "checked"; } ?>> Competitive Tournament Categoy</span>
                     </div>
                     <div class="form-group">
                         <span>Sports Category Description</span>
                         <!-- <textarea class="form-control" placeholder="Enter sports category description" name="sports_category_description" id="summernote"></textarea> -->
-                        <textarea class="form-control" placeholder="Enter sports category description" name="sports_category_description"></textarea>
+                        <textarea class="form-control" placeholder="Enter sports category description" name="sports_category_description"><?= $sports_detail['description'] ?></textarea>
                     </div>
                     <div class="form-group">
                         <span>Upload Logo(JPG,PNG)</span>
@@ -37,8 +37,8 @@
                     <div class="form-group">
                         <span>Status</span>
                         <select class="form-control" name="sports_category_status" required>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                            <option value="1" <?php if($sports_detail['status'] == 1){ echo "selected"; } ?>>Active</option>
+                            <option value="0" <?php if($sports_detail['status'] == 0){ echo "selected"; } ?>>Inactive</option>
                         </select>
                     </div>
                 </div>
