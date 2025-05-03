@@ -75,7 +75,7 @@ class TournamentController extends BaseController{
     {
         $tournament_model = new Tournament_model();
         $data = ['title' => 'Tournament List'];
-        $data['tournament'] = $tournament_model->getAllData();
+        $data['tournament'] = $tournament_model->get();
         return view('admin/tournament/tournament-list',$data);
     }
 
