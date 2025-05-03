@@ -24,7 +24,7 @@ $sports_model = new Sports_model();
                         <select class="form-control" placeholder="Enter sports category name" name="sports_category_name" required>
                             <option value="">--Select--</option>
                         <?php foreach ($sports as $key => $value): ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+                            <option value="<?= $value['id'] ?>" <?php if($sports_detail['sports_id'] == $value['id']){ echo "selected"; } ?>><?= $value['name'] ?></option>
                         <?php endforeach; ?>
                         </select>
                     </div>
@@ -35,8 +35,8 @@ $sports_model = new Sports_model();
                     <div class="form-group">
                         <span>Status</span>
                         <select class="form-control" name="sports_category_status" required>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                            <option value="1" <?php if($sports_detail['status'] == 1){ echo "selected"; } ?>>Active</option>
+                            <option value="0" <?php if($sports_detail['status'] == 0){ echo "selected"; } ?>>Inactive</option>
                         </select>
                     </div>
                 </div>
