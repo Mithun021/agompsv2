@@ -29,12 +29,7 @@
                     <div class="form-group">
                         <span>Upload Logo(JPG,PNG)</span>
                         <input type="file" class="form-control" name="sports_category_image" accept=".png,.jpg">
-                        <?= $sports_detail['sports_image'] ?>
-                        <?php if (!empty($sports_detail['sports_image']) && file_exists('public/assets/images/sports/' . $sports_detail['sports_image'])): ?>
-                            <a href="<?= base_url() ?>public/assets/images/sports/<?= $sports_detail['sports_image'] ?>" target="_blank"><img src="<?= base_url() ?>public/assets/images/sports/<?= $sports_detail['sports_image'] ?>" alt="" height="30px"></a>
-                        <?php else: ?>
-                            <img src="<?= base_url() ?>public/assets/images/sports/invalid_image.png" alt="" height="40px">
-                        <?php endif; ?>
+                        <img src="<?= base_url() ?>public/assets/images/sports/<?= $sports_detail['sports_image'] ?>" alt="" height="30px">
                     </div>
                     <div class="form-group">
                         <span>White Image(JPG,PNG)</span>
