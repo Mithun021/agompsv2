@@ -75,7 +75,11 @@
                                 <span>Sub Category</span>
                                 <select class="form-control" name="sport_subcategory" id="sport_subcategory" required>
                                     <option value="">Select SubCategory</option>
-                                   
+                                    <?php
+                                    foreach ($sports_subcategory as $subsports) { ?>
+                                        <option value="<?= $subsports['id'] ?>" <?php if($tournament_detail['sport_subcategory'] == $subsports['id']){ echo "selected"; } ?>><?= $subsports['sub_category_name'] ?></option>
+                                    <?php }
+                                    ?>
                                 </select>
                             </div>
                         </div>

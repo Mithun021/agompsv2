@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\League_session_model;
 use App\Models\Sports_model;
+use App\Models\Sports_subcategory_model;
 use App\Models\Tournament_model;
 
 class TournamentController extends BaseController{
@@ -83,9 +84,11 @@ class TournamentController extends BaseController{
     {
         $tournament_model = new Tournament_model();
         $sports_model = new Sports_model();
+        $sports_subcategory_model = new Sports_subcategory_model();
         $league_session_model = new League_session_model();
         $data = ['title' => 'Edit Tournament','tournament_id' => $id];
         $data['tournament_detail'] = $tournament_model->get($id);
+        $data['sports_subcategory'] = $sports_subcategory_model->find_sports($data['tournament_detail']['sports_id']);
         if($this->request->is('get')){
             $data['sports'] = $sports_model->getActiveData();
             $data['league_session'] = $league_session_model->getActiveData();
