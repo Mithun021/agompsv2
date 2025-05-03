@@ -28,8 +28,9 @@
                                 <select class="form-control" name="league_category_name" required>
                                     <option value="">Select League Name</option>
                                     <?php
-                                    foreach ($league_session as $session) {
-                                        echo '<option value="' . $session['id'] . '">' . $session['league_name'] . '</option>';
+                                    foreach ($league_session as $session) { ?>
+                                      <option value="<?= $session['id'] ?>" <?php if($tournament_detail['league_session_id'] == $session['id']){ echo "selected"; } ?>><?= $session['league_name'] ?> </option>
+                                    <?php
                                     }
                                     ?>
                                 </select>
@@ -40,9 +41,9 @@
                                 <span>League For</span>
                                 <select class="form-control" name="league_for" required>
                                     <option value="">Select League Name</option>
-                                    <option value="Men">Men</option>
-                                    <option value="Women">Women</option>
-                                    <option value="Junior">Junior</option>
+                                    <option value="Men" <?php if($tournament_detail['league_for'] == "Men"){ echo "selected"; } ?>>Men</option>
+                                    <option value="Women" <?php if($tournament_detail['league_for'] == "Women"){ echo "selected"; } ?>>Women</option>
+                                    <option value="Junior" <?php if($tournament_detail['league_for'] == "Junior"){ echo "selected"; } ?>>Junior</option>
                                 </select>
                             </div>
                         </div>
@@ -51,8 +52,8 @@
                                 <span>Game Type</span>
                                 <select class="form-control" name="game_type"  id="game_type" required>
                                     <option value="">Select Game Type</option>
-                                    <option value="Single">Single</option>
-                                    <option value="Team">Team</option>
+                                    <option value="Single" <?php if($tournament_detail['game_type'] == "Single"){ echo "selected"; } ?>>Single</option>
+                                    <option value="Team" <?php if($tournament_detail['game_type'] == "Team"){ echo "selected"; } ?>>Team</option>
                                 </select>
                             </div>
                         </div>
@@ -62,9 +63,9 @@
                                 <select class="form-control" name="sports_category" id="sports_category" required>
                                     <option value="">Select Sports Category</option>
                                     <?php
-                                    foreach ($sports as $sports) {
-                                        echo '<option value="' . $sports['id'] . '">' . $sports['name'] . '</option>';
-                                    }
+                                    foreach ($sports as $sports) { ?>
+                                        <option value="<?= $sports['id'] ?>" <?php if($tournament_detail['sports_id'] == $sports['id']){ echo "selected"; } ?>><?= $sports['name'] ?></option>
+                                    <?php }
                                     ?>
                                 </select>
                             </div>
@@ -82,25 +83,25 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <span>Required Player(min)</span>
-                                <input type="number" class="form-control" name="min_players" id="min_players" placeholder="Min. Players" min="1" required>
+                                <input type="number" class="form-control" name="min_players" id="min_players" value="<?= $tournament_detail['min_players'] ?>" min="1" required>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <span>Required Player(max)</span>
-                                <input type="number" class="form-control" name="max_players" id="max_players" placeholder="Max. Players" required>
+                                <input type="number" class="form-control" name="max_players" id="max_players" value="<?= $tournament_detail['max_players'] ?>" required>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <span>Required Age(min)</span>
-                                <input type="number" class="form-control" name="min_age" id="min_age" placeholder="Min. Players Age" min="6" required>
+                                <input type="number" class="form-control" name="min_age" id="min_age" value="<?= $tournament_detail['min_age'] ?>" min="6" required>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <span>Required Age(max)</span>
-                                <input type="number" class="form-control" name="max_age" id="max_age" placeholder="Max Players Age" required>
+                                <input type="number" class="form-control" name="max_age" id="max_age" value="<?= $tournament_detail['max_age'] ?>" required>
                             </div>
                         </div>
 
@@ -116,15 +117,15 @@
                                         <tr>
                                             <td>
                                                 <span>Address</span>
-                                                <input type="text" class="form-control" placeholder="Enter Address" name="venue_address" required>
+                                                <input type="text" class="form-control" placeholder="Enter Address" name="venue_address" value="<?= $tournament_detail['venue_address'] ?>" required>
                                             </td>
                                             <td>
                                                 <span>City</span>
-                                                <input type="text" class="form-control" placeholder="Enter City" name="venue_city" required>
+                                                <input type="text" class="form-control" placeholder="Enter City" name="venue_city" value="<?= $tournament_detail['city'] ?>" required>
                                             </td>
                                             <td>
                                                 <span>State</span>
-                                                <input type="text" class="form-control" placeholder="Enter State" name="venue_state">
+                                                <input type="text" class="form-control" placeholder="Enter State" name="venue_state" value="<?= $tournament_detail['state'] ?>">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -144,19 +145,19 @@
                                         <tr>
                                             <td>
                                                 <span>Individual Entry Fee</span>
-                                                <input type="number" class="form-control individual_fee" placeholder="Enter registration fee" name="registration_fee" required>
+                                                <input type="number" class="form-control individual_fee" placeholder="Enter registration fee" name="registration_fee" value="<?= $tournament_detail['registration_fee'] ?>" required>
                                             </td>
                                             <td>
                                                 <span>After Discount Individual Entry Fee</span>
-                                                <input type="number" class="form-control individual_fee" placeholder="Enter after discount fee" name="registration_fee_after_discount" required>
+                                                <input type="number" class="form-control individual_fee" placeholder="Enter after discount fee" name="registration_fee_after_discount" value="<?= $tournament_detail['discount_registration_fee'] ?>" required>
                                             </td>
                                             <td>
                                                 <span>Team Entry Fee</span>
-                                                <input type="number" class="form-control team_fee" placeholder="Enter team entry fee" name="team_entry_fee">
+                                                <input type="number" class="form-control team_fee" placeholder="Enter team entry fee" name="team_entry_fee" value="<?= $tournament_detail['team_entry_fee'] ?>">
                                             </td>
                                             <td>
                                                 <span>Afer Dis. Team Entry Fee</span>
-                                                <input type="number" class="form-control team_fee" placeholder="Enter team entry fee" name="discount_team_entry_fee">
+                                                <input type="number" class="form-control team_fee" placeholder="Enter team entry fee" name="discount_team_entry_fee" value="<?= $tournament_detail['team_entry_fee_discount'] ?>">
                                             </td>
                                         </tr>
                                     </tbody>
