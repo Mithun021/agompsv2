@@ -116,4 +116,14 @@ class SponsorController extends BaseController
         }
     }
 
+    public function delete_sponsor_package($id){
+        $sponsor_package_model = new Sponsor_package_model();
+        $result = $sponsor_package_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/sponsor-package')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/sponsor-package')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
 }
