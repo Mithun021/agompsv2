@@ -15,7 +15,7 @@
                     ?>
                     <div class="form-group">
                         <span>Category Name</span>
-                        <input type="text" class="form-control form-control-sm" name="sponsor_categpry" required>
+                        <input type="text" class="form-control form-control-sm" name="sponsor_categpry" value="<?= $category_detail['sponsor_categpry'] ?>" required>
                     </div>
                 </div>
                 <div class="card-footer p-2">
