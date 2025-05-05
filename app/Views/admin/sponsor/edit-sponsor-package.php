@@ -23,13 +23,13 @@ $sponsor_category_model = new Sponsor_category_model();
                         <select class="form-control form-control-sm" name="sponsor_category_id" required>
                             <option value="">--Select--</option>
                         <?php foreach ($category as $key => $value) { ?>
-                            <option value="<?= $value['id'] ?>"><?= $value['sponsor_categpry'] ?></option>
+                            <option value="<?= $value['id'] ?>" <?php if($value['id'] == $package_detail['sponsor_category_id']){ echo "selected"; } ?>><?= $value['sponsor_categpry'] ?></option>
                         <?php } ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <span>Package Name</span>
-                        <input type="text" class="form-control form-control-sm" name="package_name" required>
+                        <input type="text" class="form-control form-control-sm" name="package_name" value="<?= $package_detail['package_name'] ?>" required>
                     </div>
                 </div>
                 <div class="card-footer p-2">
