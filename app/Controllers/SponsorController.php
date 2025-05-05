@@ -53,9 +53,9 @@ class SponsorController extends BaseController
             ];
             $result = $sponsor_category_model->add($data,$id);
             if ($result === true) {
-                return redirect()->to('admin/sponsor-category/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                return redirect()->to('admin/edit-sponsor-category/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/sponsor-category/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+                return redirect()->to('admin/edit-sponsor-category/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
             }
         }
     }
