@@ -3,9 +3,20 @@
 
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-12">
-        <div class="card card-body">
-            
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header m-0">Add <?= $title ?></div>
+            <form action="<?= base_url() ?>admin/sponsor-category" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <span>Category Name</span>
+                        <input type="text" class="form-control form-control-sm" name="sponsor-categpry" required>
+                    </div>
+                </div>
+                <div class="card-footer p-2">
+                    <button type="submit" class="btn btn-sm btn-primary">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
