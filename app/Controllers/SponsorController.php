@@ -1,5 +1,8 @@
 <?php
 namespace App\Controllers;
+
+use App\Models\Sponsor_category_model;
+
 class SponsorController extends BaseController
 {
     public function create_sponsor(){
@@ -19,12 +22,21 @@ class SponsorController extends BaseController
     }
 
     public function sponsor_category(){
+        $sponsor_category_model = new Sponsor_category_model();
         $data = ['title' => 'Sponsor Category'];
         if ($this->request->is('get')) {
+            $data['category'] = $sponsor_category_model->get();
             return view('admin/sponsor/sponsor-category',$data);
         }else if ($this->request->is('post')) {
-           
-            
+            $data =[
+                'sponsor_categpry' => $this->request->getPost('sponsor_categpry')
+            ];
+            $result = $sponsor_category_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/sponsor-category')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/sponsor-category')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 }
