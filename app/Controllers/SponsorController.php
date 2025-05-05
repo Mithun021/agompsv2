@@ -43,9 +43,9 @@ class SponsorController extends BaseController
     public function edit_sponsor_category($id){
         $sponsor_category_model = new Sponsor_category_model();
         $data = ['title' => 'Sponsor Category','sponsor_id' => $id];
-        $data['category_detail'] = $sponsor_category_model->get($id);
         if ($this->request->is('get')) {
             $data['category'] = $sponsor_category_model->get();
+            $data['category_detail'] = $sponsor_category_model->get($id);
             return view('admin/sponsor/edit-sponsor-category',$data);
         }else if ($this->request->is('post')) {
             $data =[
