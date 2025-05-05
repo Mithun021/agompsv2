@@ -60,4 +60,14 @@ class SponsorController extends BaseController
         }
     }
 
+    public function delete_sponsor_category($id){
+        $sponsor_category_model = new Sponsor_category_model();
+        $result = $sponsor_category_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/sponsor-category')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/sponsor-category')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
 }
