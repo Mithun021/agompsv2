@@ -22,6 +22,7 @@
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="<?= base_url() ?>admin/create-sponsor">Create New</a></li>
                 <li><a href="<?= base_url() ?>admin/applied-sponsor-list">Applied Sponsor List</a></li>
+                <li><a href="<?= base_url() ?>admin/sponsor-category">Sponsor Category</a></li>
             </ul>
         </li>
         

@@ -17,4 +17,12 @@ class SponsorController extends BaseController
         }else if ($this->request->is('post')) {
         }
     }
+
+    public function sponsor_category(){
+        $data = ['title' => 'Sponsor Category'];
+        if ($this->request->is('get')) {
+            return view('admin/sponsor/sponsor-category',$data);
+        }else if ($this->request->is('post')) {
+        }
+    }
 }
