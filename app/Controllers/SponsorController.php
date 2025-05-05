@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\Sponsor_category_model;
+use App\Models\Sponsor_package_model;
 
 class SponsorController extends BaseController
 {
@@ -67,6 +68,28 @@ class SponsorController extends BaseController
             return redirect()->to('admin/sponsor-category')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
         } else {
             return redirect()->to('admin/sponsor-category')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
+
+    public function sponsor_package(){
+        $sponsor_category_model = new Sponsor_category_model();
+        $sponsor_package_model = new Sponsor_package_model();
+        $data = ['title' => 'Sponsor Package'];
+        if ($this->request->is('get')) {
+            $data['category'] = $sponsor_category_model->get();
+            $data['package'] = $sponsor_package_model->get();
+            return view('admin/sponsor/sponsor-package',$data);
+        }else if ($this->request->is('post')) {
+            $data =[
+                'sponsor_category_id' => $this->request->getPost('sponsor_category_id'),
+                'package_name' => $this->request->getPost('package_name')
+            ];
+            $result = $sponsor_package_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/sponsor-package')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/sponsor-package')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 
