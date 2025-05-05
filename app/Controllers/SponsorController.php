@@ -93,4 +93,27 @@ class SponsorController extends BaseController
         }
     }
 
+    public function edit_sponsor_package($id){
+        $sponsor_category_model = new Sponsor_category_model();
+        $sponsor_package_model = new Sponsor_package_model();
+        $data = ['title' => 'Sponsor Package','package_id' => $id];
+        if ($this->request->is('get')) {
+            $data['category'] = $sponsor_category_model->get();
+            $data['package'] = $sponsor_package_model->get();
+            $data['package_detail'] = $sponsor_package_model->get($id);
+            return view('admin/sponsor/edit-sponsor-package',$data);
+        }else if ($this->request->is('post')) {
+            $data =[
+                'sponsor_category_id' => $this->request->getPost('sponsor_category_id'),
+                'package_name' => $this->request->getPost('package_name')
+            ];
+            $result = $sponsor_category_model->add($data,$id);
+            if ($result === true) {
+                return redirect()->to('admin/edit-sponsor-package/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/edit-sponsor-package/'.$id)->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
+        }
+    }
+
 }

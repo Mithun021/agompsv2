@@ -58,6 +58,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->match(['get','post'],'delete-sponsor-category/(:num)','SponsorController::delete_sponsor_category/$1');
 
     $routes->match(['get','post'],'sponsor-package','SponsorController::sponsor_package');
+    $routes->match(['get','post'],'edit-sponsor-package/(:num)','SponsorController::edit_sponsor_package/$1');
+    $routes->match(['get','post'],'delete-sponsor-package/(:num)','SponsorController::delete_sponsor_package/$1');
 });
 
 $routes->post('fetch_sports_subcategory', 'UniversalController::fetch_sports_subcategory');
