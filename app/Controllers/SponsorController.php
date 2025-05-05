@@ -107,7 +107,7 @@ class SponsorController extends BaseController
                 'sponsor_category_id' => $this->request->getPost('sponsor_category_id'),
                 'package_name' => $this->request->getPost('package_name')
             ];
-            $result = $sponsor_category_model->add($data,$id);
+            $result = $sponsor_package_model->add($data,$id);
             if ($result === true) {
                 return redirect()->to('admin/edit-sponsor-package/'.$id)->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
