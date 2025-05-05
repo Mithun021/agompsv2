@@ -8,6 +8,11 @@
             <div class="card-header"><h4 class="card-title m-0">Add <?= $title ?></h4></div>
             <form action="<?= base_url() ?>admin/sponsor-category" method="post">
                 <div class="card-body p-2">
+                    <?php
+                    if (session()->getFlashdata('status')) {
+                        echo session()->getFlashdata('status');
+                    }
+                    ?>
                     <div class="form-group">
                         <span>Category Name</span>
                         <input type="text" class="form-control form-control-sm" name="sponsor_categpry" required>
