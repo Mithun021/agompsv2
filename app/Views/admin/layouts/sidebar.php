@@ -15,6 +15,15 @@
                 <li><a href="<?= base_url() ?>admin/tournament-list">Tournament List</a></li>
             </ul>
         </li>
+
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect"><i
+                    class="mdi mdi-table-merge-cells"></i><span>Sponsor</span></a>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="<?= base_url() ?>admin/create-sponsor">Create New</a></li>
+                <li><a href="<?= base_url() ?>admin/applied-sponsor-list">Applied Sponsor List</a></li>
+            </ul>
+        </li>
         
         <li>
             <a href="javascript: void(0);" class="has-arrow waves-effect"><i
