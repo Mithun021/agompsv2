@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <h4 class="card-title m-0">Add <?= $title ?></h4>
                 </div>
-                <form action="<?= base_url() ?>admin/edit-sponsor-category/<?= $sponsor_id ?>" method="post">
+                <form action="<?= base_url() ?>admin/create-sponsor" method="post">
                     <div class="card-body p-2">
                         <?php
                         if (session()->getFlashdata('status')) {
@@ -17,7 +17,7 @@
                         }
                         ?>
                         <div class="row">
-                            
+
                         </div>
                     </div>
                     <div class="card-footer p-2">
