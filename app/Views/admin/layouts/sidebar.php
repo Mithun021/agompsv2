@@ -24,6 +24,7 @@
                 <li><a href="<?= base_url() ?>admin/applied-sponsor-list">Applied Sponsor List</a></li>
                 <li><a href="<?= base_url() ?>admin/sponsor-category">Sponsor Category</a></li>
                 <li><a href="<?= base_url() ?>admin/sponsor-package">Sponsor Package</a></li>
+                <li><a href="<?= base_url() ?>admin/sponsor-package-type">Sponsor Package Type</a></li>
             </ul>
         </li>
         
