@@ -3,9 +3,9 @@
 
 <!-- start page title -->
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
         <div class="card">
-            <div class="card-header m-0">Add <?= $title ?></div>
+            <div class="card-header"><h4 class="card-title m-0">Add <?= $title ?></h4></div>
             <form action="<?= base_url() ?>admin/sponsor-category" method="post">
                 <div class="card-body">
                     <div class="form-group">
