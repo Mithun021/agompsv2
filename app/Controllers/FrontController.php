@@ -64,7 +64,7 @@ class FrontController extends BaseController
 
     public function apply_sponsor($id){
         $sponsor_model = new Sponsor_model();
-        $data = ['title' => 'Apply Sponsor', 'sponsor_id' => $id];
+        $data = ['title' => 'Apply Sponsor', 'sponsor_id' => $id,'sponsor_detail' => $sponsor_model->where('id',$id)->first()];
         if($this->request->is('get')){
             return view('sponsor/apply-sponsor',$data);
         }else if($this->request->is('post')){
