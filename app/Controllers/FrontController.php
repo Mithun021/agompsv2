@@ -53,5 +53,11 @@ class FrontController extends BaseController
         $data = ['title' => 'Contact Us'];
         return view('legal/contact',$data);
     }
+    
+    public function sponsor()
+    {
+        $data = ['title' => 'Sponsor'];
+        return view('legal/sponsor',$data);
+    }
 
 }

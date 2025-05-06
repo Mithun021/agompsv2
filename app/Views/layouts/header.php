@@ -180,8 +180,12 @@ date_default_timezone_set('Asia/Kolkata');
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?= base_url() ?>tournaments">ALL TOURNAMENTS</a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a class="nav-link" href="<?= base_url() ?>products">OUR PRODUCTS</a>
+                                    </li> -->
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?= base_url() ?>sponsor">SPONSOR</a>
                                     </li>
 
                                     <li class="nav-item dropdown">

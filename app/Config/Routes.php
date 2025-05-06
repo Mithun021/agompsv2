@@ -17,6 +17,7 @@ $routes->get('privacy-policy', 'FrontController::privacy_policy');
 $routes->get('term-condition', 'FrontController::term_condition');
 $routes->get('refund', 'FrontController::refund');
 $routes->get('contact', 'FrontController::contact');
+$routes->get('sponsor', 'FrontController::sponsor');
 
 $routes->get('tournaments', 'FrontController::tournaments');
 $routes->match(['get','post'],'tournament-details/(:num)', 'FrontController::tournament_details/$1', ['filter' => 'authCheck']);
