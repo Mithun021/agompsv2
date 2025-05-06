@@ -27,7 +27,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                     ?>
                     <div class="row">
                         <div class="col-md-4 form-group">
-                            <span>Category Name</span>
+                            <span>Category Name<span class="text-danger">*</span></span>
                             <select name="sponsor_name" id="sponsor_name" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
                                 <?php foreach ($category as $key => $value) { ?>
@@ -36,19 +36,19 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
-                            <span>Package Name</span>
+                            <span>Package Name<span class="text-danger">*</span></span>
                             <select name="package_name" id="package_name" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
-                            <span>Package Type</span>
+                            <span>Package Type<span class="text-danger">*</span></span>
                             <select name="package_type[]" id="package_type" class="form-control form-control-sm my-select" multiple required>
                                 <option value="">--Select--</option>
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
-                            <span>Promotion Days</span>
+                            <span>Promotion Days<span class="text-danger">*</span></span>
                             <select name="promotion_days" class="form-control form-control-sm" required>
                                 <option value="">--Select--</option>
                                 <?php for ($i = 1; $i <= 30; $i++) {
@@ -59,7 +59,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                         </div>
                         <div class="col-md-3 form-group">
                             <span>Promotion Location</span>
-                            <select name="promotion_location" id="promotion_location" class="form-control form-control-sm" required>
+                            <select name="promotion_location" id="promotion_location" class="form-control form-control-sm">
                                 <option value="">--Select--</option>
                                 <option value="Home (Footer)">Home (Footer)</option>
                                 <option value="Side Panel">Side Panel</option>
@@ -69,7 +69,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
-                            <span>Price (INR)</span>
+                            <span>Price (INR)<span class="text-danger">*</span></span>
                             <input type="number" name="promotion_amount" class="form-control form-control-sm" required>
                         </div>
                         <div class="col-md-3 form-group">
