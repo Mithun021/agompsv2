@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card card-body">
-                <h2 class="text-primary">Apply Now</h2>
+                <h2 class="text-primary text-center">Apply Now</h2>
                 <form action="<?= base_url() ?>apply-sponsor/<?= $sponsor_id ?>" method="post">
                     <div class="row">
                         <div class="col-md-12 form-group">
@@ -43,7 +43,7 @@
                             <span>PAN Number</span>
                             <input type="text" class="form-control form-control-sm" name="pan_no" required>
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-12 form-group">
                             <span>Amount</span>
                             <input type="text" class="form-control form-control-sm" name="sponsor_amount" value="<?= $sponsor_detail['discount_promotion_amount'] ??  $sponsor_detail['promotion_amount'] ?>" readonly required>
                         </div>
