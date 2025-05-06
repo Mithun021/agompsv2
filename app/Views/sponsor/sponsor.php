@@ -75,9 +75,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                             <ul class="list-unstyled features">
                                 <li>✔️
                                 <?php $package_type = explode(',',$value['package_type']); foreach($package_type as $type){
-                                        echo $sponsor_package_type_model->get($type)['package_type'] ?? '';
-                                        // echo $type;
-                                        echo " + ";
+                                        echo rtrim($sponsor_package_type_model->get($type)['package_type'] ?? ''." + ",'+');
                                     }
                                 ?>
                                 </li>
