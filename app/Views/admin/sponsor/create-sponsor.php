@@ -1,5 +1,15 @@
 <?= $this->extend("admin/layouts/master") ?>
 <?= $this->section("body-content"); ?>
+<?php
+
+use App\Models\Sponsor_category_model;
+use App\Models\Sponsor_package_model;
+use App\Models\Sponsor_package_type_model;
+
+$sponsor_package_model = new Sponsor_package_model();
+$sponsor_category_model = new Sponsor_category_model();
+$sponsor_package_type_model = new Sponsor_package_type_model();
+?>
 
 <!-- start page title -->
 <div class="row">
@@ -74,6 +84,52 @@
             </form>
         </div>
     </div>
+
+
+    <div class="col-lg-12 p-1">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title m-0"><?= $title ?> List</h4>
+            </div>
+            <div class="card-body p-2">
+                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                    <thead>
+                        <tr>
+                            <td>#</td>
+                            <td>Category Name</td>
+                            <td>Package Name</td>
+                            <td>Package Type</td>
+                            <td>Promotion Days</td>
+                            <td>Promotion Location</td>
+                            <td>Price (INR)</td>
+                            <td>Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($category as $key => $value): ?>
+                            <tr>
+                                <td><?= ++$key ?></td>
+                                <td><?= $sponsor_category_model->get($value['sponsor_name'])['sponsor_categpry'] ?? '' ?></td>
+                                <td><?= $sponsor_package_model->get($value['package_name'])['package_name'] ?? '' ?></td>
+                                <td><?php $package_type = explode(',',$value['package_type']); foreach($package_type as $type){
+                                        echo $type['package_type'].",";
+                                    }
+                                ?></td>
+                                <td><?= $value['sponsor_categpry'] ?></td>
+                                <td><?= $value['sponsor_categpry'] ?></td>
+                                <td><?= $value['sponsor_categpry'] ?></td>
+                                <td>
+                                    <a href="<?= base_url() ?>admin/delete-create-sponsor/<?= $value['id'] ?>" class="btn btn-sm btn-circle btn-danger" onclick="return confirm('Are you sure...!')"><span class="fa fa-times"></span></a>
+                                    <!-- <a href="<?= base_url() ?>admin/edit-create-sponsor/<?= $value['id'] ?>" class="btn btn-sm btn-circle btn-primary"><span class="fa fa-pen"></span></a> -->
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- jQuery  -->

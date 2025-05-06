@@ -21,7 +21,7 @@
             if($id != null){
                 $result = $this->where('id',$id)->first();
             }else{
-                $result = $this->findAll();
+                $result = $this->orderBy('sponsor_name','asc')->findAll();
             }
             return $result;
         }
