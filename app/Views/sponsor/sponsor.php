@@ -84,7 +84,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                                 <?php if($value['promotion_location']){ echo "<li>✔️ Location : ".$value['promotion_location']."</li>"; } ?>
                                 <li>✔️ Email Support</li>
                             </ul>
-                            <a href="#" class="btn btn-outline-primary btn-plan">Select Plan</a>
+                            <a href="<?= base_url() ?>apply-sponsor/<?= $value['id'] ?>" class="btn btn-outline-primary btn-plan">Select Plan</a>
                         </div>
                     </div>
             <?php }
