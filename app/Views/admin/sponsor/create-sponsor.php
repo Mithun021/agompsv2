@@ -106,7 +106,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($category as $key => $value): ?>
+                        <?php foreach ($sponsor as $key => $value): ?>
                             <tr>
                                 <td><?= ++$key ?></td>
                                 <td><?= $sponsor_category_model->get($value['sponsor_name'])['sponsor_categpry'] ?? '' ?></td>
