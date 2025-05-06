@@ -112,7 +112,8 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                                 <td><?= $sponsor_category_model->get($value['sponsor_name'])['sponsor_categpry'] ?? '' ?></td>
                                 <td><?= $sponsor_package_model->get($value['package_name'])['package_name'] ?? '' ?></td>
                                 <td><?php $package_type = explode(',',$value['package_type']); foreach($package_type as $type){
-                                        $sponsor_package_type_model->get($type)['package_type'] ?? '';
+                                        // $sponsor_package_type_model->get($type)['package_type'] ?? '';
+                                        echo $type;
                                         echo ",";
                                     }
                                 ?></td>
