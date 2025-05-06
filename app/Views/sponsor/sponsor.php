@@ -80,7 +80,9 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                                 <li>✔️ <?= $value['promotion_days'] ?> Days</li>
                                 <?php if($value['promotion_location']){ echo "<li>✔️ Location : ".$value['promotion_location']."</li>"; } ?>
                                 <li>✔️ Email Support</li>
+                                <?php if($value['additional_benefits']){ echo "<li>✔️ Additional : ".$value['additional_benefits']."</li>"; } ?>
                             </ul>
+                                
                             <a href="<?= base_url() ?>apply-sponsor/<?= $value['id'] ?>" class="btn btn-outline-primary btn-plan">Select Plan</a>
                         </div>
                     </div>
