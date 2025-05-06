@@ -116,9 +116,9 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                                         echo ",";
                                     }
                                 ?></td>
-                                <td><?= $value['sponsor_categpry'] ?></td>
-                                <td><?= $value['sponsor_categpry'] ?></td>
-                                <td><?= $value['sponsor_categpry'] ?></td>
+                                <td><?= $value['promotion_days'] ?></td>
+                                <td><?= $value['promotion_location'] ?></td>
+                                <td><del><?= $value['promotion_amount'] ?></del> <?= $value['discount_promotion_amount'] ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/delete-create-sponsor/<?= $value['id'] ?>" class="btn btn-sm btn-circle btn-danger" onclick="return confirm('Are you sure...!')"><span class="fa fa-times"></span></a>
                                     <!-- <a href="<?= base_url() ?>admin/edit-create-sponsor/<?= $value['id'] ?>" class="btn btn-sm btn-circle btn-primary"><span class="fa fa-pen"></span></a> -->
