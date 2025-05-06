@@ -45,21 +45,22 @@
             <div class="col-lg-12">
                 <h3 class="m-4 text-center"><?= $value['sponsor_categpry'] ?></h3>
             </div>
+            <div class="col-md-4">
+                <div class="pricing-card">
+                    <div class="plan-title">Starter</div>
+                    <div class="price">₹499</div>
+                    <ul class="list-unstyled features">
+                        <li>✔️ Single User</li>
+                        <li>✔️ 10 Projects</li>
+                        <li>✔️ Email Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-primary btn-plan">Select Plan</a>
+                </div>
+            </div>
         <?php } ?>
 
 
-        <div class="col-md-4">
-            <div class="pricing-card">
-                <div class="plan-title">Starter</div>
-                <div class="price">₹499</div>
-                <ul class="list-unstyled features">
-                    <li>✔️ Single User</li>
-                    <li>✔️ 10 Projects</li>
-                    <li>✔️ Email Support</li>
-                </ul>
-                <a href="#" class="btn btn-outline-primary btn-plan">Select Plan</a>
-            </div>
-        </div>
+        
     </div>
 </div>
 <?= $this->endSection() ?>

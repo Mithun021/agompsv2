@@ -76,6 +76,10 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                             <span>Price After Discount (INR)</span>
                             <input type="number" name="discount_promotion_amount" class="form-control form-control-sm" required>
                         </div>
+                        <div class="col-md-12 form-group">
+                            <span>Additional Benefits</span>
+                            <input type="number" name="additional_benefits" class="form-control form-control-sm" required>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer p-2">
@@ -102,6 +106,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                             <td>Promotion Days</td>
                             <td>Promotion Location</td>
                             <td>Price (INR)</td>
+                            <td>Additional</td>
                             <td>Action</td>
                         </tr>
                     </thead>
@@ -120,6 +125,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                                 <td><?= $value['promotion_days'] ?></td>
                                 <td><?= $value['promotion_location'] ?></td>
                                 <td><del class="text-danger"><?= $value['promotion_amount'] ?></del> <?= $value['discount_promotion_amount'] ?></td>
+                                <td><?= $value['additional_benefits'] ?></td>
                                 <td>
                                     <a href="<?= base_url() ?>admin/delete-create-sponsor/<?= $value['id'] ?>" class="btn btn-sm btn-circle btn-danger" onclick="return confirm('Are you sure...!')"><span class="fa fa-times"></span></a>
                                     <!-- <a href="<?= base_url() ?>admin/edit-create-sponsor/<?= $value['id'] ?>" class="btn btn-sm btn-circle btn-primary"><span class="fa fa-pen"></span></a> -->

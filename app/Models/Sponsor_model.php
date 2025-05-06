@@ -5,7 +5,7 @@
     {
         protected $table         = 'create_sponsor_package';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['sponsor_name','package_name','package_type','promotion_days','promotion_location','promotion_amount','discount_promotion_amount'];
+        protected $allowedFields = ['sponsor_name','package_name','package_type','promotion_days','promotion_location','promotion_amount','discount_promotion_amount','additional_benefits'];
 
         public function add($data, $id = null) {
             if ($id != null) {

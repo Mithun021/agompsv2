@@ -25,6 +25,7 @@ class SponsorController extends BaseController
                 'promotion_location' => $this->request->getPost('promotion_location'),
                 'promotion_amount' => $this->request->getPost('promotion_amount'),
                 'discount_promotion_amount' => $this->request->getPost('discount_promotion_amount'),
+                'additional_benefits' => $this->request->getPost('additional_benefits'),
             ];
             $result = $sponsor_model->add($data);
             if ($result === true) {
