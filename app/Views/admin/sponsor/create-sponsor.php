@@ -91,7 +91,21 @@
                 success: function(response){
                     // $('#package_name').empty();
                     // $('#package_name').append('<option value="">--Select--</option>');
-                    console.log(response);
+                    // console.log(response);
+                    $('#package_name').append(
+                        '<option value="">--Select--</option>'
+                    );
+                    if (response.length > 0) {
+                        $.each(response, function(index, category) {
+                            $('#package_name').append(
+                                '<option value="' + category.id + '">' + category.package_name + '</option>'
+                            );
+                        });
+                    }else{
+                        $('#package_name').append(
+                            '<option value="">Data not found/option>'
+                        );
+                    }
                     
                 },
                 error: function(xhr, status, error) {
