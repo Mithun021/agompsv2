@@ -68,7 +68,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                 foreach ($sponsors as $key => $value) {
                     $package = $sponsor_package_model->get($value['package_name']);
                     // $package_type = $sponsor_package_type_model->get($value['package_type']); ?>
-                    <div class="col-md-4">
+                    <div class="col-md-4 mb-3">
                         <div class="pricing-card">
                             <div class="plan-title"><?= $package['package_name'] ?? '' ?></div>
                             <div class="price">₹<?= $value['discount_promotion_amount'] ?? $value['promotion_amount'] ?></div>
