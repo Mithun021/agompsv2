@@ -34,6 +34,15 @@ class SponsorController extends BaseController
             }
         }
     }
+    public function delete_create_sponsor($id){
+        $sponsor_model= new Sponsor_model();
+        $result = $sponsor_model->delete($id);
+        if ($result === true) {
+            return redirect()->to('admin/create-sponsor')->with('status','<div class="alert alert-success" role="alert"> Data Delete Successful </div>');
+        } else {
+            return redirect()->to('admin/create-sponsor')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+        }
+    }
 
     public function applied_sponsor_list(){
         $data = ['title' => 'Sponsor Applied List'];

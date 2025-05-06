@@ -52,6 +52,8 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
     $routes->get('delete-tournament/(:num)', 'TournamentController::delete-tournament/$1');
 
     $routes->match(['get','post'],'create-sponsor','SponsorController::create_sponsor');
+    $routes->match(['get','post'],'delete-create-sponsor/(:num)','SponsorController::delete_create_sponsor/$1');
+
     $routes->match(['get','post'],'applied-sponsor-list','SponsorController::applied_sponsor_list');
     $routes->match(['get','post'],'sponsor-category','SponsorController::sponsor_category');
     $routes->match(['get','post'],'edit-sponsor-category/(:num)','SponsorController::edit_sponsor_category/$1');
