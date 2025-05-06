@@ -21,9 +21,9 @@
                                 <span>Category Name</span>
                                 <select name="sponsor_name" id="sponsor_name" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
-                                <?php foreach ($category as $key => $value) { ?>
-                                    <option value="<?= $value['id'] ?>"><?= $value['sponsor_categpry'] ?></option>
-                                <?php } ?>
+                                    <?php foreach ($category as $key => $value) { ?>
+                                        <option value="<?= $value['id'] ?>"><?= $value['sponsor_categpry'] ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="col-md-4 form-group">
@@ -42,8 +42,8 @@
                                 <span>Promotion Days</span>
                                 <select name="promotion_days" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
-                                    <?php for ($i=0; $i <= 30 ; $i++) { 
-                                        echo '<option value="'.$i.'">'.$i.'</option>';
+                                    <?php for ($i = 0; $i <= 30; $i++) {
+                                        echo '<option value="' . $i . '">' . $i . '</option>';
                                     } ?>
                                     <option value="Parmanent">Parmanent</option>
                                 </select>
@@ -77,42 +77,42 @@
 <!-- jQuery  -->
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $('#sponsor_name').on('change', function(){
+    $(document).ready(function() {
+        $('#sponsor_name').on('change', function() {
             var sponsor_name = $(this).val();
             $.ajax({
                 type: "POST",
                 url: "<?= base_url() ?>find-sponsor-package",
-                data: {sponsor_name: sponsor_name},
-                dataType : 'json',
+                data: {
+                    sponsor_name: sponsor_name
+                },
+                dataType: 'json',
                 beforeSend: function() {
                     $('#package_name').html('<option value="">--Please wait--</option>');
                 },
-                success: function(response){
-                    // $('#package_name').empty();
-                    // $('#package_name').append('<option value="">--Select--</option>');
-                    // console.log(response);
-                    $('#package_name').append(
-                        '<option value="">--Select--</option>'
-                    );
-                    if (response.length > 0) {
+                success: function(response) {
+                    $('#package_name').empty(); // Clear all previous options
+                    $('#package_name').append('<option value="">--Select--</option>');
+
+                    if (response && response.length > 0) {
                         $.each(response, function(index, category) {
                             $('#package_name').append(
-                                '<option value="' + category.id + '">' + category.package_name + '</option>'
+                                $('<option>', {
+                                    value: category.id,
+                                    text: category.package_name
+                                })
                             );
                         });
-                    }else{
-                        $('#package_name').append(
-                            '<option value="">Data not found/option>'
-                        );
+                    } else {
+                        $('#package_name').append('<option value="">No packages found</option>');
                     }
-                    
                 },
                 error: function(xhr, status, error) {
-                    console.error('Error in the AJAX call: ' + error);
+                    console.error('AJAX error:', error);
+                    $('#package_name').html('<option value="">Error loading packages</option>');
                 }
             });
-        })
+        });
     });
 </script>
 
