@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Sponsor_category_model;
 use App\Models\Tournament_model;
 
 class FrontController extends BaseController
@@ -54,9 +55,9 @@ class FrontController extends BaseController
         return view('legal/contact',$data);
     }
     
-    public function sponsor()
-    {
-        $data = ['title' => 'Sponsor'];
+    public function sponsor(){
+        $sponsor_category_model = new Sponsor_category_model();
+        $data = ['title' => 'Sponsor','sponsor_category' => $sponsor_category_model->findAll()];
         return view('sponsor/sponsor',$data);
     }
 

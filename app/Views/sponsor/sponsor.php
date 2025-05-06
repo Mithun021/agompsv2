@@ -40,7 +40,15 @@
   </style>
 <div class="container-fluid my-5">
     <div class="row">
-        <div class="col-lg-4">
+
+        <?php foreach ($sponsor_category as $key => $value) { ?>
+            <div class="col-lg-12">
+                <h3 class="m-4 text-center"><?= $value['sponsor_categpry'] ?></h3>
+            </div>
+        <?php } ?>
+
+
+        <div class="col-md-4">
             <div class="pricing-card">
                 <div class="plan-title">Starter</div>
                 <div class="price">₹499</div>
