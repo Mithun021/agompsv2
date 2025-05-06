@@ -13,9 +13,6 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
 ?>
 
 <style>
-    body {
-        background-color: #f8f9fa;
-    }
 
     .pricing-card {
         border-radius: 15px;

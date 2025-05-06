@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Sponsor_category_model;
+use App\Models\Sponsor_model;
 use App\Models\Tournament_model;
 
 class FrontController extends BaseController
@@ -59,6 +60,16 @@ class FrontController extends BaseController
         $sponsor_category_model = new Sponsor_category_model();
         $data = ['title' => 'Sponsor','sponsor_category' => $sponsor_category_model->findAll()];
         return view('sponsor/sponsor',$data);
+    }
+
+    public function apply_sponsor($id){
+        $sponsor_model = new Sponsor_model();
+        $data = ['title' => 'Apply Sponsor', 'sponsor_id' => $id];
+        if($this->request->is('get')){
+            return view('sponsor/apply-sponsor',$data);
+        }else if($this->request->is('post')){
+            
+        }
     }
 
 }
