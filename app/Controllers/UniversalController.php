@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Players_category_model;
+use App\Models\Sponsor_package_model;
 use App\Models\Sports_model;
 use App\Models\Sports_subcategory_model;
 
@@ -18,6 +19,13 @@ class UniversalController extends BaseController{
         $players_category_model = new Players_category_model();
         $sports_id = $this->request->getPost('sports_id');
         $data = $players_category_model->getbysports($sports_id);
+        return $this->response->setJSON($data);
+    }
+
+    public function find_sponsor_package(){
+        $sponsor_package_model = new Sponsor_package_model();
+        $sponsor_name = $this->request->getPost('sponsor_name');
+        $data = $sponsor_package_model->getByCategory($sponsor_name);
         return $this->response->setJSON($data);
     }
 

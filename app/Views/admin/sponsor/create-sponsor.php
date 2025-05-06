@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <span>Price (INR)</span>
-                                <input type="number" class="promotion_amount" class="form-control form-control-sm">
+                                <input type="number" name="promotion_amount" class="form-control form-control-sm">
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,27 @@
 <script src="<?= base_url() ?>public/admin/assets/js/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        
+        $('#sponsor_name').on('change', function(){
+            var sponsor_name = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>find-sponsor-package",
+                data: {sponsor_name: sponsor_name},
+                dataType : 'json',
+                beforeSend: function() {
+                    $('#package_name').html('<option value="">--Please wait--</option>');
+                },
+                success: function(response){
+                    // $('#package_name').empty();
+                    // $('#package_name').append('<option value="">--Select--</option>');
+                    console.log(response);
+                    
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error in the AJAX call: ' + error);
+                }
+            });
+        })
     });
 </script>
 
