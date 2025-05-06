@@ -73,13 +73,14 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                             <div class="plan-title"><?= $package['package_name'] ?? '' ?></div>
                             <div class="price">₹<?= $value['discount_promotion_amount'] ?? $value['promotion_amount'] ?></div>
                             <ul class="list-unstyled features">
+                                <li>✔️
                                 <?php $package_type = explode(',',$value['package_type']); foreach($package_type as $type){
-                                        echo "<li>✔️".$sponsor_package_type_model->get($type)['package_type'] ?? ''."</li>";
+                                        echo $sponsor_package_type_model->get($type)['package_type'] ?? '';
                                         // echo $type;
-                                        echo ",";
+                                        echo " + ";
                                     }
                                 ?>
-                                
+                                </li>
                                 <li>✔️ <?= $value['promotion_days'] ?> Days</li>
                                 <li>✔️ Email Support</li>
                             </ul>
