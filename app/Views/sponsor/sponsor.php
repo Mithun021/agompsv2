@@ -62,7 +62,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         <?php foreach ($sponsor_category as $key => $cat) {
             $sponsors = $sponsor_model->getByCategory($cat['id']); ?>
             <div class="col-lg-12">
-                <h3 class="m-4 text-center"><?= $cat['sponsor_categpry'] ?></h3>
+                <h1 class="m-4 text-center"><?= $cat['sponsor_categpry'] ?></h1>
             </div>
             <?php if ($sponsors) {
                 foreach ($sponsors as $key => $value) { ?>
