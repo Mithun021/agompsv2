@@ -76,7 +76,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                                 <li>✔️
                                 <?php $package_type = explode(',',$value['package_type']); foreach($package_type as $type){
                                        $package_type = $sponsor_package_type_model->get($type);
-                                       if($package_type){ $ptype = $package_type['package_type']." + "; echo rtrim($ptype,"+"); }
+                                       if($package_type){ $ptype = $package_type['package_type']." + "; echo rtrim($ptype," +"); }
                                     }
                                 ?>
                                 </li>
