@@ -43,6 +43,10 @@
                             <span>PAN Number</span>
                             <input type="text" class="form-control form-control-sm" name="pan_no" required>
                         </div>
+                        <div class="col-md-6 form-group">
+                            <span>Amount</span>
+                            <input type="text" class="form-control form-control-sm" name="sponsor_amount" value="<?= $sponsor_detail['discount_promotion_amount'] ??  $sponsor_detail['promotion_amount'] ?>" readonly required>
+                        </div>
                         <div class="col-md-12 form-group">
                             <input type="submit" class="btn btn-primary" value="Apply Now">
                         </div>
