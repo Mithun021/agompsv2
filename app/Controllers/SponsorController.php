@@ -2,6 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\Sponsor_category_model;
+use App\Models\Sponsor_model;
 use App\Models\Sponsor_package_model;
 use App\Models\Sponsor_package_type_model;
 
@@ -9,11 +10,28 @@ class SponsorController extends BaseController
 {
     public function create_sponsor(){
         $sponsor_category_model = new Sponsor_category_model();
+        $sponsor_model= new Sponsor_model();
         $data = ['title' => 'Sponsor'];
         if ($this->request->is('get')) {
             $data['category'] = $sponsor_category_model->get();
+            $data['sponsor'] = $sponsor_model->get();
             return view('admin/sponsor/create-sponsor',$data);
         }else if ($this->request->is('post')) {
+            $data =[
+                'sponsor_name' => $this->request->getPost('sponsor_name'),
+                'package_name' => $this->request->getPost('package_name'),
+                'package_type' => implode(',',$this->request->getPost('package_type')),
+                'promotion_days' => $this->request->getPost('promotion_days'),
+                'promotion_location' => $this->request->getPost('promotion_location'),
+                'promotion_amount' => $this->request->getPost('promotion_amount'),
+                'discount_promotion_amount' => $this->request->getPost('discount_promotion_amount'),
+            ];
+            $result = $sponsor_model->add($data);
+            if ($result === true) {
+                return redirect()->to('admin/create-sponsor')->with('status','<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+            } else {
+                return redirect()->to('admin/create-sponsor')->with('status','<div class="alert alert-danger" role="alert"> '.$result.' </div>');
+            }
         }
     }
 
