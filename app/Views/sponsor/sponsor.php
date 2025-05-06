@@ -79,7 +79,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                                         echo ",";
                                     }
                                 ?>
-                                <li>✔️ <?= $package_type['package_type'] ?? '' ?></li>
+                                
                                 <li>✔️ <?= $value['promotion_days'] ?> Days</li>
                                 <li>✔️ Email Support</li>
                             </ul>
