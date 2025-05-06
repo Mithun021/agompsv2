@@ -8,8 +8,10 @@ use App\Models\Sponsor_package_type_model;
 class SponsorController extends BaseController
 {
     public function create_sponsor(){
+        $sponsor_category_model = new Sponsor_category_model();
         $data = ['title' => 'Sponsor'];
         if ($this->request->is('get')) {
+            $data['category'] = $sponsor_category_model->get();
             return view('admin/sponsor/create-sponsor',$data);
         }else if ($this->request->is('post')) {
         }
