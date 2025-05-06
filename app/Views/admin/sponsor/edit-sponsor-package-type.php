@@ -12,7 +12,7 @@ $sponsor_package_model = new Sponsor_package_model();
     <div class="col-lg-4">
         <div class="card">
             <div class="card-header"><h4 class="card-title m-0">Add <?= $title ?></h4></div>
-            <form action="<?= base_url() ?>admin/edit-sponsor-package-type" method="post">
+            <form action="<?= base_url() ?>admin/edit-sponsor-package-type/<?= $package_type_id ?>" method="post">
                 <div class="card-body p-2">
                     <?php
                     if (session()->getFlashdata('status')) {

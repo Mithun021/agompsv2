@@ -152,7 +152,7 @@ class SponsorController extends BaseController
     public function edit_sponsor_package_type($id){
         $sponsor_package_model = new Sponsor_package_model();
         $sponsor_package_type_model = new Sponsor_package_type_model();
-        $data = ['title' => 'Sponsor Package Type'];
+        $data = ['title' => 'Sponsor Package Type','package_type_id' => $id];
         if ($this->request->is('get')) {
             $data['package'] = $sponsor_package_model->get();
             $data['package_type'] = $sponsor_package_type_model->get();
