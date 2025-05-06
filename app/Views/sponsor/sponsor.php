@@ -65,14 +65,16 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                 <h1 class="m-4 text-center"><?= $cat['sponsor_categpry'] ?></h1>
             </div>
             <?php if ($sponsors) {
-                foreach ($sponsors as $key => $value) { ?>
+                foreach ($sponsors as $key => $value) {
+                    $package = $sponsor_package_model->get($value['package_name']);
+                    $package_type = $sponsor_package_type_model->get($value['package_type']); ?>
                     <div class="col-md-4">
                         <div class="pricing-card">
-                            <div class="plan-title">Starter</div>
-                            <div class="price">₹499</div>
+                            <div class="plan-title"><?= $package['package_name'] ?? '' ?></div>
+                            <div class="price">₹<?= $value['discount_promotion_amount'] ?? $value['promotion_amount'] ?></div>
                             <ul class="list-unstyled features">
-                                <li>✔️ Single User</li>
-                                <li>✔️ 10 Projects</li>
+                                <li>✔️ <?= $package_type['package_type'] ?? '' ?></li>
+                                <li>✔️ <?= $value['promotion_days'] ?> Days</li>
                                 <li>✔️ Email Support</li>
                             </ul>
                             <a href="#" class="btn btn-outline-primary btn-plan">Select Plan</a>
