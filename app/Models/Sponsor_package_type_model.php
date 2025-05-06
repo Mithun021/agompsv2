@@ -25,6 +25,10 @@
             }
             return $result;
         }
+
+        public function getByCategory($id){
+            return $this->where('sponsor_package_id',$id)->findAll();
+        }
         
     }
 ?>

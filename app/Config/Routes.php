@@ -69,5 +69,6 @@ $routes->group('admin',['filter'=>'adminLogin'], static function($routes){
 $routes->post('fetch_sports_subcategory', 'UniversalController::fetch_sports_subcategory');
 $routes->post('getParticipantTypes', 'UniversalController::getParticipantTypes');
 $routes->post('find-sponsor-package', 'UniversalController::find_sponsor_package');
+$routes->post('find-sponsor-package-type', 'UniversalController::find_sponsor_package_type');
 
 $routes->get('test_mail', 'UniversalController::test_mail');

@@ -42,7 +42,7 @@
                                 <span>Promotion Days</span>
                                 <select name="promotion_days" class="form-control form-control-sm">
                                     <option value="">--Select--</option>
-                                    <?php for ($i = 0; $i <= 30; $i++) {
+                                    <?php for ($i = 1; $i <= 30; $i++) {
                                         echo '<option value="' . $i . '">' . $i . '</option>';
                                     } ?>
                                     <option value="Parmanent">Parmanent</option>
@@ -110,6 +110,43 @@
                 error: function(xhr, status, error) {
                     console.error('AJAX error:', error);
                     $('#package_name').html('<option value="">Error loading packages</option>');
+                }
+            });
+        });
+
+        // Find Sponsor Package Type -------------------------------------
+        $('#package_name').on('change', function() {
+            var package_name = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "<?= base_url() ?>find-sponsor-package-type",
+                data: {
+                    package_name: package_name
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#package_type').html('<option value="">--Please wait--</option>');
+                },
+                success: function(response) {
+                    $('#package_type').empty(); // Clear all previous options
+                    $('#package_type').append('<option value="">--Select--</option>');
+
+                    if (response && response.length > 0) {
+                        $.each(response, function(index, category) {
+                            $('#package_type').append(
+                                $('<option>', {
+                                    value: category.id,
+                                    text: category.package_type
+                                })
+                            );
+                        });
+                    } else {
+                        $('#package_type').append('<option value="">Data not found</option>');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX error:', error);
+                    $('#package_type').html('<option value="">Error loading packages type</option>');
                 }
             });
         });
