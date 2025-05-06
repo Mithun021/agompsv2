@@ -25,6 +25,8 @@
             }
             return $result;
         }
-        
+        public function getByCategory($id){
+            return $this->where('sponsor_name',$id)->findAll();
+        }
     }
 ?>
