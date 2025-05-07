@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <span>Firm/Business/Company Name<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="firm_name" value="<?php if($customer_detail){ echo $customer_detail['firm_name'] ?? ''; } ?>" <?php if($customer_detail['firm_name']){ echo "readonly"; } ?> required>
+                            <input type="text" class="form-control form-control-sm" name="firm_name" value="<?php if($customer_detail){ echo $customer_detail['firm_name'] ?? ''; } ?>" <?php if($customer_detail && $customer_detail['firm_name']){ echo "readonly"; } ?> required>
                         </div>
                         <div class="col-md-6 form-group">
                             <span>Firm/Business/Company Type<span class="text-danger">*</span></span>
