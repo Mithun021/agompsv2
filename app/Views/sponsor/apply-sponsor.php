@@ -33,15 +33,15 @@
                         </div>
                         <div class="col-md-4 form-group">
                             <span>State<span class="text-danger">*</span></span>
-                            <input type="email" class="form-control form-control-sm" name="state" required>
+                            <input type="text" class="form-control form-control-sm" name="state" required>
                         </div>
                         <div class="col-md-4 form-group">
                             <span>City<span class="text-danger">*</span></span>
-                            <input type="email" class="form-control form-control-sm" name="city" required>
+                            <input type="text" class="form-control form-control-sm" name="city" required>
                         </div>
                         <div class="col-md-4 form-group">
                             <span>Pincode<span class="text-danger">*</span></span>
-                            <input type="email" class="form-control form-control-sm" name="pincode" required>
+                            <input type="number" class="form-control form-control-sm" name="pincode" maxlength="6" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <span>Aadhar Number<span class="text-danger">*</span></span>
