@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <span>Firm/Business/Company Name<span class="text-danger">*</span></span>
-                            <input type="text" class="form-control form-control-sm" name="firm_name" required>
+                            <input type="text" class="form-control form-control-sm" name="firm_name" value="<?= $customer_detail['firm_name'] ?? '' ?>" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <span>Firm/Business/Company Type<span class="text-danger">*</span></span>

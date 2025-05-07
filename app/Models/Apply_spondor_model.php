@@ -25,8 +25,8 @@
             }
             return $result;
         }
-        public function getByCategory($id){
-            return $this->where('sponsor_name',$id)->findAll();
+        public function getByuserAndSponsor($customer_id,$id){
+            return $this->where('customer_id',$customer_id)->where('sponsor_package_id',$id)->first();
         }
     }
 ?>
