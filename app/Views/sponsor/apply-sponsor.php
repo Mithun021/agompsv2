@@ -61,7 +61,7 @@
                             <input type="text" class="form-control form-control-sm" name="sponsor_amount" value="<?= $sponsor_detail['discount_promotion_amount'] ??  $sponsor_detail['promotion_amount'] ?>" readonly required>
                         </div>
                         <div class="col-md-12 form-group">
-                            <?php if($sponsor_detail){ ?>
+                            <?php if($sponsor_detail['apply_status'] == 0){ ?>
                             <input type="submit" class="btn btn-primary" value="Apply Now">
                             <?php }else { ?>
                                 <input type="submit" class="btn btn-primary" value="Pay Now" name="sponsor_payment_btn">

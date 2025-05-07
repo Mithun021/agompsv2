@@ -5,7 +5,7 @@
     {
         protected $table         = 'applied_sponsor_detail';
         protected $primaryKey = 'id';
-        protected $allowedFields = ['customer_id','sponsor_package_id','firm_name','firm_type','firm_logo','customer_name','phone_number','email_id','state','city','pincode','aadhar_no','pan_no','sponsor_amount'];
+        protected $allowedFields = ['customer_id','sponsor_package_id','firm_name','firm_type','firm_logo','customer_name','phone_number','email_id','state','city','pincode','aadhar_no','pan_no','sponsor_amount','apply_status'];
 
         public function add($data, $id = null) {
             if ($id != null) {

@@ -99,6 +99,7 @@ class FrontController extends BaseController
                 'aadhar_no' => $this->request->getPost('aadhar_no'),
                 'pan_no' => $this->request->getPost('pan_no'),
                 'sponsor_amount' => $this->request->getPost('sponsor_amount'),
+                'apply_status' => 1
             ];
             $result = $apply_spondor_model->add($data);
             if ($result === true) {
