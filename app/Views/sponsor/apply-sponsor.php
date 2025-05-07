@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card card-body">
                 <h2 class="text-primary text-center">Apply Now</h2>
-                <form action="<?= base_url() ?>apply-sponsor/<?= $sponsor_id ?>" method="post">
+                <form action="<?= base_url() ?>apply-sponsor/<?= $sponsor_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <span>Firm/Business/Company Name<span class="text-danger">*</span></span>
