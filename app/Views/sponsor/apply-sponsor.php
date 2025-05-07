@@ -9,6 +9,7 @@
                         if (session()->getFlashdata('status')) {
                             echo session()->getFlashdata('status');
                         }
+                        print_r($customer_detail);
                     ?>
                 <form action="<?= base_url() ?>apply-sponsor/<?= $sponsor_id ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
