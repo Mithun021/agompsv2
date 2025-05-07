@@ -73,6 +73,7 @@ class FrontController extends BaseController
         $data = ['title' => 'Apply Sponsor', 'sponsor_id' => $id, 'sponsor_detail' => $sponsor_model->where('id', $id)->first()];
         $customer_ac_id = session()->get('customer_ac_id'); 
         $customer_detail = $customer_detail_model->getByuserid($customer_ac_id);
+        $data['customer_detail'] = $apply_spondor_model->getByuserAndSponsor($customer_detail['id'],$id);
         if ($this->request->is('get')) {
             return view('sponsor/apply-sponsor', $data);
         } else if ($this->request->is('post')) {
@@ -101,9 +102,9 @@ class FrontController extends BaseController
             ];
             $result = $apply_spondor_model->add($data);
             if ($result === true) {
-                return redirect()->to('admin/apply-sponsor')->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
+                return redirect()->to('admin/apply-sponsor/'.$id)->with('status', '<div class="alert alert-success" role="alert"> Data Add Successful </div>');
             } else {
-                return redirect()->to('admin/apply-sponsor')->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
+                return redirect()->to('admin/apply-sponsor/'.$id)->with('status', '<div class="alert alert-danger" role="alert"> ' . $result . ' </div>');
             }
         }
     }
