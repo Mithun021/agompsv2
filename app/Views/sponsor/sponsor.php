@@ -139,8 +139,8 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         <div class="col-md-4">
             <div class="pricing-card <?= $pricebg ?>">
                 <div class="icon"><i class="fas fa-file-alt"></i></div>
-                <h3>PERSONAL</h3>
-                <div class="price">$10<span style="font-size:16px;">/month</span></div>
+                <h3><?= strtoupper($package['package_name']) ?? '' ?></h3>
+                <div class="price">₹<?= $value['discount_promotion_amount'] ?? $value['promotion_amount'] ?><span style="font-size:16px;">/<?= $value['promotion_days'] ?> Days</span></div>
                 <ul>
                     <li><span class="check">&#10003;</span> Lorem ipsum sit amet</li>
                     <li><span class="check">&#10003;</span> Consectetur adipiscing</li>
