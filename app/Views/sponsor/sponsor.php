@@ -149,11 +149,10 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                         }
                     ?>
                     </li>
-                    <li><span class="check">&#10003;</span> Consectetur adipiscing</li>
-                    <li><span class="check">&#10003;</span> Sed do eiusmod tempor</li>
-                    <li><span class="check">&#10003;</span> Incididunt ut labore</li>
-                    <li><span class="cross">&#10007;</span> Dolore magna aliqua</li>
-                    <li><span class="cross">&#10007;</span> <?= $getcol ?></li>
+                    <li><span class="check">&#10003;</span>Duration : <?= $value['promotion_days'] ?> Days</li>
+                    <?php if($value['promotion_location']){ ?> <li><span class="check">&#10003;</span> Location : <?= $value['promotion_location'] ?> </li><?php } ?>
+                    <li><span class="check">&#10003;</span> Email Support</li>
+                    <?php if($value['additional_benefits']){ ?><li><span class="cross">&#10007;</span> Additional : <?= $value['additional_benefits'] ?></li> <?php } ?>
                 </ul>
                 <button class="btn-started btn-<?= $pricebg ?>">GET STARTED</button>
             </div>
