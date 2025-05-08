@@ -142,7 +142,13 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                 <h3><?= strtoupper($package['package_name']) ?? '' ?></h3>
                 <div class="price">₹<?= $value['discount_promotion_amount'] ?? $value['promotion_amount'] ?><span style="font-size:16px;">/<?= $value['promotion_days'] ?> Days</span></div>
                 <ul>
-                    <li><span class="check">&#10003;</span> Lorem ipsum sit amet</li>
+                    <li><span class="check">&#10003;</span>
+                    <?php $package_type = explode(',',$value['package_type']); foreach($package_type as $type){
+                            $package_type = $sponsor_package_type_model->get($type);
+                            if($package_type){ echo $package_type['package_type']." + "; }
+                        }
+                    ?>
+                    </li>
                     <li><span class="check">&#10003;</span> Consectetur adipiscing</li>
                     <li><span class="check">&#10003;</span> Sed do eiusmod tempor</li>
                     <li><span class="check">&#10003;</span> Incididunt ut labore</li>
