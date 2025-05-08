@@ -29,7 +29,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
     }
 
     .standard {
-        background: linear-gradient(to bottom, #C1FCD3, #AEBAF8);
+        background: linear-gradient(to bottom, #6a3093, #a044ff);
     }
 
     .business {
