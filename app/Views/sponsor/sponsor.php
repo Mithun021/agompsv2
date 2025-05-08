@@ -13,84 +13,154 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
 ?>
 
 <style>
-
     .pricing-card {
-        border-radius: 15px;
-        padding: 40px 30px;
+        border-radius: 20px;
+        color: #fff;
+        padding: 30px 20px;
         text-align: center;
-        background: #fff;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease-in-out;
+        margin: 20px 10px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .pricing-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    .personal {
+        background: linear-gradient(to bottom, #ff416c, #ff4b2b);
     }
 
-    .plan-title {
-        font-size: 1.75rem;
+    .standard {
+        background: linear-gradient(to bottom, #7f00ff, #e100ff);
+    }
+
+    .business {
+        background: linear-gradient(to bottom, #a8ff78, #78ffd6);
+    }
+
+    .pricing-card h3 {
+        font-size: 20px;
+        margin-bottom: 10px;
         font-weight: 700;
-        color: #343a40;
+        text-transform: uppercase;
+    }
+
+    .pricing-card .icon {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .pricing-card .price {
+        font-size: 28px;
+        font-weight: 700;
         margin-bottom: 20px;
     }
 
-    .price {
-        font-size: 2.75rem;
-        font-weight: bold;
-        color: #0d6efd;
+    .pricing-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+        text-align: left;
     }
 
-    .features li {
+    .pricing-card ul li {
+        font-size: 14px;
         margin: 10px 0;
-        font-size: 1rem;
-        color: #495057;
     }
 
-    .btn-plan {
-        margin-top: 25px;
+    .check {
+        color: #00ff90;
+        margin-right: 5px;
+    }
+
+    .cross {
+        color: #ff4b2b;
+        margin-right: 5px;
+    }
+
+    .btn-started {
+        border: none;
         padding: 10px 25px;
+        border-radius: 30px;
         font-weight: 600;
+        margin-top: 15px;
+        transition: 0.3s;
+    }
+
+    .btn-personal {
+        background: #fff;
+        color: #ff4b2b;
+    }
+
+    .btn-standard {
+        background: #fff;
+        color: #7f00ff;
+    }
+
+    .btn-business {
+        background: #fff;
+        color: #78ffd6;
+    }
+
+    .btn-started:hover {
+        background: #333;
+        color: #fff;
     }
 </style>
 <div class="container-fluid my-5">
     <div class="row">
 
-        <?php foreach ($sponsor_category as $key => $cat) {
-            $sponsors = $sponsor_model->getByCategory($cat['id']); ?>
-            <div class="col-lg-12">
-                <h1 class="m-4 text-center"><?= $cat['sponsor_categpry'] ?></h1>
+        <!-- Personal Plan -->
+        <div class="col-md-4">
+            <div class="pricing-card personal">
+                <div class="icon"><i class="fas fa-file-alt"></i></div>
+                <h3>PERSONAL</h3>
+                <div class="price">$10<span style="font-size:16px;">/month</span></div>
+                <ul>
+                    <li><span class="check">&#10003;</span> Lorem ipsum sit amet</li>
+                    <li><span class="check">&#10003;</span> Consectetur adipiscing</li>
+                    <li><span class="check">&#10003;</span> Sed do eiusmod tempor</li>
+                    <li><span class="check">&#10003;</span> Incididunt ut labore</li>
+                    <li><span class="cross">&#10007;</span> Dolore magna aliqua</li>
+                    <li><span class="cross">&#10007;</span> Enim ad minim veniam</li>
+                </ul>
+                <button class="btn-started btn-personal">GET STARTED</button>
             </div>
-            <?php if ($sponsors) {
-                foreach ($sponsors as $key => $value) {
-                    $package = $sponsor_package_model->get($value['package_name']);
-                    // $package_type = $sponsor_package_type_model->get($value['package_type']); ?>
-                    <div class="col-md-4 mb-3">
-                        <div class="pricing-card">
-                            <div class="plan-title"><?= $package['package_name'] ?? '' ?></div>
-                            <div class="price">₹<?= $value['discount_promotion_amount'] ?? $value['promotion_amount'] ?></div>
-                            <ul class="list-unstyled features">
-                                <li>✔️
-                                <?php $package_type = explode(',',$value['package_type']); foreach($package_type as $type){
-                                       $package_type = $sponsor_package_type_model->get($type);
-                                       if($package_type){ echo $package_type['package_type']." + "; }
-                                    }
-                                ?>
-                                </li>
-                                <li>✔️ <?= $value['promotion_days'] ?> Days</li>
-                                <?php if($value['promotion_location']){ echo "<li>✔️ Location : ".$value['promotion_location']."</li>"; } ?>
-                                <li>✔️ Email Support</li>
-                                <?php if($value['additional_benefits']){ echo "<li>✔️ Additional : ".$value['additional_benefits']."</li>"; } ?>
-                            </ul>
-                                
-                            <a href="<?= base_url() ?>apply-sponsor/<?= $value['id'] ?>" class="btn btn-outline-primary btn-plan">Select Plan</a>
-                        </div>
-                    </div>
-            <?php }
-            } ?>
-        <?php } ?>
+        </div>
 
+        <!-- Standard Plan -->
+        <div class="col-md-4">
+            <div class="pricing-card standard">
+                <div class="icon"><i class="fas fa-desktop"></i></div>
+                <h3>STANDARD</h3>
+                <div class="price">$40<span style="font-size:16px;">/month</span></div>
+                <ul>
+                    <li><span class="check">&#10003;</span> Lorem ipsum sit amet</li>
+                    <li><span class="check">&#10003;</span> Consectetur adipiscing</li>
+                    <li><span class="check">&#10003;</span> Sed do eiusmod tempor</li>
+                    <li><span class="check">&#10003;</span> Incididunt ut labore</li>
+                    <li><span class="check">&#10003;</span> Dolore magna aliqua</li>
+                    <li><span class="cross">&#10007;</span> Enim ad minim veniam</li>
+                </ul>
+                <button class="btn-started btn-standard">GET STARTED</button>
+            </div>
+        </div>
 
+        <!-- Business Plan -->
+        <div class="col-md-4">
+            <div class="pricing-card business">
+                <div class="icon"><i class="fas fa-briefcase"></i></div>
+                <h3>BUSINESS</h3>
+                <div class="price">$85<span style="font-size:16px;">/month</span></div>
+                <ul>
+                    <li><span class="check">&#10003;</span> Lorem ipsum sit amet</li>
+                    <li><span class="check">&#10003;</span> Consectetur adipiscing</li>
+                    <li><span class="check">&#10003;</span> Sed do eiusmod tempor</li>
+                    <li><span class="check">&#10003;</span> Incididunt ut labore</li>
+                    <li><span class="check">&#10003;</span> Dolore magna aliqua</li>
+                    <li><span class="check">&#10003;</span> Enim ad minim veniam</li>
+                </ul>
+                <button class="btn-started btn-business">GET STARTED</button>
+            </div>
+        </div>
 
     </div>
 </div>
