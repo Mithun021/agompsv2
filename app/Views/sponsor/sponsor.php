@@ -65,7 +65,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         font-size: 38px;
         font-weight: 700;
         margin-bottom: 20px;
-        margin-top: 80px;
+        margin-top: 50px;
     }
 
     .pricing-card ul {
