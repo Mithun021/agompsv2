@@ -119,6 +119,16 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
 <div class="container-fluid my-5">
     <div class="row">
 
+    <?php foreach ($sponsor_category as $key => $cat) {
+            $sponsors = $sponsor_model->getByCategory($cat['id']); ?>
+            <div class="col-lg-12">
+                <h1 class="m-4 text-center"><?= $cat['sponsor_categpry'] ?></h1>
+            </div>
+            <?php if ($sponsors) {
+                foreach ($sponsors as $key => $value) {
+                    $package = $sponsor_package_model->get($value['package_name']);
+            ?>
+
         <!-- Personal Plan -->
         <div class="col-md-4">
             <div class="pricing-card personal">
@@ -137,41 +147,11 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
             </div>
         </div>
 
-        <!-- Standard Plan -->
-        <div class="col-md-4">
-            <div class="pricing-card standard">
-                <div class="icon"><i class="fas fa-desktop"></i></div>
-                <h3>STANDARD</h3>
-                <div class="price">$40<span style="font-size:16px;">/month</span></div>
-                <ul>
-                    <li><span class="check">&#10003;</span> Lorem ipsum sit amet</li>
-                    <li><span class="check">&#10003;</span> Consectetur adipiscing</li>
-                    <li><span class="check">&#10003;</span> Sed do eiusmod tempor</li>
-                    <li><span class="check">&#10003;</span> Incididunt ut labore</li>
-                    <li><span class="check">&#10003;</span> Dolore magna aliqua</li>
-                    <li><span class="cross">&#10007;</span> Enim ad minim veniam</li>
-                </ul>
-                <button class="btn-started btn-standard">GET STARTED</button>
-            </div>
-        </div>
+        <?php } 
+        }
+    }?>
 
-        <!-- Business Plan -->
-        <div class="col-md-4">
-            <div class="pricing-card business">
-                <div class="icon"><i class="fas fa-briefcase"></i></div>
-                <h3>BUSINESS</h3>
-                <div class="price">$85<span style="font-size:16px;">/month</span></div>
-                <ul>
-                    <li><span class="check">&#10003;</span> Lorem ipsum sit amet</li>
-                    <li><span class="check">&#10003;</span> Consectetur adipiscing</li>
-                    <li><span class="check">&#10003;</span> Sed do eiusmod tempor</li>
-                    <li><span class="check">&#10003;</span> Incididunt ut labore</li>
-                    <li><span class="check">&#10003;</span> Dolore magna aliqua</li>
-                    <li><span class="check">&#10003;</span> Enim ad minim veniam</li>
-                </ul>
-                <button class="btn-started btn-business">GET STARTED</button>
-            </div>
-        </div>
+        
 
     </div>
 </div>
