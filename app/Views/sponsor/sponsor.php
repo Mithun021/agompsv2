@@ -32,7 +32,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         left: 0;
         width: 100%;
         height: 200px;
-        border-radius: 0px 0px 20px 20px;
+        border-radius: 0px 0px 80px 80px;
         background-color: #fff;
     }
 
