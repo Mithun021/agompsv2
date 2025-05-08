@@ -125,8 +125,10 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                 <h1 class="m-4 text-center"><?= $cat['sponsor_categpry'] ?></h1>
             </div>
             <?php if ($sponsors) {
+                $col = 4;
                 foreach ($sponsors as $key => $value) {
                     $package = $sponsor_package_model->get($value['package_name']);
+                    $getcol = $col * ++$key;
             ?>
 
         <!-- Personal Plan -->
@@ -141,7 +143,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                     <li><span class="check">&#10003;</span> Sed do eiusmod tempor</li>
                     <li><span class="check">&#10003;</span> Incididunt ut labore</li>
                     <li><span class="cross">&#10007;</span> Dolore magna aliqua</li>
-                    <li><span class="cross">&#10007;</span> Enim ad minim veniam</li>
+                    <li><span class="cross">&#10007;</span> <?= $getcol ?></li>
                 </ul>
                 <button class="btn-started btn-personal">GET STARTED</button>
             </div>
