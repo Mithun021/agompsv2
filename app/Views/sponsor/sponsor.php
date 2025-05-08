@@ -25,15 +25,15 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
     }
 
     .personal {
-        background: linear-gradient(to bottom, #ff416c, #ff4b2b);
+        background: linear-gradient(to bottom, #ED765E, #FEA858);
     }
 
     .standard {
-        background: linear-gradient(to bottom, #7f00ff, #e100ff);
+        background: linear-gradient(to bottom, #C1FCD3, #AEBAF8);
     }
 
     .business {
-        background: linear-gradient(to bottom, #a8ff78, #78ffd6);
+        background: linear-gradient(to bottom, #0CCDA3, #C1FCD3);
     }
 
     .pricing-card h3 {
