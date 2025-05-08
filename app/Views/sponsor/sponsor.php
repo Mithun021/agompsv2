@@ -168,7 +168,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                     <li><span class="check">&#10003;</span> Email Support</li>
                     <?php if($value['additional_benefits']){ ?><li><span class="cross">&#10007;</span> Additional : <?= $value['additional_benefits'] ?></li> <?php } ?>
                 </ul>
-                <button class="btn-started btn-<?= $pricebg ?>">GET STARTED</button>
+                <a href="<?= base_url() ?>apply-sponsor/<?= $value['id'] ?>"><button class="btn-started btn-<?= $pricebg ?>">GET STARTED</button></a>
             </div>
         </div>
 
