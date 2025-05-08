@@ -33,7 +33,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
     }
 
     .business {
-        background: linear-gradient(to bottom, #0CCDA3, #C1FCD3);
+        background: linear-gradient(to bottom, #00C9FF, #92FE9D);
     }
 
     .pricing-card h3 {
