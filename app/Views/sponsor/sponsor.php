@@ -129,11 +129,15 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                 foreach ($sponsors as $key => $value) {
                     $package = $sponsor_package_model->get($value['package_name']);
                     $getcol = $col * ++$key;
+
+                    if($getcol == 4 || $getcol == 24){ $pricebg = "personal"; }
+                    if($getcol == 8 || $getcol == 16 ){ $pricebg = "standard"; }
+                    if($getcol == 12 || $getcol == 20 ){ $pricebg = "business"; }
             ?>
 
         <!-- Personal Plan -->
         <div class="col-md-4">
-            <div class="pricing-card personal">
+            <div class="pricing-card <?= $pricebg ?>">
                 <div class="icon"><i class="fas fa-file-alt"></i></div>
                 <h3>PERSONAL</h3>
                 <div class="price">$10<span style="font-size:16px;">/month</span></div>
@@ -145,7 +149,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
                     <li><span class="cross">&#10007;</span> Dolore magna aliqua</li>
                     <li><span class="cross">&#10007;</span> <?= $getcol ?></li>
                 </ul>
-                <button class="btn-started btn-personal">GET STARTED</button>
+                <button class="btn-started btn-<?= $pricebg ?>">GET STARTED</button>
             </div>
         </div>
 
