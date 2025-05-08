@@ -25,7 +25,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .pricing-card:before{
+    .pricing-card:after{
         content: '';
         position: absolute;
         top: 0;
@@ -33,7 +33,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         width: 100%;
         height: 120px;
         border-radius: 0px 0px 80px 80px;
-        background-color: #fff;
+        background-color: rgba(255, 255, 255, 0.3);
     }
 
     .personal {
@@ -53,6 +53,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         margin-bottom: 10px;
         font-weight: 700;
         text-transform: uppercase;
+        color: #000;
     }
 
     .pricing-card .icon {
