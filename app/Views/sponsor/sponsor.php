@@ -14,6 +14,7 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
 
 <style>
     .pricing-card {
+        position: relative;
         border-radius: 20px;
         color: #fff;
         padding: 30px 20px;
@@ -22,6 +23,17 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         position: relative;
         overflow: hidden;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .pricing-card:before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 200px;
+        border-radius: 0px 0px 20px 20px;
+        background-color: #fff;
     }
 
     .personal {
