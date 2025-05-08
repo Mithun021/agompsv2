@@ -110,6 +110,11 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
         padding: 5px;
         text-align: center;
     }
+    .pricing-card ul li:nth-child(odd) {
+        background: rgba(255, 255, 255, 0.13);  /* semi-transparent white background */
+        padding: 5px;
+        text-align: center;
+    }
 </style>
 <div class="container-fluid my-5">
     <div class="row">
