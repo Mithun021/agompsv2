@@ -62,8 +62,9 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
     }
 
     .pricing-card ul li {
-        font-size: 14px;
+        font-size: 16px;
         margin: 10px 0;
+        text-align: center;
     }
 
     .check {
