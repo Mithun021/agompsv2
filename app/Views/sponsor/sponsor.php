@@ -29,11 +29,11 @@ $sponsor_package_type_model = new Sponsor_package_type_model();
     }
 
     .standard {
-        background: linear-gradient(to bottom, #6a3093, #a044ff);
+        background: linear-gradient(to bottom, #BB73E0, #FF8DDB);
     }
 
     .business {
-        background: linear-gradient(to bottom, #2c3e50, #3498db);
+        background: linear-gradient(to bottom, #E3FF73, #E27C39);
     }
 
     .pricing-card h3 {
